@@ -25,7 +25,6 @@ function App() {
             <Route path="/services/social-media-marketing" element={<SocialMediaMarketing />} />
             <Route path="/services/whatsapp-marketing" element={<WhatsAppMarketing />} />
             <Route path="/services/whatsapp-integration" element={<WhatsAppIntegration />} />
-            {/* You can add more routes here for other components like Contact */}
           </Routes>
         </main>
         <Footer />
