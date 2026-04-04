@@ -16,7 +16,7 @@ const navLinks = [
     ]
   },
   { label: "Projects", path: "#projects" },
-  { label: "Contact Us", path: "#contact" },
+  { label: "Contact Us", path: "/contact" },
 ];
 
 const Header: React.FC = () => {

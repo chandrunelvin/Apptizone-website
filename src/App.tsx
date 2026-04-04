@@ -9,6 +9,7 @@ import UIUX from './components/Services/UIUX/UIUX'
 import SocialMediaMarketing from './components/Services/SocialMediaMarketing/SocialMediaMarketing'
 import WhatsAppMarketing from './components/Services/WhatsAppMarketing/WhatsAppMarketing'
 import WhatsAppIntegration from './components/Services/WhatsAppIntegration/WhatsAppIntegration'
+import ContactUs from './components/ContactUs/ContactUs'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/services/social-media-marketing" element={<SocialMediaMarketing />} />
             <Route path="/services/whatsapp-marketing" element={<WhatsAppMarketing />} />
             <Route path="/services/whatsapp-integration" element={<WhatsAppIntegration />} />
+            <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </main>
         <Footer />

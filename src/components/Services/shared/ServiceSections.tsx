@@ -321,49 +321,52 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
 );
 
 export const ServiceStatsSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
-  <section className="px-6 py-20 md:px-10 lg:px-16">
-    <div className="mx-auto max-w-[1380px] rounded-[44px] border-4 px-8 py-12 md:px-14 md:py-16" style={{ backgroundColor: config.colors.secondaryAccent, borderColor: '#111111' }}>
-      <h2
-        className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(36px,6vw,82px)] leading-[1.05]"
-        style={{ color: config.colors.lightText, textShadow: `5px 5px 0 ${config.colors.buttonShadow}` }}
-      >
+  <section id="services" className="relative w-full overflow-hidden min-h-[909px]">
+    <img className="absolute top-0 left-0 w-full h-[893px] object-cover" alt="Vector" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/vector-363-1.svg" />
+    <img className="absolute top-4 left-[70px] w-[1401px] h-[877px] object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-198.png" />
+    <img className="absolute top-0 left-px w-full h-[894px] object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-199.png" />
+    <div className="relative z-10 flex flex-col w-full px-6 md:px-[126px] pt-[149px] pb-[100px]">
+      <h2 className="w-full max-w-[1371px] [text-shadow:6px_6px_1px_#201f51] [font-family:'Black_Han_Sans',Helvetica] font-normal text-white text-[clamp(48px,8vw,120px)] tracking-[0] leading-[1.1] mb-0">
         {config.statsHeadline}
       </h2>
-      <p
-        className="mt-8 max-w-[1080px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-semibold leading-[1.6] md:text-3xl"
-        style={{ color: config.colors.lightText }}
-      >
+      <p className="mt-[60px] w-full max-w-[1201px] [-webkit-text-stroke:1px_#222222] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-4xl tracking-[0] leading-[52px]">
         {config.statsDescription}
       </p>
     </div>
   </section>
 );
 
-export const ServiceMattersSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
-  <section className="px-6 py-10 md:px-10 lg:px-16">
-    <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-      <div>
-        <h2
-          className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(34px,5vw,68px)] leading-[1.05]"
-          style={{ color: config.colors.lightText, textShadow: `4px 4px 0 ${config.colors.buttonShadow}` }}
-        >
-          {config.mattersTitle}
-        </h2>
+export const ServiceMattersSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => {
+  const titleParts = config.mattersTitle.toUpperCase().endsWith(' MATTERS')
+    ? {
+        prefix: config.mattersTitle.slice(0, -8),
+        suffix: ' MATTERS',
+      }
+    : { prefix: config.mattersTitle, suffix: '' };
+
+  return (
+    <section className="relative w-full overflow-hidden" style={{ minHeight: '788px' }}>
+      <img className="absolute top-0 left-0 w-full h-full object-cover" alt="Vector" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/vector-360.svg" />
+      <div className="relative w-full flex flex-col lg:flex-row items-start px-6 md:px-[100px] lg:px-[152px] pt-16 lg:pt-[217px] pb-[60px] gap-10 lg:gap-0">
+        <div className="w-full lg:w-[513px] shrink-0 [text-shadow:-2px_2px_0px_#201f51] [-webkit-text-stroke:1px_#222222] [font-family:'Black_Han_Sans',Helvetica] font-normal text-transparent text-[clamp(36px,6vw,72px)] tracking-[0] leading-[normal]">
+          <span className="text-[#66ba4f]">{titleParts.prefix}</span>
+          <span className="text-white">{titleParts.suffix}</span>
+        </div>
+        <div className="flex flex-col gap-[32px] lg:ml-[80px] lg:pt-[49px]">
+          {config.mattersBullets.map((bullet) => (
+            <div key={bullet} className="flex flex-row items-start gap-[17.5px]">
+              <img className="mt-1 w-7 h-[27px] shrink-0" alt="Bullet" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/--2.svg" />
+              <div className="[text-shadow:-1px_1px_0px_#49071e] [-webkit-text-stroke:0.5px_#4a081f] [font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-[clamp(20px,2.5vw,30px)] tracking-[0] leading-[normal]">
+                {bullet}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="grid gap-4">
-        {config.mattersBullets.map((bullet) => (
-          <div
-            key={bullet}
-            className="rounded-[28px] border-2 px-6 py-5 [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-bold md:text-3xl"
-            style={{ backgroundColor: config.colors.cardBg, borderColor: '#111111', color: config.colors.darkText }}
-          >
-            {bullet}
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
+      <img className="absolute bottom-0 left-[-97px] w-[259px] h-[260px]" alt="Decoration" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/--16.svg" />
+    </section>
+  );
+};
 
 export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
   <section className="px-6 py-20 md:px-10 lg:px-16">
