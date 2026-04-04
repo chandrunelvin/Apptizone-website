@@ -97,21 +97,21 @@ const TestimonialsSection = () => {
   }, []);
 
   const cardMotion = testimonials.map((_, index) => {
-    const revealStart = index * 0.22;
-    const revealEnd = revealStart + 0.28;
+    const revealStart = index * 0.18;
+    const revealEnd = revealStart + 0.34;
     const localProgress = Math.min(Math.max((progress - revealStart) / (revealEnd - revealStart), 0), 1);
 
-    const startY = index * 156;
-    const endY = index * 96;
+    const startY = index * 220;
+    const endY = index * 54;
     const translateY = startY - (startY - endY) * localProgress;
-    const scale = 0.98 + localProgress * 0.02;
-    const opacity = 0.78 + localProgress * 0.22;
+    const scale = 0.94 + localProgress * 0.06;
+    const opacity = 1;
 
     return { translateY, scale, opacity };
   });
 
   return (
-    <section ref={sectionRef} className="relative min-h-[210vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:px-[72px] md:py-20">
+    <section ref={sectionRef} className="relative min-h-[240vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:px-[72px] md:py-20">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[220px] opacity-20">
         <div className="h-full w-full bg-[radial-gradient(circle_at_0_0,transparent_0,transparent_10px,#d7c856_10.5px,transparent_11px)] bg-[length:44px_44px]" />
       </div>
@@ -128,19 +128,19 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        <div className="relative mt-8 md:mt-2">
-          <div className="sticky top-[84px] mx-auto h-[680px] max-w-[920px] md:h-[920px]">
+        <div className="relative mt-12 md:mt-6">
+          <div className="sticky top-[74px] mx-auto h-[760px] max-w-[920px] md:h-[980px]">
             {testimonials.map((testimonial, index) => (
               <article
                 key={testimonial.id}
-                className="absolute left-1/2 w-[92%] max-w-[860px] rounded-[18px] border-2 px-5 py-5 shadow-[0_2px_0_rgba(30,30,30,0.15)] md:px-8 md:py-7"
+                className="absolute left-1/2 w-[92%] max-w-[860px] rounded-[18px] border-2 px-5 py-5 shadow-[0_10px_28px_rgba(30,30,30,0.16)] transition-transform duration-200 md:px-8 md:py-7"
                 style={{
                   top: 0,
                   left: '50%',
                   backgroundColor: testimonial.cardBg,
                   color: testimonial.cardText,
                   borderColor: testimonial.cardBorder,
-                  zIndex: index + 1 + (progress > index * 0.24 ? 10 : 0),
+                  zIndex: index + 1 + (progress > index * 0.2 ? 10 : 0),
                   transform: `translateX(-50%) translateY(${cardMotion[index].translateY}px) rotate(${testimonial.rotate}) scale(${cardMotion[index].scale})`,
                   opacity: cardMotion[index].opacity,
                 }}
