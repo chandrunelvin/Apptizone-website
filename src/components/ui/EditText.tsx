@@ -26,10 +26,6 @@ const EditText: React.FC<EditTextProps> = ({
   onFocus,
   onBlur,
   id = "",
-  variant = "default",
-  size = "md",
-  padding = "md",
-  position = "relative",
   className = "",
   layout_width = "flex-1"
 }) => {

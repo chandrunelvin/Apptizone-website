@@ -17,11 +17,6 @@ const Button: React.FC<ButtonProps> = ({
   type = "button",
   onClick,
   className = "",
-  variant = "default",
-  size = "md",
-  padding = "md",
-  margin = "0",
-  position = "relative",
   layout_width = "flex-1",
   children
 }) => {

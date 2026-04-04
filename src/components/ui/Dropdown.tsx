@@ -27,13 +27,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   name = "",
   value = "",
   onChange,
-  id = "",
-  variant = "default",
-  size = "md",
-  padding = "md",
-  position = "relative",
   className = "",
-  layout_gap = "16px",
   layout_width = "flex-1"
 }) => {
   const [isOpen, setIsOpen] = useState(false);
