@@ -1,124 +1,194 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const testimonials = [
   {
+    id: 'mathew-white',
     name: 'Mathew',
     initial: 'M',
     rating: '4.0',
     text: 'The team is creative, responsive, and data-driven. They helped us rebrand and scale our business online. We appreciate their innovative ideas and consistent support.',
-    bg: 'bg-white',
-    avatarBg: 'bg-[#f0542e]',
-    avatarText: 'text-white',
-    nameColor: 'text-black',
-    textColor: 'text-black',
-    ratingColor: 'text-black',
-    starColor: 'text-[#f0542e]',
+    cardBg: '#ffffff',
+    cardText: '#1f1f1f',
+    cardBorder: '#5f5b63',
+    avatarBg: '#ff5b2f',
+    avatarText: '#ffffff',
+    ratingText: '#2d2d2d',
+    rotate: '-3deg',
+    top: '120px',
   },
   {
-    name: 'Sarah',
-    initial: 'S',
-    rating: '5.0',
-    text: 'Apptizone transformed our digital presence completely. Their SEO strategies helped us move from page 5 to page 1 in just 3 months. Absolutely recommend!',
-    bg: 'bg-[#807cff]',
-    avatarBg: 'bg-[#f0542e]',
-    avatarText: 'text-white',
-    nameColor: 'text-white',
-    textColor: 'text-white',
-    ratingColor: 'text-white',
-    starColor: 'text-[#ecd65d]',
+    id: 'mathew-purple',
+    name: 'Mathew',
+    initial: 'M',
+    rating: '4.0',
+    text: 'The team is creative, responsive, and data-driven. They helped us rebrand and scale our business online. We appreciate their innovative ideas and consistent support.',
+    cardBg: '#7d72f4',
+    cardText: '#f7f5ff',
+    cardBorder: '#5d53bf',
+    avatarBg: '#ff5b2f',
+    avatarText: '#ffffff',
+    ratingText: '#f7f5ff',
+    rotate: '1deg',
+    top: '220px',
   },
   {
-    name: 'Rajan',
-    initial: 'R',
-    rating: '4.5',
-    text: 'Outstanding work on our WhatsApp marketing campaigns. The engagement rates went through the roof and our customer retention improved significantly.',
-    bg: 'bg-[#f0542e]',
-    avatarBg: 'bg-white',
-    avatarText: 'text-[#f0542e]',
-    nameColor: 'text-white',
-    textColor: 'text-white',
-    ratingColor: 'text-white',
-    starColor: 'text-[#ecd65d]',
+    id: 'mathew-orange',
+    name: 'Mathew',
+    initial: 'M',
+    rating: '4.0',
+    text: 'The team is creative, responsive, and data-driven. They helped us rebrand and scale our business online. We appreciate their innovative ideas and consistent support.',
+    cardBg: '#ff5b2f',
+    cardText: '#fff7f2',
+    cardBorder: '#8b3b22',
+    avatarBg: '#ffffff',
+    avatarText: '#ff5b2f',
+    ratingText: '#fff7f2',
+    rotate: '-3deg',
+    top: '320px',
   },
 ];
 
-const ArrowIcon = ({ direction }: { direction: 'left' | 'right' }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-    {direction === 'left' ? <path d="M15 18l-6-6 6-6" /> : <path d="M9 18l6-6-6-6" />}
+const ArrowLoop = () => (
+  <svg viewBox="0 0 160 140" fill="none" className="h-[78px] w-[86px] text-[#4f4298] md:h-[96px] md:w-[106px]">
+    <path
+      d="M28 22C62 8 111 22 118 57C124 88 99 112 66 111"
+      stroke="currentColor"
+      strokeWidth="7"
+      strokeLinecap="round"
+    />
+    <path
+      d="M66 111L87 126"
+      stroke="currentColor"
+      strokeWidth="7"
+      strokeLinecap="round"
+    />
+    <path
+      d="M66 111L79 87"
+      stroke="currentColor"
+      strokeWidth="7"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 const TestimonialsSection = () => {
-  const [current, setCurrent] = useState(0);
-  const testimonial = testimonials[current];
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [progress, setProgress] = useState(0);
 
-  const prev = () => setCurrent((index) => (index - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((index) => (index + 1) % testimonials.length);
+  useEffect(() => {
+    const updateProgress = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const scrollable = Math.max(rect.height - window.innerHeight, 1);
+      const next = Math.min(Math.max(-rect.top / scrollable, 0), 1);
+      setProgress(next);
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+
+    return () => {
+      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener('resize', updateProgress);
+    };
+  }, []);
+
+  const cardMotion = testimonials.map((_, index) => {
+    const revealStart = index * 0.22;
+    const revealEnd = revealStart + 0.28;
+    const localProgress = Math.min(Math.max((progress - revealStart) / (revealEnd - revealStart), 0), 1);
+
+    const startY = index * 156;
+    const endY = index * 96;
+    const translateY = startY - (startY - endY) * localProgress;
+    const scale = 0.98 + localProgress * 0.02;
+    const opacity = 0.78 + localProgress * 0.22;
+
+    return { translateY, scale, opacity };
+  });
 
   return (
-    <section className="w-full bg-[#ecd65d] px-6 py-[60px] md:px-[67px] md:py-[90px]">
-      <div className="mx-auto w-full max-w-[1440px]">
-        <h2 className="[font-family:'Black_Han_Sans',Helvetica] mb-12 text-[clamp(36px,7.5vw,120px)] font-normal leading-tight tracking-[0] text-[#4f4298] [text-shadow:6px_6px_1px_#201f51] md:mb-16">
-          HERE WHAT OUR
-          <br className="hidden md:block" /> CLIENTS SAYS
-        </h2>
+    <section ref={sectionRef} className="relative min-h-[210vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:px-[72px] md:py-20">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-[220px] opacity-20">
+        <div className="h-full w-full bg-[radial-gradient(circle_at_0_0,transparent_0,transparent_10px,#d7c856_10.5px,transparent_11px)] bg-[length:44px_44px]" />
+      </div>
 
-        <div className={`w-full max-w-[918px] rounded-[30px] border-2 border-solid border-black p-7 transition-all duration-300 md:p-10 ${testimonial.bg}`}>
-          <div className="flex flex-col items-start gap-6 md:flex-row">
-            <div
-              className={`flex h-[100px] w-[100px] flex-shrink-0 items-center justify-center rounded-full md:h-[152px] md:w-[152px] ${testimonial.avatarBg}`}
-            >
-              <span className={`${testimonial.avatarText} [font-family:'Bricolage_Grotesque',Helvetica] text-[48px] font-medium md:text-[80px]`}>
-                {testimonial.initial}
-              </span>
-            </div>
-
-            <div className="flex flex-1 flex-col gap-3">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className={`${testimonial.nameColor} [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3.5vw,50px)] font-medium`}>
-                  {testimonial.name}
-                </span>
-                <div className="flex items-center gap-1">
-                  <span className={`${testimonial.starColor} text-xl`}>★</span>
-                  <span className={`${testimonial.ratingColor} [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-medium md:text-2xl`}>
-                    {testimonial.rating}
-                  </span>
-                </div>
-              </div>
-              <p className={`${testimonial.textColor} [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(15px,1.8vw,26px)] font-normal leading-[1.5]`}>
-                {testimonial.text}
-              </p>
-            </div>
+      <div className="mx-auto max-w-[1530px]">
+        <div className="relative z-10 max-w-[960px]">
+          <h2 className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(42px,7vw,112px)] leading-[0.9] text-[#4f4298]">
+            HERE WHAT OUR
+            <br />
+            CLIENTS SAYS
+          </h2>
+          <div className="ml-[60%] mt-1 md:ml-[66%]">
+            <ArrowLoop />
           </div>
         </div>
 
-        <div className="mt-8 flex items-center gap-6">
-          <button
-            onClick={prev}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4f4298] text-white shadow-[3px_3px_0px_#201f51] transition-colors hover:bg-[#413884]"
-            aria-label="Previous testimonial"
-          >
-            <ArrowIcon direction="left" />
-          </button>
+        <div className="relative mt-8 md:mt-2">
+          <div className="sticky top-[84px] mx-auto h-[680px] max-w-[920px] md:h-[920px]">
+            {testimonials.map((testimonial, index) => (
+              <article
+                key={testimonial.id}
+                className="absolute left-1/2 w-[92%] max-w-[860px] rounded-[18px] border-2 px-5 py-5 shadow-[0_2px_0_rgba(30,30,30,0.15)] md:px-8 md:py-7"
+                style={{
+                  top: 0,
+                  left: '50%',
+                  backgroundColor: testimonial.cardBg,
+                  color: testimonial.cardText,
+                  borderColor: testimonial.cardBorder,
+                  zIndex: index + 1 + (progress > index * 0.24 ? 10 : 0),
+                  transform: `translateX(-50%) translateY(${cardMotion[index].translateY}px) rotate(${testimonial.rotate}) scale(${cardMotion[index].scale})`,
+                  opacity: cardMotion[index].opacity,
+                }}
+              >
+                <div className="flex items-start gap-4 md:gap-6">
+                  <div
+                    className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full text-[24px] md:h-[86px] md:w-[86px] md:text-[42px]"
+                    style={{
+                      backgroundColor: testimonial.avatarBg,
+                      color: testimonial.avatarText,
+                      fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif',
+                      fontWeight: 500,
+                    }}
+                  >
+                    {testimonial.initial}
+                  </div>
 
-          <div className="flex gap-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrent(index)}
-                className={`h-3 w-3 rounded-full transition-all ${index === current ? 'scale-125 bg-[#4f4298]' : 'bg-[#4f4298]/30'}`}
-                aria-label={`Testimonial ${index + 1}`}
-              />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3
+                        className="[font-family:'Bricolage_Grotesque',Helvetica] text-[22px] font-medium leading-none md:text-[46px]"
+                        style={{ color: testimonial.cardText }}
+                      >
+                        {testimonial.name}
+                      </h3>
+
+                      <div className="mt-1 flex items-center gap-1 text-[14px] md:text-[28px]">
+                        <span
+                          className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold"
+                          style={{ color: testimonial.ratingText }}
+                        >
+                          {testimonial.rating}
+                        </span>
+                        <span className="text-[#ffcc25]">★</span>
+                      </div>
+                    </div>
+
+                    <p
+                      className="[font-family:'Bricolage_Grotesque',Helvetica] mt-3 max-w-[560px] text-[13px] font-normal leading-[1.35] md:mt-4 md:max-w-[620px] md:text-[24px]"
+                      style={{ color: testimonial.cardText }}
+                    >
+                      {testimonial.text}
+                    </p>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
-
-          <button
-            onClick={next}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4f4298] text-white shadow-[3px_3px_0px_#201f51] transition-colors hover:bg-[#413884]"
-            aria-label="Next testimonial"
-          >
-            <ArrowIcon direction="right" />
-          </button>
         </div>
       </div>
     </section>

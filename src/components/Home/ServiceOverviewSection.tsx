@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import bgService from '../../assets/home/bg-service.png';
 import semSticker from '../../assets/home/sem-ani.png';
 import seoSticker from '../../assets/home/seo-ani.png';
@@ -7,60 +9,92 @@ import whatsappIntegrationSticker from '../../assets/home/w-inter-ani.png';
 import whatsappMarketingSticker from '../../assets/home/whatsapp-m-ani.png';
 
 const ServiceOverviewSection = () => {
+  const [hoveredSticker, setHoveredSticker] = useState<string | null>(null);
+
   const stickers = [
     {
       key: 'seo',
       image: seoSticker,
       title: 'SEO',
-      details: 'Search Engine Optimization',
+      details:
+        'Improve search visibility and attract quality organic traffic. Built for sustainable, long-term growth.',
       wrapperClass: 'left-[7%] top-[14%]',
       imageClass: 'w-[140px] md:w-[165px]',
-      backClass: '-left-3 top-[44px] w-[210px]',
+      panelClass:
+        'left-[42%] top-[-18%] h-[172px] w-[290px] -rotate-[10deg] rounded-[40px] md:h-[208px] md:w-[420px] md:rounded-[58px]',
+      panelTextClass: 'max-w-[160px] md:max-w-[230px]',
+      origin: 'left center',
+      align: 'end',
     },
     {
       key: 'website',
       image: websiteSticker,
       title: 'Website Design',
-      details: 'UI/UX and App Design',
+      details:
+        'Create clear user journeys, stronger interfaces, and better conversion-focused web and app experiences.',
       wrapperClass: 'left-[4%] top-[56%]',
       imageClass: 'w-[280px] md:w-[325px]',
-      backClass: 'left-6 top-[86px] w-[230px]',
+      panelClass:
+        'left-[24%] top-[-20%] h-[160px] w-[260px] -rotate-[8deg] rounded-[34px] md:h-[196px] md:w-[360px] md:rounded-[52px]',
+      panelTextClass: 'max-w-[150px] md:max-w-[210px]',
+      origin: 'left center',
+      align: 'end',
     },
     {
       key: 'social',
       image: socialSticker,
       title: 'Social Media Marketing',
-      details: 'Content, Reach, and Engagement',
+      details:
+        'Boost reach with platform-specific content, stronger engagement, and campaigns designed to grow attention.',
       wrapperClass: 'left-[48%] top-[23%]',
       imageClass: 'w-[250px] md:w-[295px]',
-      backClass: 'left-14 top-[92px] w-[250px]',
+      panelClass:
+        'left-[24%] top-[-18%] h-[152px] w-[250px] rotate-[8deg] rounded-[34px] md:h-[188px] md:w-[360px] md:rounded-[48px]',
+      panelTextClass: 'max-w-[145px] md:max-w-[205px]',
+      origin: 'left center',
+      align: 'end',
     },
     {
       key: 'sem',
       image: semSticker,
       title: 'SEM',
-      details: 'Search Engine Marketing',
+      details:
+        'Capture high-intent traffic fast with performance ads, targeted campaigns, and measurable lead generation.',
       wrapperClass: 'right-[6%] top-[50%]',
       imageClass: 'w-[240px] md:w-[285px]',
-      backClass: 'right-8 top-[96px] w-[220px]',
+      panelClass:
+        'right-[18%] top-[-18%] h-[156px] w-[250px] -rotate-[6deg] rounded-[34px] md:h-[194px] md:w-[360px] md:rounded-[50px]',
+      panelTextClass: 'max-w-[150px] md:max-w-[205px]',
+      origin: 'right center',
+      align: 'start',
     },
     {
       key: 'whatsapp',
       image: whatsappMarketingSticker,
       title: 'WhatsApp Marketing',
-      details: 'Broadcasts, Funnels, and Leads',
+      details:
+        'Drive direct conversations, faster replies, and better campaign engagement through WhatsApp funnels.',
       wrapperClass: 'right-[28%] bottom-[0.5%]',
       imageClass: 'w-[150px] md:w-[180px]',
-      backClass: '-left-8 top-[54px] w-[235px]',
+      panelClass:
+        'right-[18%] top-[-46%] h-[146px] w-[248px] -rotate-[18deg] rounded-[34px] md:h-[180px] md:w-[340px] md:rounded-[48px]',
+      panelTextClass: 'max-w-[140px] md:max-w-[200px]',
+      origin: 'right center',
+      align: 'start',
     },
     {
       key: 'whatsapp-integration',
       image: whatsappIntegrationSticker,
       title: 'WhatsApp Integration',
-      details: 'API, Automation, and CRM Sync',
+      details:
+        'Connect systems with API automation, CRM sync, and scalable customer communication workflows.',
       wrapperClass: 'right-[14%] bottom-[8%]',
       imageClass: 'w-[220px] md:w-[260px]',
-      backClass: 'right-8 top-[78px] w-[250px]',
+      panelClass:
+        'right-[18%] top-[-24%] h-[148px] w-[250px] -rotate-[8deg] rounded-[34px] md:h-[184px] md:w-[350px] md:rounded-[48px]',
+      panelTextClass: 'max-w-[145px] md:max-w-[205px]',
+      origin: 'right center',
+      align: 'start',
     },
   ];
 
@@ -87,21 +121,39 @@ const ServiceOverviewSection = () => {
           />
 
           {stickers.map((item) => (
-            <div key={item.key} className={`absolute ${item.wrapperClass} group`}>
+            <div
+              key={item.key}
+              className={`absolute ${item.wrapperClass}`}
+              onMouseEnter={() => setHoveredSticker(item.key)}
+              onMouseLeave={() => setHoveredSticker((current) => (current === item.key ? null : current))}
+            >
               <div
-                className={`pointer-events-none absolute ${item.backClass} z-10 rounded-2xl border-2 border-[#263238] bg-white/95 px-4 py-3 opacity-0 shadow-[4px_4px_0px_#24224b] transition-all duration-200 group-hover:opacity-100`}
+                className={`pointer-events-none absolute ${item.panelClass} z-10 overflow-hidden bg-[#27313b] shadow-[0_10px_24px_rgba(24,28,32,0.22)] transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                style={{
+                  opacity: hoveredSticker === item.key ? 1 : 0,
+                  transformOrigin: item.origin,
+                  transform: hoveredSticker === item.key ? 'scaleX(1) scaleY(1)' : 'scaleX(0.08) scaleY(0.92)',
+                }}
               >
-                <p className="[font-family:'Black_Han_Sans',Helvetica] text-[22px] leading-tight text-[#26233f]">
-                  {item.title}
-                </p>
-                <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-1 text-[14px] font-semibold leading-tight text-[#2f2c52]">
-                  {item.details}
-                </p>
+                <div className={`flex h-full items-center ${item.align === 'end' ? 'justify-end' : 'justify-start'} px-6 py-5 md:px-9 md:py-7`}>
+                  <p
+                    className={`[font-family:'Bricolage_Grotesque',Helvetica] ${item.panelTextClass} text-[14px] font-medium leading-[1.25] text-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-[18px]`}
+                    style={{
+                      opacity: hoveredSticker === item.key ? 1 : 0,
+                      transform: hoveredSticker === item.key ? 'translateX(0px)' : item.align === 'end' ? 'translateX(16px)' : 'translateX(-16px)',
+                    }}
+                  >
+                    {item.details}
+                  </p>
+                </div>
               </div>
               <img
                 src={item.image}
                 alt={item.title}
-                className={`relative z-20 h-auto ${item.imageClass} cursor-pointer transition-transform duration-200 group-hover:-translate-y-1`}
+                className={`relative z-20 h-auto ${item.imageClass} cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                style={{
+                  transform: hoveredSticker === item.key ? 'translateY(-4px) scale(1.03)' : 'translateY(0px) scale(1)',
+                }}
               />
             </div>
           ))}
