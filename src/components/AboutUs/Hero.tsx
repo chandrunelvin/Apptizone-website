@@ -30,13 +30,6 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Wave divider */}
-      <img
-        className="w-full h-auto block"
-        alt="wave"
-        src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/vector-349.svg"
-        style={{ marginTop: "-2px" }}
-      />
     </section>
   );
 };

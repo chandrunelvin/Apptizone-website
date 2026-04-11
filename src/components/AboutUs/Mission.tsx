@@ -2,9 +2,17 @@ import React from 'react';
 
 const Mission: React.FC = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#ecd65d] px-6 py-14 md:px-10 md:py-20 lg:px-16 lg:py-24">
-      <div className="mx-auto flex min-h-[520px] w-full max-w-[1530px] flex-col justify-between gap-16 lg:min-h-[680px]">
-        <div className="grid gap-5 lg:max-w-[52%]">
+    <section className="relative -mt-[2px] w-full overflow-hidden px-6 pb-14 pt-0 md:px-10 md:pb-20 lg:px-16 lg:pb-24">
+      <img
+        className="pointer-events-none absolute left-1/2 top-0 z-0 w-[max(100%,1440px)] -translate-x-1/2 select-none"
+        alt=""
+        src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/vector-349.svg"
+      />
+
+      <div className="absolute inset-x-0 bottom-0 top-[110px]  md:top-[150px] lg:top-[210px]" />
+
+      <div className="relative z-10 mx-auto min-h-[460px] w-full max-w-[1530px] pt-[120px] md:min-h-[560px] md:pt-[155px] lg:min-h-[760px] lg:pt-[210px]">
+        <div className="grid gap-4 lg:absolute lg:left-0 lg:top-[8px] lg:max-w-[38%]">
           <h2 className="[text-shadow:6px_6px_1px_#201f51] font-['Black_Han_Sans',Helvetica] font-normal text-[#f0542e] text-[clamp(52px,8vw,120px)] tracking-[0] leading-[0.96] uppercase">
             OUR
             <br />
@@ -17,19 +25,17 @@ const Mission: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex justify-start lg:justify-end">
-          <div className="grid gap-5 lg:max-w-[42%] lg:justify-items-end">
-            <h2 className="[text-shadow:6px_6px_1px_#201f51] font-['Black_Han_Sans',Helvetica] font-normal text-[#f0542e] text-[clamp(52px,8vw,120px)] tracking-[0] leading-[0.96] uppercase lg:text-right">
-              OUR
-              <br />
-              VISION
-            </h2>
-            <p className="max-w-[620px] font-['Bricolage_Grotesque',Helvetica] font-semibold text-[#1a1b18] text-[clamp(18px,2vw,30px)] tracking-[0] leading-[1.27] lg:text-center">
-              To become a trusted and innovative digital marketing partner for
-              brands across industries, known for creativity, transparency, and
-              performance-driven results that create long-term value.
-            </p>
-          </div>
+        <div className="mt-24 grid gap-4 md:ml-auto md:max-w-[58%] lg:absolute lg:bottom-[54px] lg:right-0 lg:mt-0 lg:max-w-[32%] lg:justify-items-end">
+          <h2 className="[text-shadow:6px_6px_1px_#201f51] font-['Black_Han_Sans',Helvetica] font-normal text-[#f0542e] text-[clamp(52px,8vw,120px)] tracking-[0] leading-[0.96] uppercase lg:text-right">
+            OUR
+            <br />
+            VISION
+          </h2>
+          <p className="max-w-[620px] font-['Bricolage_Grotesque',Helvetica] font-semibold text-[#1a1b18] text-[clamp(18px,2vw,30px)] tracking-[0] leading-[1.27] lg:text-center">
+            To become a trusted and innovative digital marketing partner for
+            brands across industries, known for creativity, transparency, and
+            performance-driven results that create long-term value.
+          </p>
         </div>
       </div>
 

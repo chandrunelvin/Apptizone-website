@@ -505,34 +505,87 @@ export const ServiceCardsSection: React.FC<{ title: string; cards: ServiceCard[]
   </section>
 );
 
-export const ServiceProcessSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
-  <section className="px-6 pb-24 pt-20 md:px-10 lg:px-16">
-    <div className="mx-auto max-w-[1380px]">
-      <h2
-        className="mb-12 text-center [font-family:'Black_Han_Sans',Helvetica] text-[clamp(34px,5vw,76px)] leading-[1.05]"
-        style={{ color: config.colors.lightText, textShadow: `5px 5px 0 ${config.colors.buttonShadow}` }}
-      >
-        {config.processTitle}
-      </h2>
-      <div className="grid gap-6 lg:grid-cols-2">
+export const ServiceProcessSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => {
+  const desktopPositions = [
+    'top-[40px] left-[100px] w-[420px]',
+    'top-[176px] right-[80px] w-[470px]',
+    'top-[470px] left-[100px] w-[420px]',
+    'top-[615px] right-[80px] w-[470px]',
+  ];
+
+  return (
+    <section
+      className="relative w-full overflow-hidden px-6 pb-16 pt-16 md:px-10 md:pt-20 lg:min-h-[1280px] lg:px-16 lg:pt-24"
+      style={{ backgroundColor: config.colors.heroBg }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-30"
+        style={{
+          backgroundImage:
+            `radial-gradient(circle at 12% 18%, ${config.colors.accent}55 0, ${config.colors.accent}55 14%, transparent 14.5%), radial-gradient(circle at 86% 22%, ${config.colors.secondaryAccent}33 0, ${config.colors.secondaryAccent}33 10%, transparent 10.5%), linear-gradient(180deg, ${config.colors.heroBg} 0%, ${config.colors.pageBg} 100%)`,
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-[1530px]">
+        <h2
+          className="mb-14 text-left [font-family:'Black_Han_Sans',Helvetica] text-[clamp(42px,7vw,128px)] leading-[1.03]"
+          style={{ color: config.colors.lightText, textShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
+        >
+          {config.processTitle}
+        </h2>
+      </div>
+
+      <div className="relative z-10 mx-auto hidden max-w-[1530px] lg:block" style={{ height: '920px' }}>
+        {config.processSteps.slice(0, 4).map((step, index) => (
+          <div key={step.step} className={`absolute ${desktopPositions[index] ?? desktopPositions[desktopPositions.length - 1]}`}>
+            <div className="flex flex-col gap-2">
+              <h3
+                className="[font-family:'Bricolage_Grotesque',Helvetica] text-[38px] font-extrabold leading-[1.1]"
+                style={{ color: config.colors.lightText }}
+              >
+                {`${step.step} - ${step.title}`.toUpperCase()}
+              </h3>
+              <p
+                className="[font-family:'Bricolage_Grotesque',Helvetica] text-[28px] font-normal leading-[1.2]"
+                style={{ color: config.colors.darkText }}
+              >
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))}
+
+        <img className="absolute left-[535px] top-[66px] h-[128px] w-[330px]" alt="" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/vector-460.svg" />
+        <img className="absolute left-[605px] top-[324px] h-[188px] w-[180px]" alt="" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/70-1.svg" />
+        <img className="absolute left-[572px] top-[570px] h-[124px] w-[180px]" alt="" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-562.png" />
+      </div>
+
+      <div className="relative z-10 flex flex-col gap-8 lg:hidden">
         {config.processSteps.map((step) => (
           <div
             key={step.step}
-            className="rounded-[32px] border-[3px] p-8"
-            style={{ backgroundColor: config.colors.cardBg, borderColor: '#111111', boxShadow: `10px 10px 0 ${config.colors.cardShadow}` }}
+            className="rounded-[28px] border-[3px] p-6"
+            style={{
+              backgroundColor: config.colors.cardBg,
+              borderColor: '#111111',
+              boxShadow: `10px 10px 0 ${config.colors.cardShadow}`,
+            }}
           >
-            <div className="[font-family:'Bricolage_Grotesque',Helvetica] text-sm font-extrabold uppercase tracking-[0.12em]" style={{ color: config.colors.buttonBg }}>
-              {step.step}
-            </div>
-            <h3 className="mt-3 [font-family:'Bricolage_Grotesque',Helvetica] text-2xl font-extrabold md:text-4xl" style={{ color: config.colors.darkText }}>
-              {step.title}
+            <h3
+              className="[font-family:'Bricolage_Grotesque',Helvetica] text-2xl font-extrabold leading-tight md:text-[34px]"
+              style={{ color: config.colors.buttonBg }}
+            >
+              {`${step.step} - ${step.title}`.toUpperCase()}
             </h3>
-            <p className="mt-4 [font-family:'Bricolage_Grotesque',Helvetica] text-lg leading-relaxed md:text-2xl" style={{ color: config.colors.darkText }}>
+            <p
+              className="mt-3 [font-family:'Bricolage_Grotesque',Helvetica] text-lg leading-normal md:text-2xl"
+              style={{ color: config.colors.darkText }}
+            >
               {step.description}
             </p>
           </div>
         ))}
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
