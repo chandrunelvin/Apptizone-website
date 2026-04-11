@@ -1,4 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -14,7 +18,6 @@ const testimonials = [
     avatarText: '#ffffff',
     ratingText: '#2d2d2d',
     rotate: '-3deg',
-    top: '120px',
   },
   {
     id: 'mathew-purple',
@@ -29,7 +32,6 @@ const testimonials = [
     avatarText: '#ffffff',
     ratingText: '#f7f5ff',
     rotate: '1deg',
-    top: '220px',
   },
   {
     id: 'mathew-orange',
@@ -44,74 +46,108 @@ const testimonials = [
     avatarText: '#ff5b2f',
     ratingText: '#fff7f2',
     rotate: '-3deg',
-    top: '320px',
   },
 ];
 
 const ArrowLoop = () => (
   <svg viewBox="0 0 160 140" fill="none" className="h-[78px] w-[86px] text-[#4f4298] md:h-[96px] md:w-[106px]">
-    <path
-      d="M28 22C62 8 111 22 118 57C124 88 99 112 66 111"
-      stroke="currentColor"
-      strokeWidth="7"
-      strokeLinecap="round"
-    />
-    <path
-      d="M66 111L87 126"
-      stroke="currentColor"
-      strokeWidth="7"
-      strokeLinecap="round"
-    />
-    <path
-      d="M66 111L79 87"
-      stroke="currentColor"
-      strokeWidth="7"
-      strokeLinecap="round"
-    />
+    <path d="M28 22C62 8 111 22 118 57C124 88 99 112 66 111" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+    <path d="M66 111L87 126" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+    <path d="M66 111L79 87" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
   </svg>
 );
 
 const TestimonialsSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [progress, setProgress] = useState(0);
+  const pinRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Array<HTMLElement | null>>([]);
 
-  useEffect(() => {
-    const updateProgress = () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const pin = pinRef.current;
+    const cards = cardRefs.current.filter(Boolean) as HTMLElement[];
 
-      const rect = section.getBoundingClientRect();
-      const scrollable = Math.max(rect.height - window.innerHeight, 1);
-      const next = Math.min(Math.max(-rect.top / scrollable, 0), 1);
-      setProgress(next);
-    };
+    if (!section || !pin || cards.length === 0) return;
 
-    updateProgress();
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('resize', updateProgress);
+    const mm = gsap.matchMedia();
 
-    return () => {
-      window.removeEventListener('scroll', updateProgress);
-      window.removeEventListener('resize', updateProgress);
-    };
+    mm.add('(min-width: 768px)', () => {
+      const ctx = gsap.context(() => {
+        const startOffsets = [0, 210, 420];
+
+        gsap.set(cards, {
+          xPercent: -50,
+          y: (index: number) => startOffsets[index] ?? index * 210,
+          scale: (index: number) => (index === 0 ? 1 : 0.98),
+          rotation: (index: number) => Number.parseFloat(testimonials[index]?.rotate ?? '0'),
+          transformOrigin: 'center top',
+        });
+
+        const tl = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: '+=2200',
+            scrub: 0.9,
+            pin: pin,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        tl.to(cards[1], { y: 0, scale: 1, duration: 1 }, 0.35);
+        tl.set(cards[1], { zIndex: 20 }, 0.8);
+        tl.to(cards[2], { y: 0, scale: 1, duration: 1 }, 1.3);
+        tl.set(cards[2], { zIndex: 30 }, 1.8);
+      }, section);
+
+      return () => ctx.revert();
+    });
+
+    mm.add('(max-width: 767px)', () => {
+      const ctx = gsap.context(() => {
+        const startOffsets = [0, 170, 340];
+
+        gsap.set(cards, {
+          xPercent: -50,
+          y: (index: number) => startOffsets[index] ?? index * 170,
+          scale: 1,
+          rotation: (index: number) => Number.parseFloat(testimonials[index]?.rotate ?? '0'),
+          transformOrigin: 'center top',
+        });
+
+        const tl = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: '+=1700',
+            scrub: 0.9,
+            pin: pin,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        tl.to(cards[1], { y: 0, duration: 1 }, 0.35);
+        tl.set(cards[1], { zIndex: 20 }, 0.8);
+        tl.to(cards[2], { y: 0, duration: 1 }, 1.3);
+        tl.set(cards[2], { zIndex: 30 }, 1.8);
+      }, section);
+
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
   }, []);
 
-  const cardMotion = testimonials.map((_, index) => {
-    const revealStart = index * 0.18;
-    const revealEnd = revealStart + 0.34;
-    const localProgress = Math.min(Math.max((progress - revealStart) / (revealEnd - revealStart), 0), 1);
-
-    const startY = index * 220;
-    const endY = index * 54;
-    const translateY = startY - (startY - endY) * localProgress;
-    const scale = 0.94 + localProgress * 0.06;
-    const opacity = 1;
-
-    return { translateY, scale, opacity };
-  });
+  useLayoutEffect(() => {
+    ScrollTrigger.refresh();
+  }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[240vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:px-[72px] md:py-20">
+    <section ref={sectionRef} className="relative h-[300vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:h-[340vh] md:px-[72px] md:py-20">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[220px] opacity-20">
         <div className="h-full w-full bg-[radial-gradient(circle_at_0_0,transparent_0,transparent_10px,#d7c856_10.5px,transparent_11px)] bg-[length:44px_44px]" />
       </div>
@@ -128,21 +164,21 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        <div className="relative mt-12 md:mt-6">
-          <div className="sticky top-[74px] mx-auto h-[760px] max-w-[920px] md:h-[980px]">
+        <div ref={pinRef} className="relative mt-12 h-[74vh] md:mt-6 md:h-[84vh]">
+          <div className="relative mx-auto h-full max-w-[920px]">
             {testimonials.map((testimonial, index) => (
               <article
                 key={testimonial.id}
-                className="absolute left-1/2 w-[92%] max-w-[860px] rounded-[18px] border-2 px-5 py-5 shadow-[0_10px_28px_rgba(30,30,30,0.16)] transition-transform duration-200 md:px-8 md:py-7"
+                ref={(node) => {
+                  cardRefs.current[index] = node;
+                }}
+                className="absolute left-1/2 top-0 w-[92%] max-w-[860px] rounded-[18px] border-2 px-5 py-5 shadow-[0_10px_28px_rgba(30,30,30,0.16)] md:px-8 md:py-7"
                 style={{
-                  top: 0,
                   left: '50%',
                   backgroundColor: testimonial.cardBg,
                   color: testimonial.cardText,
                   borderColor: testimonial.cardBorder,
-                  zIndex: index + 1 + (progress > index * 0.2 ? 10 : 0),
-                  transform: `translateX(-50%) translateY(${cardMotion[index].translateY}px) rotate(${testimonial.rotate}) scale(${cardMotion[index].scale})`,
-                  opacity: cardMotion[index].opacity,
+                  zIndex: index + 1,
                 }}
               >
                 <div className="flex items-start gap-4 md:gap-6">
