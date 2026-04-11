@@ -369,37 +369,35 @@ export const ServiceMattersSection: React.FC<{ config: ServicePageConfig }> = ({
 };
 
 export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
-  <section className="px-6 py-20 md:px-10 lg:px-16">
-    <div
-      className="mx-auto flex max-w-[1380px] flex-col items-center rounded-[44px] border-4 px-8 py-12 text-center md:px-14"
-      style={{ backgroundColor: config.colors.accent, borderColor: '#111111' }}
-    >
-      <div className="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-5">
-        {config.benefitHighlights.map((highlight) => (
-          <div
-            key={highlight}
-            className="rounded-[24px] border-2 px-4 py-5 [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-bold"
-            style={{ backgroundColor: '#ffffff', borderColor: '#111111', color: config.colors.darkText }}
-          >
-            {highlight}
-          </div>
-        ))}
+  <>
+    {/*
+    <section className="px-6 py-20 md:px-10 lg:px-16">
+      <div
+        className="mx-auto flex max-w-[1380px] flex-col items-center rounded-[44px] border-4 px-8 py-12 text-center md:px-14"
+        style={{ backgroundColor: config.colors.accent, borderColor: '#111111' }}
+      >
+        <div className="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {config.benefitHighlights.map((highlight) => (
+            <div
+              key={highlight}
+              className="rounded-[24px] border-2 px-4 py-5 [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-bold"
+              style={{ backgroundColor: '#ffffff', borderColor: '#111111', color: config.colors.darkText }}
+            >
+              {highlight}
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={scrollToContact}
+          className="mt-8 h-[58px] rounded-xl px-8 text-2xl text-white transition-all hover:opacity-90"
+          style={{ backgroundColor: config.colors.buttonBg, boxShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
+        >
+          Contact Us
+        </button>
       </div>
-      <p
-        className="mt-10 max-w-[760px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-semibold leading-[1.5] md:text-3xl"
-        style={{ color: config.colors.darkText }}
-      >
-        {config.ctaText}
-      </p>
-      <button
-        onClick={scrollToContact}
-        className="mt-8 h-[58px] rounded-xl px-8 text-2xl text-white transition-all hover:opacity-90"
-        style={{ backgroundColor: config.colors.buttonBg, boxShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
-      >
-        Contact Us
-      </button>
-    </div>
-  </section>
+    </section>
+    */}
+  </>
 );
 
 const sharedCardStyles = [
