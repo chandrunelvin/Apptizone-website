@@ -1,9 +1,11 @@
 import { type ServicePageConfig } from '../shared/ServiceSections';
 import seoCenterImage from '../../../assets/service-stickers/SEO-image/OBJECTS (1).png';
+import seoHeroBg from '../../../assets/service-stickers/SEO-image/seo-bg.png';
 
 export const seoConfig: ServicePageConfig = {
   serviceName: 'SEO',
   heroTitle: 'SEO THAT HELPS YOUR BRAND GET FOUND',
+  heroBackgroundImageSrc: seoHeroBg,
   benefitsCenterImageSrc: seoCenterImage,
   heroDescription:
     'Build long-term organic growth with SEO strategies that improve rankings, attract qualified traffic, and turn search visibility into steady leads.',

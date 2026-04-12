@@ -1,10 +1,12 @@
 import { type ServicePageConfig } from '../shared/ServiceSections';
 import semCenterImage from '../../../assets/service-stickers/sem-image/OBJECTS.png';
+import semHeroBg from '../../../assets/service-stickers/sem-image/sem-bg.png';
 
 export const semConfig: ServicePageConfig = {
   serviceName: 'Search Engine Marketing',
   heroTitle: 'SEM CAMPAIGNS THAT TURN CLICKS INTO CUSTOMERS',
   heroPattern: 'burst',
+  heroBackgroundImageSrc: semHeroBg,
   benefitsCenterImageSrc: semCenterImage,
   heroDescription:
     'Launch performance-driven paid search campaigns that put your brand in front of ready-to-buy users and keep your budget focused on results.',
