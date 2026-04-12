@@ -10,9 +10,9 @@ const UIUX = () => {
   return (
     <div className="overflow-x-hidden" style={{ backgroundColor: uiuxConfig.colors.pageBg }}>
       <HeroSection />
+      <BenefitsSection />
       <StatsSection />
       <MattersSection />
-      <BenefitsSection />
       <ServicesSection />
       <ProcessSection />
     </div>

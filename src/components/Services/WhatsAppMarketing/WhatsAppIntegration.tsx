@@ -12,15 +12,10 @@ const WhatsAppIntegration = () => {
       <img className="absolute top-[866px] left-0 w-full h-[1407px] pointer-events-none object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-560.png" />
 
       <HeroSection />
-      
-      <StatsSection />
-      
-      <MattersSection />
-      
       <BenefitsSection />
-      
+      <StatsSection />
+      <MattersSection />
       <ServicesSection />
-      
       <ProcessSection />
     </div>
   );

@@ -10,9 +10,9 @@ const WhatsAppMarketing = () => {
   return (
     <div className="overflow-x-hidden" style={{ backgroundColor: whatsappMarketingConfig.colors.pageBg }}>
       <HeroSection />
+      <BenefitsSection />
       <StatsSection />
       <MattersSection />
-      <BenefitsSection />
       <ServicesSection />
       <ProcessSection />
     </div>

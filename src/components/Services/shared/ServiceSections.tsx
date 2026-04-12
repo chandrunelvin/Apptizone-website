@@ -16,6 +16,8 @@ export type ServicePageConfig = {
   heroTitle: string;
   heroTitleImageSrc?: string;
   heroBackgroundImageSrc?: string;
+  heroPattern?: 'burst';
+  benefitsCenterImageSrc?: string;
   heroDescription: string;
   statsHeadline: string;
   statsDescription: string;
@@ -269,11 +271,24 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
   <section
     className="relative overflow-hidden px-6 pb-16 pt-32 md:px-10 lg:px-16 lg:pb-20 lg:pt-40"
     style={{
-      background: config.heroBackgroundImageSrc
+      background: config.heroPattern
+        ? config.colors.heroBg
+        : config.heroBackgroundImageSrc
         ? config.colors.heroBg
         : `radial-gradient(circle at top left, ${config.colors.secondaryAccent} 0%, transparent 42%), linear-gradient(135deg, ${config.colors.heroBg} 0%, ${config.colors.pageBg} 100%)`,
     }}
   >
+    {config.heroPattern === 'burst' && (
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'repeating-conic-gradient(from 0deg at 50% 52%, #111111 0deg 5deg, transparent 5deg 10deg)',
+          opacity: 1,
+        }}
+      />
+    )}
+
     {config.heroBackgroundImageSrc && (
       <img
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
@@ -315,11 +330,11 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
         >
           {config.heroDescription}
         </p>
-        <div className="mt-10 flex flex-wrap gap-5">
+        <div id="contact" className="mt-8 flex flex-wrap items-center gap-6">
           <button
             onClick={scrollToContact}
-            className="h-[58px] rounded-xl px-8 text-2xl text-white transition-all hover:opacity-90"
-            style={{ backgroundColor: config.colors.buttonBg, boxShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
+            className="h-[60px] min-w-[230px] rounded-[14px] px-8 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3vw,40px)] leading-none text-white shadow-[6px_6px_0_#1f1d59] transition hover:opacity-90"
+            style={{ backgroundColor: config.colors.buttonBg }}
           >
             Contact Us
           </button>
@@ -327,9 +342,14 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
             href="https://wa.me/919999999999"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-[58px] items-center rounded-xl px-8 text-2xl transition-all hover:opacity-90"
-            style={{ backgroundColor: config.colors.accent, color: config.colors.darkText, boxShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
+            className="flex h-[60px] min-w-[250px] items-center justify-center gap-3 rounded-[14px] px-8 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3vw,40px)] leading-none text-white shadow-[6px_6px_0_#1f1d59] transition hover:opacity-90"
+            style={{ backgroundColor: '#66BA4F' }}
           >
+            <img
+              className="h-[30px] w-[30px]"
+              alt="WhatsApp"
+              src="https://c.animaapp.com/mms4ffjl5N2sBn/img/mage-whatsapp-filled.svg"
+            />
             WhatsApp
           </a>
         </div>
@@ -388,37 +408,101 @@ export const ServiceMattersSection: React.FC<{ config: ServicePageConfig }> = ({
   );
 };
 
-export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
-  <>
-    {/*
-    <section className="px-6 py-20 md:px-10 lg:px-16">
-      <div
-        className="mx-auto flex max-w-[1380px] flex-col items-center rounded-[44px] border-4 px-8 py-12 text-center md:px-14"
-        style={{ backgroundColor: config.colors.accent, borderColor: '#111111' }}
-      >
-        <div className="grid w-full gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {config.benefitHighlights.map((highlight) => (
+export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => {
+  const highlights = [
+    config.benefitHighlights[0] ?? '',
+    config.benefitHighlights[1] ?? '',
+    config.benefitHighlights[2] ?? '',
+    config.benefitHighlights[3] ?? '',
+    config.benefitHighlights[4] ?? '',
+  ];
+
+  const benefitsImageSrc = config.benefitsCenterImageSrc ?? 'https://c.animaapp.com/mms4ffjl5N2sBn/img/man.png';
+
+  return (
+    <section className="relative w-full overflow-hidden bg-[#24185a] px-6 py-16 md:px-10 lg:px-16 lg:py-20">
+      <div className="pointer-events-none absolute inset-0 opacity-20">
+        <div className="h-full w-full bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_20%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.06),transparent_22%),radial-gradient(circle_at_50%_75%,rgba(255,255,255,0.05),transparent_18%)]" />
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-[radial-gradient(24px_10px_at_12px_100%,transparent_98%,#f4eee4_100%),radial-gradient(24px_10px_at_36px_100%,transparent_98%,#f4eee4_100%)] bg-[length:48px_100%] bg-repeat-x" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-[radial-gradient(24px_10px_at_12px_0,transparent_98%,#f4eee4_100%),radial-gradient(24px_10px_at_36px_0,transparent_98%,#f4eee4_100%)] bg-[length:48px_100%] bg-repeat-x" />
+
+      <div className="relative flex w-full flex-col items-center">
+        <div className="relative hidden w-full max-w-[1440px] lg:block" style={{ height: '680px' }}>
+          <div
+            className="pointer-events-none absolute left-1/2 top-[10px] z-10 -translate-x-1/2 rotate-[-5deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[58px] font-extrabold leading-[0.98]"
+            style={{ whiteSpace: 'nowrap', color: config.colors.accent }}
+          >
+            {highlights[0]}
+          </div>
+          <div
+            className="pointer-events-none absolute left-[3%] top-[210px] z-10 w-[420px] rotate-[-7deg] [font-family:'Bricolage_Grotesque',Helvetica] text-[52px] font-extrabold leading-[0.98]"
+            style={{ color: config.colors.accent }}
+          >
+            {highlights[1]}
+          </div>
+          <div
+            className="pointer-events-none absolute right-[4%] top-[190px] z-10 w-[360px] rotate-[8deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[52px] font-extrabold leading-[0.98]"
+            style={{ color: config.colors.accent }}
+          >
+            {highlights[2]}
+          </div>
+          <div
+            className="pointer-events-none absolute left-[8%] top-[405px] z-10 w-[320px] rotate-[4deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[42px] font-extrabold leading-[0.98]"
+            style={{ color: config.colors.accent }}
+          >
+            {highlights[3] || highlights[1]}
+          </div>
+          <div
+            className="pointer-events-none absolute right-[9%] top-[420px] z-10 w-[320px] rotate-[-4deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[42px] font-extrabold leading-[0.98]"
+            style={{ color: config.colors.accent }}
+          >
+            {highlights[4] || highlights[2]}
+          </div>
+
+          <img
+            className="absolute left-1/2 top-[150px] z-20 h-[390px] w-auto -translate-x-1/2"
+            alt="Benefits illustration"
+            src={benefitsImageSrc}
+          />
+        </div>
+
+        <div className="flex w-full max-w-[760px] flex-col items-center gap-4 px-2 pb-4 pt-8 lg:hidden">
+          <div className="text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[34px] font-extrabold leading-[1] text-[color:var(--accent)]" style={{ ['--accent' as string]: config.colors.accent }}>
+            {highlights[0]}
+          </div>
+          {highlights.filter(Boolean).map((text, index) => (
             <div
-              key={highlight}
-              className="rounded-[24px] border-2 px-4 py-5 [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-bold"
-              style={{ backgroundColor: '#ffffff', borderColor: '#111111', color: config.colors.darkText }}
+              key={`${text}-${index}`}
+              className="text-center [font-family:'Bricolage_Grotesque',Helvetica] text-2xl font-extrabold leading-tight"
+              style={{ color: config.colors.accent }}
             >
-              {highlight}
+              {text}
             </div>
           ))}
+          <img alt="Benefits illustration" src={benefitsImageSrc} className="mt-2 h-auto w-[62%] max-w-[320px]" />
         </div>
-        <button
-          onClick={scrollToContact}
-          className="mt-8 h-[58px] rounded-xl px-8 text-2xl text-white transition-all hover:opacity-90"
-          style={{ backgroundColor: config.colors.buttonBg, boxShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
-        >
-          Contact Us
-        </button>
+
+        <div className="relative z-10 mt-2 flex flex-col items-center px-6 pb-10">
+          <p
+            className="text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3vw,34px)] font-semibold leading-[1.45] tracking-[0]"
+            style={{ maxWidth: '1180px', color: '#ffffff' }}
+          >
+            {config.ctaText}
+          </p>
+          <button
+            onClick={scrollToContact}
+            className="mt-8 h-[58px] w-[225px] cursor-pointer rounded-[14px] [font-family:'Bricolage_Grotesque',Helvetica] text-2xl font-normal leading-normal text-white shadow-[6px_6px_0_#1a1a1a] transition-all hover:opacity-90 active:translate-y-0.5"
+            style={{ backgroundColor: config.colors.buttonBg }}
+          >
+            Contact Us
+          </button>
+        </div>
       </div>
     </section>
-    */}
-  </>
-);
+  );
+};
 
 const sharedCardStyles = [
   {

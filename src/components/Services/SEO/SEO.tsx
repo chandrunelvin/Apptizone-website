@@ -10,9 +10,9 @@ const SEO = () => {
   return (
     <div className="overflow-x-hidden" style={{ backgroundColor: seoConfig.colors.pageBg }}>
       <HeroSection />
+      <BenefitsSection />
       <StatsSection />
       <MattersSection />
-      <BenefitsSection />
       <ServicesSection />
       <ProcessSection />
     </div>

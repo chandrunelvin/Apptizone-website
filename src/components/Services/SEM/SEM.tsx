@@ -10,9 +10,9 @@ const SEM = () => {
   return (
     <div className="overflow-x-hidden" style={{ backgroundColor: semConfig.colors.pageBg }}>
       <HeroSection />
+      <BenefitsSection />
       <StatsSection />
       <MattersSection />
-      <BenefitsSection />
       <ServicesSection />
       <ProcessSection />
     </div>

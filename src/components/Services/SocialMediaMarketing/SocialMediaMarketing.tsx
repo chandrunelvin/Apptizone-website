@@ -10,9 +10,9 @@ const SocialMediaMarketing = () => {
   return (
     <div className="overflow-x-hidden" style={{ backgroundColor: socialMediaConfig.colors.pageBg }}>
       <HeroSection />
+      <BenefitsSection />
       <StatsSection />
       <MattersSection />
-      <BenefitsSection />
       <ServicesSection />
       <ProcessSection />
     </div>
