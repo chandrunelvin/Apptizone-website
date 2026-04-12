@@ -15,7 +15,7 @@ const navLinks = [
       { label: "WhatsApp Integration", path: "/services/whatsapp-integration" },
     ]
   },
-  { label: "Projects", path: "#projects" },
+  { label: "Projects", path: "/projects" },
   { label: "Contact Us", path: "/contact" },
 ];
 

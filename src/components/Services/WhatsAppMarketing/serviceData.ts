@@ -1,10 +1,12 @@
 import { type ServicePageConfig } from '../shared/ServiceSections';
 import whatsappIntegrationBackground from '../../../assets/service-stickers/whatsapp-inter-imge/whatsappintergrate.png';
+import whatsappIntegrationCenterImage from '../../../assets/service-stickers/whatsapp-inter-imge/Group 568.png';
 
 export const whatsappIntegrationConfig: ServicePageConfig = {
   serviceName: 'WhatsApp Integration',
   heroTitle: 'REACH CUSTOMERS INSTANTLY WITH WHATSAPP INTEGRATION',
   heroBackgroundImageSrc: whatsappIntegrationBackground,
+  benefitsCenterImageSrc: whatsappIntegrationCenterImage,
   heroDescription:
     'Connect your business systems with WhatsApp to manage leads, automate responses, and keep customer conversations fast and organized.',
   statsHeadline: 'WHATSAPP INTEGRATION MAKES SALES, SUPPORT, AND FOLLOW-UP FASTER.',

@@ -18,6 +18,7 @@ export type ServicePageConfig = {
   heroBackgroundImageSrc?: string;
   heroPattern?: 'burst';
   benefitsCenterImageSrc?: string;
+  cardsSectionBg?: string;
   heroDescription: string;
   statsHeadline: string;
   statsDescription: string;
@@ -539,8 +540,8 @@ const sharedCardStyles = [
 
 const bulletIconSrc = 'https://c.animaapp.com/mms4ffjl5N2sBn/img/--4.svg';
 
-export const ServiceCardsSection: React.FC<{ title: string; cards: ServiceCard[] }> = ({ title, cards }) => (
-  <section className="w-full bg-[#ec5d9f] px-4 py-16 md:px-8">
+export const ServiceCardsSection: React.FC<{ title: string; cards: ServiceCard[]; backgroundColor?: string }> = ({ title, cards, backgroundColor = '#ec5d9f' }) => (
+  <section className="w-full px-4 py-16 md:px-8" style={{ backgroundColor }}>
     <h2 className="[font-family:'Black_Han_Sans',Helvetica] mb-16 text-center text-[clamp(32px,6vw,110px)] font-normal leading-[1.1] tracking-[0] text-white [text-shadow:6px_6px_1px_#201f51]">
       {title}
     </h2>

@@ -40,7 +40,7 @@ export const semConfig: ServicePageConfig = {
     heroBg: '#FFD920',
     accent: '#ffd166',
     secondaryAccent: '#a61e1e',
-    cardBg: '#fff1f1',
+    cardBg: '#FFFFFF',
     cardBorder: '#111111',
     cardShadow: '#751515',
     darkText: '#481010',
