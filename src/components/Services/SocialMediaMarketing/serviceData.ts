@@ -1,8 +1,12 @@
 import { type ServicePageConfig } from '../shared/ServiceSections';
+import smmTitle from '../../../assets/service-stickers/smm-image/smm-title.png';
+import smmBackground from '../../../assets/service-stickers/smm-image/Social Media Marketing.png';
 
 export const socialMediaConfig: ServicePageConfig = {
   serviceName: 'Social Media Marketing',
   heroTitle: 'SOCIAL MEDIA THAT BUILDS ATTENTION AND TRUST',
+  heroTitleImageSrc: smmTitle,
+  heroBackgroundImageSrc: smmBackground,
   heroDescription:
     'Grow your brand with social media strategies that keep your business visible, your audience engaged, and your content aligned with real business goals.',
   statsHeadline: 'YOUR AUDIENCE SCROLLS EVERY DAY. WE MAKE SURE YOUR BRAND STANDS OUT.',

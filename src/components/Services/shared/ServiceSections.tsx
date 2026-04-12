@@ -14,6 +14,8 @@ type ProcessStep = {
 export type ServicePageConfig = {
   serviceName: string;
   heroTitle: string;
+  heroTitleImageSrc?: string;
+  heroBackgroundImageSrc?: string;
   heroDescription: string;
   statsHeadline: string;
   statsDescription: string;
@@ -270,7 +272,15 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
       background: `radial-gradient(circle at top left, ${config.colors.secondaryAccent} 0%, transparent 42%), linear-gradient(135deg, ${config.colors.heroBg} 0%, ${config.colors.pageBg} 100%)`,
     }}
   >
-    <div className="mx-auto flex max-w-[1380px] flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+    {config.heroBackgroundImageSrc && (
+      <img
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-65"
+        alt=""
+        src={config.heroBackgroundImageSrc}
+      />
+    )}
+
+    <div className="relative z-10 mx-auto flex max-w-[1380px] flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
       <div className="w-full lg:max-w-[720px]">
         <div className="mb-8 flex flex-wrap gap-3">
           {config.benefitHighlights.map((item, index) => (
@@ -283,14 +293,22 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
             </div>
           ))}
         </div>
-        <h1
-          className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(44px,8vw,104px)] leading-[0.95]"
-          style={{ color: config.colors.lightText, textShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
-        >
-          {config.heroTitle}
-        </h1>
+        {config.heroTitleImageSrc ? (
+          <img
+            className="w-full max-w-[720px] h-auto"
+            alt={config.serviceName}
+            src={config.heroTitleImageSrc}
+          />
+        ) : (
+          <h1
+            className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(44px,8vw,104px)] leading-[0.95]"
+            style={{ color: config.colors.lightText, textShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
+          >
+            {config.heroTitle}
+          </h1>
+        )}
         <p
-          className="mt-8 max-w-[760px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-semibold leading-[1.5] md:text-3xl"
+          className={`${config.heroTitleImageSrc ? 'mt-4' : 'mt-8'} max-w-[760px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-semibold leading-[1.5] md:text-3xl`}
           style={{ color: config.colors.lightText }}
         >
           {config.heroDescription}

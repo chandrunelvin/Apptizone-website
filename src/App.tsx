@@ -24,8 +24,8 @@ function App() {
             <Route path="/services/sem" element={<SEM />} />
             <Route path="/services/ui-ux" element={<UIUX />} />
             <Route path="/services/social-media-marketing" element={<SocialMediaMarketing />} />
-            <Route path="/services/whatsapp-marketing" element={<WhatsAppMarketing />} />
-            <Route path="/services/whatsapp-integration" element={<WhatsAppIntegration />} />
+            <Route path="/services/whatsapp-marketing" element={<WhatsAppIntegration />} />
+            <Route path="/services/whatsapp-integration" element={<WhatsAppMarketing />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </main>
