@@ -7,6 +7,7 @@ const ServicesSection: React.FC = () => (
     title={semConfig.cardsTitle}
     cards={semConfig.serviceCards}
     backgroundColor="#FFFFFF"
+    titleColor="#413884"
   />
 );
 

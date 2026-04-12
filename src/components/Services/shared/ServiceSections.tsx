@@ -540,9 +540,14 @@ const sharedCardStyles = [
 
 const bulletIconSrc = 'https://c.animaapp.com/mms4ffjl5N2sBn/img/--4.svg';
 
-export const ServiceCardsSection: React.FC<{ title: string; cards: ServiceCard[]; backgroundColor?: string }> = ({ title, cards, backgroundColor = '#ec5d9f' }) => (
+export const ServiceCardsSection: React.FC<{ title: string; cards: ServiceCard[]; backgroundColor?: string; titleColor?: string }> = ({
+  title,
+  cards,
+  backgroundColor = '#ec5d9f',
+  titleColor = '#ffffff',
+}) => (
   <section className="w-full px-4 py-16 md:px-8" style={{ backgroundColor }}>
-    <h2 className="[font-family:'Black_Han_Sans',Helvetica] mb-16 text-center text-[clamp(32px,6vw,110px)] font-normal leading-[1.1] tracking-[0] text-white [text-shadow:6px_6px_1px_#201f51]">
+    <h2 className="[font-family:'Black_Han_Sans',Helvetica] mb-16 text-center text-[clamp(32px,6vw,110px)] font-normal leading-[1.1] tracking-[0] [text-shadow:6px_6px_1px_#201f51]" style={{ color: titleColor }}>
       {title}
     </h2>
     <div className="mx-auto flex max-w-[1296px] flex-col gap-10">
