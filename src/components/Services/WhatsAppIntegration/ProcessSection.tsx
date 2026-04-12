@@ -1,7 +1,7 @@
 import React from 'react';
 import { ServiceProcessSection } from '../shared/ServiceSections';
-import { whatsappIntegrationConfig } from './serviceData';
+import { whatsappMarketingConfig } from './serviceData';
 
-const ProcessSection: React.FC = () => <ServiceProcessSection config={whatsappIntegrationConfig} />;
+const ProcessSection: React.FC = () => <ServiceProcessSection config={whatsappMarketingConfig} />;
 
 export default ProcessSection;
