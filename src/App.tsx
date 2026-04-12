@@ -7,8 +7,8 @@ import SEO from './components/Services/SEO/SEO'
 import SEM from './components/Services/SEM/SEM'
 import UIUX from './components/Services/UIUX/UIUX'
 import SocialMediaMarketing from './components/Services/SocialMediaMarketing/SocialMediaMarketing'
-import WhatsAppIntegration from './components/Services/WhatsAppMarketing/WhatsAppIntegration'
 import WhatsAppMarketing from './components/Services/WhatsAppIntegration/WhatsAppMarketing'
+import WhatsAppIntegration from './components/Services/WhatsAppMarketing/WhatsAppIntegration'
 import ContactUs from './components/ContactUs/ContactUs'
 
 function App() {

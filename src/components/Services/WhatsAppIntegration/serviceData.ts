@@ -1,8 +1,10 @@
 import { type ServicePageConfig } from '../shared/ServiceSections';
+import whatsappIntegrationBackground from '../../../assets/service-stickers/whatsapp-inter-imge/whatsappintergrate.png';
 
 export const whatsappMarketingConfig: ServicePageConfig = {
   serviceName: 'WhatsApp Marketing',
   heroTitle: 'WHATSAPP MARKETING THAT REACHES CUSTOMERS FAST',
+  heroBackgroundImageSrc: whatsappIntegrationBackground,
   heroDescription:
     'Use WhatsApp campaigns to connect directly with customers, deliver timely promotions, and improve response rates with more personal communication.',
   statsHeadline: 'WHATSAPP MESSAGES GET SEEN FAST AND DRIVE QUICKER ACTION.',

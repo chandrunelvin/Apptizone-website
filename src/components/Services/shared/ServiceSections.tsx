@@ -269,12 +269,14 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
   <section
     className="relative overflow-hidden px-6 pb-16 pt-32 md:px-10 lg:px-16 lg:pb-20 lg:pt-40"
     style={{
-      background: `radial-gradient(circle at top left, ${config.colors.secondaryAccent} 0%, transparent 42%), linear-gradient(135deg, ${config.colors.heroBg} 0%, ${config.colors.pageBg} 100%)`,
+      background: config.heroBackgroundImageSrc
+        ? config.colors.heroBg
+        : `radial-gradient(circle at top left, ${config.colors.secondaryAccent} 0%, transparent 42%), linear-gradient(135deg, ${config.colors.heroBg} 0%, ${config.colors.pageBg} 100%)`,
     }}
   >
     {config.heroBackgroundImageSrc && (
       <img
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-65"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
         alt=""
         src={config.heroBackgroundImageSrc}
       />
