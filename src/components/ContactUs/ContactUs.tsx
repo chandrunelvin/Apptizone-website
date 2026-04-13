@@ -28,6 +28,20 @@ const ContactUs: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const subject = `Contact Request from ${formData.name || 'Website Visitor'}`;
+    const bodyLines = [
+      `Name: ${formData.name || '-'}`,
+      `Email: ${formData.email || '-'}`,
+      `Mobile: ${formData.mobile || '-'}`,
+      `Service: ${formData.service || '-'}`,
+    ];
+
+    const mailtoLink = `mailto:info@apptizone.com?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -99,12 +113,13 @@ const ContactUs: React.FC = () => {
                 >
                   Email
                 </h3>
-                <p
+                <a
+                  href="mailto:info@apptizone.com"
                   className="mt-1.5 sm:mt-2 text-[23px] font-medium text-white"
                   style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
                 >
                   info@apptizone.com
-                </p>
+                </a>
               </div>
 
               <div>
