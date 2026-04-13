@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
         src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/rectangle-208.svg"
       />
 
-      <div className="relative z-10 w-full max-w-[1530px] mx-auto px-[84px] py-[68px] flex flex-row gap-8 justify-between flex-wrap">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1530px] flex-col gap-10 px-6 py-12 md:px-10 lg:flex-row lg:flex-wrap lg:justify-between lg:gap-8 lg:px-[84px] lg:py-[68px]">
         {/* Brand column */}
         <div className="flex flex-col gap-4 min-w-[160px]">
           <div className="w-20 h-[71px] flex flex-col justify-end bg-[url(https://c.animaapp.com/mms2hnc1lnJ5gE/img/image-38-1.png)] bg-cover bg-center">
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Links column */}
-        <nav className="flex flex-col gap-[18px]">
+        <nav className="flex flex-col gap-[14px] md:gap-[18px]">
           <div className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-[26px] tracking-[0] leading-normal uppercase">
             Links
           </div>
@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
             <a
               key={link}
               href="#"
-              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-white text-xl tracking-[0] leading-normal whitespace-nowrap hover:underline"
+              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white hover:underline md:text-xl"
             >
               {link}
             </a>
@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
         </nav>
 
         {/* Services column */}
-        <nav className="flex flex-col gap-[18px]">
+        <nav className="flex flex-col gap-[14px] md:gap-[18px]">
           <div className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-[26px] tracking-[0] leading-normal uppercase">
             Services
           </div>
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
             <a
               key={service}
               href="#"
-              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-white text-xl tracking-[0] leading-normal whitespace-nowrap hover:underline"
+              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white hover:underline md:text-xl"
             >
               {service}
             </a>
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
         </nav>
 
         {/* Contact column */}
-        <address className="flex flex-col gap-[18px] not-italic">
+        <address className="flex flex-col gap-[14px] not-italic md:gap-[18px]">
           <div className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-[26px] tracking-[0] leading-normal uppercase">
             Contact
           </div>
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
               alt="Phone"
               src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/material-symbols-call.svg"
             />
-            <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-white text-xl tracking-[0] leading-normal whitespace-nowrap">
+            <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white md:text-xl">
               +91 99999 99999
             </span>
           </div>
@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
               alt="Email"
               src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/ion-mail.svg"
             />
-            <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-white text-xl tracking-[0] leading-normal whitespace-nowrap">
+            <span className="font-['Bricolage_Grotesque',Helvetica] break-all font-normal text-lg tracking-[0] leading-normal text-white md:text-xl md:break-normal">
               apptizone@gmail.com
             </span>
           </div>
@@ -138,7 +138,7 @@ const Footer: React.FC = () => {
               alt="Location"
               src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/fluent-location-16-filled.svg"
             />
-            <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-white text-xl tracking-[0] leading-normal whitespace-nowrap">
+            <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white md:text-xl">
               Avadi, Chennai
             </span>
           </div>

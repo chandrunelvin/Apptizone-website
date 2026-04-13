@@ -25,7 +25,7 @@ const whyChooseCards = [
 
 const WhyChooseUs: React.FC = () => {
   return (
-    <section className="relative w-full overflow-hidden py-20 bg-[#ecd65d]">
+    <section className="relative w-full overflow-hidden bg-[#ecd65d] py-16 lg:py-20">
       {/* Wave background */}
       <img
         className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none select-none"
@@ -33,27 +33,27 @@ const WhyChooseUs: React.FC = () => {
         src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/vector-351.svg"
       />
 
-      <div className="relative z-10 w-full max-w-[1530px] mx-auto px-16">
+      <div className="relative z-10 mx-auto w-full max-w-[1530px] px-6 md:px-10 lg:px-16">
         {/* Heading */}
-        <h2 className="[text-shadow:6px_6px_1px_#201f51] font-['Black_Han_Sans',Helvetica] font-normal text-[#4f4298] text-[clamp(56px,7vw,120px)] tracking-[0] leading-[1.01] whitespace-nowrap mb-16 text-center uppercase">
+        <h2 className="[text-shadow:6px_6px_1px_#201f51] mb-12 text-center font-['Black_Han_Sans',Helvetica] font-normal text-[#4f4298] text-[clamp(42px,7vw,120px)] tracking-[0] leading-[1.01] uppercase sm:whitespace-nowrap md:mb-16">
           WHY CHOOSE US ?
         </h2>
 
         {/* Cards + center illustration */}
-        <div className="relative flex flex-row items-center justify-center gap-10 xl:gap-16 min-h-[556px]">
+        <div className="relative flex min-h-[556px] flex-col items-center justify-center gap-8 lg:flex-row lg:gap-10 xl:gap-16">
           {/* Left column */}
-          <div className="flex flex-col gap-10 xl:gap-14 flex-1 max-w-[420px]">
+          <div className="flex max-w-[420px] flex-1 flex-col gap-6 md:gap-8 xl:gap-14">
             {whyChooseCards.slice(0, 2).map((card, i) => (
               <div
                 key={i}
-                className={`relative w-full max-w-[405px] bg-white rounded-[30px] p-8 ${card.rotate} shadow-md`}
+                className={`relative w-full max-w-[405px] rounded-[30px] bg-white p-6 shadow-md md:p-8 ${card.rotate}`}
               >
                 <div className="absolute inset-3.5 rounded-[19px] border-2 border-dashed border-[#adb176] pointer-events-none" />
                 <div className="relative z-10 flex flex-col gap-1">
                   <div className="font-['Black_Han_Sans',Helvetica] font-normal text-[#adb176] text-xl tracking-[0] leading-[1.45]">
                     {card.title}
                   </div>
-                  <div className="font-['Bricolage_Grotesque',Helvetica] font-semibold text-[#343434] text-lg tracking-[0] leading-snug">
+                  <div className="font-['Bricolage_Grotesque',Helvetica] font-semibold text-[#343434] text-base tracking-[0] leading-snug md:text-lg">
                     {card.body}
                   </div>
                 </div>
@@ -62,7 +62,7 @@ const WhyChooseUs: React.FC = () => {
           </div>
 
           {/* Center illustration */}
-          <div className="flex-shrink-0 w-[clamp(320px,30%,556px)]">
+          <div className="w-full max-w-[340px] flex-shrink-0 md:max-w-[420px] lg:w-[clamp(320px,30%,556px)]">
             <img
               className="w-full h-auto"
               alt="Why choose us"
@@ -71,18 +71,18 @@ const WhyChooseUs: React.FC = () => {
           </div>
 
           {/* Right column */}
-          <div className="flex flex-col gap-10 xl:gap-14 flex-1 max-w-[420px]">
+          <div className="flex max-w-[420px] flex-1 flex-col gap-6 md:gap-8 xl:gap-14">
             {whyChooseCards.slice(2, 4).map((card, i) => (
               <div
                 key={i}
-                className={`relative w-full max-w-[405px] bg-white rounded-[30px] p-8 ${card.rotate} shadow-md`}
+                className={`relative w-full max-w-[405px] rounded-[30px] bg-white p-6 shadow-md md:p-8 ${card.rotate}`}
               >
                 <div className="absolute inset-3.5 rounded-[19px] border-2 border-dashed border-[#adb176] pointer-events-none" />
                 <div className="relative z-10 flex flex-col gap-1">
                   <div className="font-['Black_Han_Sans',Helvetica] font-normal text-[#adb176] text-xl tracking-[0] leading-[1.45]">
                     {card.title}
                   </div>
-                  <div className="font-['Bricolage_Grotesque',Helvetica] font-semibold text-[#343434] text-lg tracking-[0] leading-snug">
+                  <div className="font-['Bricolage_Grotesque',Helvetica] font-semibold text-[#343434] text-base tracking-[0] leading-snug md:text-lg">
                     {card.body}
                   </div>
                 </div>

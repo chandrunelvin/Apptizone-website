@@ -130,10 +130,17 @@ const ArrowIcon = ({ direction }: { direction: 'left' | 'right' }) => (
 
 const StatsWorksSection = () => {
   const [slide, setSlide] = useState(1);
+  const [mobileProjectIndex, setMobileProjectIndex] = useState(0);
 
   const prev = () => setSlide((value) => (value <= 1 ? projectSlides.length : value - 1));
   const next = () => setSlide((value) => (value >= projectSlides.length ? 1 : value + 1));
   const activeSlide = projectSlides.find((item) => item.counter === slide) ?? projectSlides[0];
+  const mobileProjects = projectSlides.flatMap((item) => item.projects);
+  const activeMobileProject = mobileProjects[mobileProjectIndex] ?? mobileProjects[0];
+  const prevMobileProject = () =>
+    setMobileProjectIndex((value) => (value <= 0 ? mobileProjects.length - 1 : value - 1));
+  const nextMobileProject = () =>
+    setMobileProjectIndex((value) => (value >= mobileProjects.length - 1 ? 0 : value + 1));
 
   const renderProjectCard = (
     project: (typeof activeSlide.projects)[number],
@@ -279,20 +286,24 @@ const StatsWorksSection = () => {
                 </span>
               </div>
 
-              <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-start md:gap-5">
+              <div className="flex flex-col items-center justify-between gap-4 md:hidden">
+                {activeMobileProject && renderProjectCard(activeMobileProject)}
+              </div>
+
+              <div className="hidden flex-col items-center justify-between gap-4 md:flex md:flex-row md:items-start md:gap-5">
                 {activeSlide.projects.map((project) => renderProjectCard(project))}
               </div>
 
               <div className="mt-6 flex justify-end gap-4 md:mt-2">
                 <button
-                  onClick={prev}
+                  onClick={typeof window !== 'undefined' && window.innerWidth < 768 ? prevMobileProject : prev}
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#5a4da7] shadow-[0_4px_0px_rgba(42,36,93,0.18)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_0px_rgba(42,36,93,0.18)]"
                   aria-label="Previous project"
                 >
                   <ArrowIcon direction="left" />
                 </button>
                 <button
-                  onClick={next}
+                  onClick={typeof window !== 'undefined' && window.innerWidth < 768 ? nextMobileProject : next}
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#5a4da7] shadow-[0_4px_0px_rgba(42,36,93,0.18)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_0px_rgba(42,36,93,0.18)]"
                   aria-label="Next project"
                 >

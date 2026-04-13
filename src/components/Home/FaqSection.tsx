@@ -108,7 +108,7 @@ const FaqSection = () => {
                 setActiveCategory(category);
                 setOpenItem('item-0');
               }}
-              className={`h-auto whitespace-nowrap rounded-[70px] border-0 px-6 py-3 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(16px,2.5vw,36px)] font-normal leading-normal tracking-[0] shadow-[6px_6px_1px_#02012e] transition-colors md:px-[45px] md:py-[15px] ${
+              className={`h-auto rounded-[70px] border-0 px-5 py-3 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(16px,2.5vw,36px)] font-normal leading-normal tracking-[0] shadow-[6px_6px_1px_#02012e] transition-colors md:px-[45px] md:py-[15px] ${
                 activeCategory === category
                   ? 'bg-[#f0542e] text-white'
                   : 'bg-[#e9e6f8] text-black hover:bg-[#d8d4f5]'
@@ -131,7 +131,7 @@ const FaqSection = () => {
                   onClick={() => setOpenItem(isOpen ? '' : value)}
                   className="flex w-full items-start justify-between gap-4 py-2 text-left"
                 >
-                  <span className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(18px,2.5vw,38px)] font-normal leading-tight tracking-[0] text-white">
+                  <span className="[font-family:'Black_Han_Sans',Helvetica] pr-2 text-[clamp(18px,2.5vw,38px)] font-normal leading-tight tracking-[0] text-white">
                     {faq.question}
                   </span>
                   <span className="pt-1 text-white">

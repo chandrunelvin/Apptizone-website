@@ -107,13 +107,13 @@ const ServiceOverviewSection = () => {
           SERVICE OVERVIEW ↘
         </h2>
 
-        <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-6 text-right text-[clamp(24px,3.2vw,62px)] font-semibold leading-tight text-[#ecd65d]">
+        <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-6 text-left text-[clamp(24px,3.2vw,62px)] font-semibold leading-tight text-[#ecd65d] md:text-right">
           Tailored Strategies for
           <br />
           Maximum Business Growth
         </p>
 
-        <div className="relative mt-10 aspect-[1274/646] w-full overflow-hidden">
+        <div className="relative mt-10 hidden aspect-[1274/646] w-full overflow-hidden md:block">
           <img
             src={bgService}
             alt="Girl working on laptop background"
@@ -155,6 +155,27 @@ const ServiceOverviewSection = () => {
                   transform: hoveredSticker === item.key ? 'translateY(-4px) scale(1.03)' : 'translateY(0px) scale(1)',
                 }}
               />
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-5 md:hidden">
+          {stickers.map((item) => (
+            <div
+              key={item.key}
+              className="rounded-[28px] border-[3px] border-[#25225e] bg-[#3a315f] p-5 shadow-[8px_8px_0px_#25225e]"
+            >
+              <div className="flex items-center gap-4">
+                <img src={item.image} alt={item.title} className="h-auto w-24 shrink-0" />
+                <div>
+                  <h3 className="[font-family:'Black_Han_Sans',Helvetica] text-2xl leading-none text-[#f0f2ff]">
+                    {item.title}
+                  </h3>
+                  <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-3 text-sm leading-6 text-white/85">
+                    {item.details}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

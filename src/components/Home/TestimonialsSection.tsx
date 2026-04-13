@@ -147,7 +147,7 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[300vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:h-[340vh] md:px-[72px] md:py-20">
+    <section ref={sectionRef} className="relative h-[240vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:h-[340vh] md:px-[72px] md:py-20">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[220px] opacity-20">
         <div className="h-full w-full bg-[radial-gradient(circle_at_0_0,transparent_0,transparent_10px,#d7c856_10.5px,transparent_11px)] bg-[length:44px_44px]" />
       </div>
@@ -159,12 +159,12 @@ const TestimonialsSection = () => {
             <br />
             CLIENTS SAYS
           </h2>
-          <div className="ml-[60%] mt-1 md:ml-[66%]">
+          <div className="ml-[48%] mt-1 md:ml-[66%]">
             <ArrowLoop />
           </div>
         </div>
 
-        <div ref={pinRef} className="relative mt-12 h-[74vh] md:mt-6 md:h-[84vh]">
+        <div ref={pinRef} className="relative mt-12 h-[68vh] md:mt-6 md:h-[84vh]">
           <div className="relative mx-auto h-full max-w-[920px]">
             {testimonials.map((testimonial, index) => (
               <article

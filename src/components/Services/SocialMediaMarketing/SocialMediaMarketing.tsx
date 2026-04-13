@@ -5,16 +5,17 @@ import BenefitsSection from './BenefitsSection';
 import ServicesSection from './ServicesSection';
 import ProcessSection from './ProcessSection';
 import { socialMediaConfig } from './serviceData';
+import ScrollReveal from '../../ui/ScrollReveal';
 
 const SocialMediaMarketing = () => {
   return (
     <div className="overflow-x-hidden" style={{ backgroundColor: socialMediaConfig.colors.pageBg }}>
-      <HeroSection />
-      <BenefitsSection />
-      <StatsSection />
-      <MattersSection />
-      <ServicesSection />
-      <ProcessSection />
+      <ScrollReveal distance={28}><HeroSection /></ScrollReveal>
+      <ScrollReveal delay={40}><BenefitsSection /></ScrollReveal>
+      <ScrollReveal delay={80}><StatsSection /></ScrollReveal>
+      <ScrollReveal delay={120}><MattersSection /></ScrollReveal>
+      <ScrollReveal delay={160}><ServicesSection /></ScrollReveal>
+      <ScrollReveal delay={200}><ProcessSection /></ScrollReveal>
     </div>
   );
 };

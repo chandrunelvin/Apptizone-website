@@ -270,7 +270,7 @@ const HeroForm: React.FC<{ config: ServicePageConfig }> = ({ config }) => {
 
 export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
   <section
-    className="relative overflow-hidden px-6 pb-16 pt-32 md:px-10 lg:px-16 lg:pb-20 lg:pt-40"
+    className="relative overflow-hidden px-6 pb-16 pt-28 md:px-10 lg:px-16 lg:pb-20 lg:pt-40"
     style={{
       background: config.heroPattern
         ? config.colors.heroBg
@@ -326,15 +326,15 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
           </h1>
         )}
         <p
-          className={`${config.heroTitleImageSrc ? 'mt-4' : 'mt-8'} max-w-[760px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-semibold leading-[1.5] md:text-3xl`}
+          className={`${config.heroTitleImageSrc ? 'mt-4' : 'mt-8'} max-w-[760px] [font-family:'Bricolage_Grotesque',Helvetica] text-lg font-semibold leading-[1.5] md:text-3xl`}
           style={{ color: config.colors.lightText }}
         >
           {config.heroDescription}
         </p>
-        <div id="contact" className="mt-8 flex flex-wrap items-center gap-6">
+        <div id="contact" className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
           <button
             onClick={scrollToContact}
-            className="h-[60px] min-w-[230px] rounded-[14px] px-8 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3vw,40px)] leading-none text-white shadow-[6px_6px_0_#1f1d59] transition hover:opacity-90"
+            className="h-[56px] w-full rounded-[14px] px-6 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(20px,3vw,40px)] leading-none text-white shadow-[6px_6px_0_#1f1d59] transition hover:opacity-90 sm:min-w-[230px] sm:w-auto sm:px-8"
             style={{ backgroundColor: config.colors.buttonBg }}
           >
             Contact Us
@@ -343,7 +343,7 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
             href="https://wa.me/919999999999"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-[60px] min-w-[250px] items-center justify-center gap-3 rounded-[14px] px-8 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3vw,40px)] leading-none text-white shadow-[6px_6px_0_#1f1d59] transition hover:opacity-90"
+            className="flex h-[56px] w-full items-center justify-center gap-3 rounded-[14px] px-6 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(20px,3vw,40px)] leading-none text-white shadow-[6px_6px_0_#1f1d59] transition hover:opacity-90 sm:min-w-[250px] sm:w-auto sm:px-8"
             style={{ backgroundColor: '#66BA4F' }}
           >
             <img
@@ -364,13 +364,13 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
 export const ServiceStatsSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
   <section id="services" className="relative w-full overflow-hidden min-h-[909px]">
     <img className="absolute inset-0 w-full h-full object-cover" alt="Vector" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/vector-363-1.svg" />
-    <img className="absolute top-4 left-[70px] w-[1401px] h-[877px] object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-198.png" />
+    <img className="absolute top-4 left-[70px] hidden w-[1401px] h-[877px] object-cover md:block" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-198.png" />
     <img className="absolute inset-0 w-full h-full object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-199.png" />
     <div className="relative z-10 flex flex-col w-full px-6 md:px-[126px] pt-[149px] pb-[100px]">
       <h2 className="w-full max-w-[1371px] [text-shadow:6px_6px_1px_#201f51] [font-family:'Black_Han_Sans',Helvetica] font-normal text-white text-[clamp(48px,8vw,120px)] tracking-[0] leading-[1.1] mb-0">
         {config.statsHeadline}
       </h2>
-      <p className="mt-[60px] w-full max-w-[1201px] [-webkit-text-stroke:1px_#222222] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-4xl tracking-[0] leading-[52px]">
+      <p className="mt-10 w-full max-w-[1201px] [-webkit-text-stroke:1px_#222222] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-2xl tracking-[0] leading-[1.45] md:mt-[60px] md:text-4xl md:leading-[52px]">
         {config.statsDescription}
       </p>
     </div>
@@ -404,7 +404,7 @@ export const ServiceMattersSection: React.FC<{ config: ServicePageConfig }> = ({
           ))}
         </div>
       </div>
-      <img className="absolute bottom-0 left-[-97px] w-[259px] h-[260px]" alt="Decoration" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/--16.svg" />
+      <img className="absolute bottom-0 left-[-97px] hidden w-[259px] h-[260px] md:block" alt="Decoration" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/--16.svg" />
     </section>
   );
 };
@@ -482,7 +482,7 @@ export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = (
               {text}
             </div>
           ))}
-          <img alt="Benefits illustration" src={benefitsImageSrc} className="mt-2 h-auto w-[62%] max-w-[320px]" />
+          <img alt="Benefits illustration" src={benefitsImageSrc} className="mt-2 h-auto w-[72%] max-w-[320px]" />
         </div>
 
         <div className="relative z-10 mt-2 flex flex-col items-center px-6 pb-10">
@@ -494,7 +494,7 @@ export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = (
           </p>
           <button
             onClick={scrollToContact}
-            className="mt-8 h-[58px] w-[225px] cursor-pointer rounded-[14px] [font-family:'Bricolage_Grotesque',Helvetica] text-2xl font-normal leading-normal text-white shadow-[6px_6px_0_#1a1a1a] transition-all hover:opacity-90 active:translate-y-0.5"
+            className="mt-8 h-[56px] w-full max-w-[225px] cursor-pointer rounded-[14px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-normal leading-normal text-white shadow-[6px_6px_0_#1a1a1a] transition-all hover:opacity-90 active:translate-y-0.5 md:h-[58px] md:text-2xl"
             style={{ backgroundColor: config.colors.buttonBg }}
           >
             Contact Us

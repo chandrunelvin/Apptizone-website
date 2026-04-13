@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import contactBg from '../../assets/contact-us/contact-bg.png';
 import contactName from '../../assets/contact-us/contact-name.png';
+import ScrollReveal from '../ui/ScrollReveal';
 
 const serviceOptions = [
   'WhatsApp Marketing',
@@ -53,14 +54,16 @@ const ContactUs: React.FC = () => {
       />
 
       <section className="relative z-10 mx-auto w-full max-w-[1530px] px-4 sm:px-6 md:px-[64px] lg:px-[84px] pb-10 sm:pb-14 md:pb-[74px]">
-        <img
-          src={contactName}
-          alt="Contact Us"
-          className="pt-2 sm:pt-[14px] w-full max-w-[980px] h-auto mx-auto"
-        />
+        <ScrollReveal distance={24}>
+          <img
+            src={contactName}
+            alt="Contact Us"
+            className="pt-2 sm:pt-[14px] w-full max-w-[980px] h-auto mx-auto"
+          />
+        </ScrollReveal>
 
         <div className="mt-6 sm:mt-10 md:mt-[54px] flex flex-col gap-8 sm:gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-          <div className="w-full max-w-[560px]">
+          <ScrollReveal className="w-full max-w-[560px]" delay={60}>
             <p
               className="text-[30px] font-bold leading-tight text-[#ECA012]"
               style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
@@ -154,11 +157,11 @@ const ContactUs: React.FC = () => {
                     className="h-5 w-5 sm:h-6 sm:w-6"
                   />
                 </div>
+                </div>
               </div>
-            </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="w-full lg:max-w-[500px]">
+          <ScrollReveal className="w-full lg:max-w-[500px]" delay={120}>
             <form
               onSubmit={handleSubmit}
               className="w-full rounded-[24px] sm:rounded-[30px] md:rounded-[38px] border-[3px] sm:border-[4px] border-[#16154c] bg-[#cecfde] px-4 sm:px-5 md:px-[28px] pb-5 sm:pb-6 md:pb-[30px] pt-4 sm:pt-5 md:pt-[24px] shadow-[0_2px_0_#16154c]"
@@ -278,7 +281,7 @@ const ContactUs: React.FC = () => {
                 Submit Form
               </button>
             </form>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </main>
