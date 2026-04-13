@@ -1,9 +1,12 @@
 import { type ServicePageConfig } from '../shared/ServiceSections';
+import uiuxHeroBg from '../../../assets/service-stickers/ui-image/uiux-bg.png';
+import uiuxCenterImage from '../../../assets/service-stickers/ui-image/OBJECTS.png';
 
 export const uiuxConfig: ServicePageConfig = {
   serviceName: 'Web & App Design',
   heroTitle: 'UI UX DESIGN THAT FEELS GOOD AND WORKS HARD',
-  benefitsCenterImageSrc: 'https://c.animaapp.com/mms4ffjl5N2sBn/img/man.png',
+  heroBackgroundImageSrc: uiuxHeroBg,
+  benefitsCenterImageSrc: uiuxCenterImage,
   heroDescription:
     'Create digital experiences that are easier to use, easier to trust, and better aligned with how real users move through your product.',
   statsHeadline: 'GOOD DESIGN IS NOT JUST HOW IT LOOKS. IT SHAPES HOW USERS FEEL AND ACT.',

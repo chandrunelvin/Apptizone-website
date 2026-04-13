@@ -363,9 +363,9 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
 
 export const ServiceStatsSection: React.FC<{ config: ServicePageConfig }> = ({ config }) => (
   <section id="services" className="relative w-full overflow-hidden min-h-[909px]">
-    <img className="absolute top-0 left-0 w-full h-[893px] object-cover" alt="Vector" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/vector-363-1.svg" />
+    <img className="absolute inset-0 w-full h-full object-cover" alt="Vector" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/vector-363-1.svg" />
     <img className="absolute top-4 left-[70px] w-[1401px] h-[877px] object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-198.png" />
-    <img className="absolute top-0 left-px w-full h-[894px] object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-199.png" />
+    <img className="absolute inset-0 w-full h-full object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-199.png" />
     <div className="relative z-10 flex flex-col w-full px-6 md:px-[126px] pt-[149px] pb-[100px]">
       <h2 className="w-full max-w-[1371px] [text-shadow:6px_6px_1px_#201f51] [font-family:'Black_Han_Sans',Helvetica] font-normal text-white text-[clamp(48px,8vw,120px)] tracking-[0] leading-[1.1] mb-0">
         {config.statsHeadline}
@@ -432,38 +432,38 @@ export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = (
       <div className="relative flex w-full flex-col items-center">
         <div className="relative hidden w-full max-w-[1440px] lg:block" style={{ height: '680px' }}>
           <div
-            className="pointer-events-none absolute left-1/2 top-[10px] z-10 -translate-x-1/2 rotate-[-5deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[58px] font-extrabold leading-[0.98]"
+            className="pointer-events-none absolute left-1/2 top-[10px] z-30 -translate-x-1/2 rotate-[-5deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[58px] font-extrabold leading-[0.98]"
             style={{ whiteSpace: 'nowrap', color: config.colors.accent }}
           >
             {highlights[0]}
           </div>
           <div
-            className="pointer-events-none absolute left-[3%] top-[210px] z-10 w-[420px] rotate-[-7deg] [font-family:'Bricolage_Grotesque',Helvetica] text-[52px] font-extrabold leading-[0.98]"
+            className="pointer-events-none absolute left-[3%] top-[210px] z-30 w-[420px] rotate-[-7deg] [font-family:'Bricolage_Grotesque',Helvetica] text-[52px] font-extrabold leading-[0.98]"
             style={{ color: config.colors.accent }}
           >
             {highlights[1]}
           </div>
           <div
-            className="pointer-events-none absolute right-[4%] top-[190px] z-10 w-[360px] rotate-[8deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[52px] font-extrabold leading-[0.98]"
+            className="pointer-events-none absolute right-[4%] top-[190px] z-30 w-[360px] rotate-[8deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[52px] font-extrabold leading-[0.98]"
             style={{ color: config.colors.accent }}
           >
             {highlights[2]}
           </div>
           <div
-            className="pointer-events-none absolute left-[8%] top-[405px] z-10 w-[320px] rotate-[4deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[42px] font-extrabold leading-[0.98]"
+            className="pointer-events-none absolute left-[8%] top-[405px] z-30 w-[320px] rotate-[4deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[42px] font-extrabold leading-[0.98]"
             style={{ color: config.colors.accent }}
           >
             {highlights[3] || highlights[1]}
           </div>
           <div
-            className="pointer-events-none absolute right-[9%] top-[420px] z-10 w-[320px] rotate-[-4deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[42px] font-extrabold leading-[0.98]"
+            className="pointer-events-none absolute right-[9%] top-[420px] z-30 w-[320px] rotate-[-4deg] text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[42px] font-extrabold leading-[0.98]"
             style={{ color: config.colors.accent }}
           >
             {highlights[4] || highlights[2]}
           </div>
 
           <img
-            className="absolute left-1/2 top-[150px] z-20 h-[390px] w-auto -translate-x-1/2"
+            className="absolute left-1/2 top-[150px] z-10 h-[390px] w-auto -translate-x-1/2"
             alt="Benefits illustration"
             src={benefitsImageSrc}
           />
