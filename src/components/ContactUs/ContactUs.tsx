@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import contactBg from '../../assets/contact-us/contact-bg.png';
 import contactName from '../../assets/contact-us/contact-name.png';
 import ScrollReveal from '../ui/ScrollReveal';
+import TextReveal from '../ui/TextReveal';
 
 const serviceOptions = [
   'WhatsApp Marketing',
@@ -64,19 +65,20 @@ const ContactUs: React.FC = () => {
 
         <div className="mt-6 sm:mt-10 md:mt-[54px] flex flex-col gap-8 sm:gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
           <ScrollReveal className="w-full max-w-[560px]" delay={60}>
-            <p
+            <TextReveal
+              as="p"
+              text="Were here to help you"
               className="text-[30px] font-bold leading-tight text-[#ECA012]"
-              style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-            >
-              Were here to help you
-            </p>
+              delay={40}
+            />
 
-            <h2
+            <TextReveal
+              as="h2"
+              text="Let's discuss your digital marketing solution needs."
               className="mt-2 text-[34px] font-bold leading-[1.12] text-white sm:text-[42px] md:text-[50px] lg:text-[58px]"
-              style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-            >
-              Let&apos;s discuss your digital marketing solution needs.
-            </h2>
+              delay={120}
+              wordStagger={28}
+            />
 
             <div className="mt-8 sm:mt-10 md:mt-[46px] grid grid-cols-1 gap-y-6 sm:gap-y-8 md:gap-y-[42px] sm:grid-cols-2 sm:gap-x-8 md:gap-x-[52px]">
               <div>
@@ -157,21 +159,21 @@ const ContactUs: React.FC = () => {
                     className="h-5 w-5 sm:h-6 sm:w-6"
                   />
                 </div>
-                </div>
               </div>
+            </div>
           </ScrollReveal>
 
-          <ScrollReveal className="w-full lg:max-w-[500px]" delay={120}>
+          <ScrollReveal className="w-full lg:max-w-[500px]" delay={120} distance={42} blur={12} scale={0.95}>
             <form
               onSubmit={handleSubmit}
               className="w-full rounded-[24px] sm:rounded-[30px] md:rounded-[38px] border-[3px] sm:border-[4px] border-[#16154c] bg-[#cecfde] px-4 sm:px-5 md:px-[28px] pb-5 sm:pb-6 md:pb-[30px] pt-4 sm:pt-5 md:pt-[24px] shadow-[0_2px_0_#16154c]"
             >
-              <h2
+              <TextReveal
+                as="h2"
+                text="LETS WORK TOGETHER"
                 className="text-[28px] sm:text-[34px] md:text-[42px] lg:text-[50px] font-medium leading-none text-[#373737]"
-                style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-              >
-                LETS WORK TOGETHER
-              </h2>
+                delay={120}
+              />
 
               <div className="mt-3 sm:mt-4 md:mt-[18px] space-y-3 sm:space-y-[14px]">
                 <div>

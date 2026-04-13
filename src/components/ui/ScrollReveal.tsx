@@ -5,6 +5,9 @@ type ScrollRevealProps = {
   className?: string;
   delay?: number;
   distance?: number;
+  blur?: number;
+  scale?: number;
+  rotate?: number;
 };
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
@@ -12,6 +15,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   className = '',
   delay = 0,
   distance = 48,
+  blur = 10,
+  scale = 0.96,
+  rotate = 0.8,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -50,12 +56,13 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translate3d(0, 0, 0) scale(1)' : `translate3d(0, ${distance}px, 0) scale(0.98)`,
-        transitionProperty: 'opacity, transform',
-        transitionDuration: '700ms',
+        filter: isVisible ? 'blur(0px)' : `blur(${blur}px)`,
+        transform: isVisible ? 'translate3d(0, 0, 0) scale(1) rotate(0deg)' : `translate3d(0, ${distance}px, 0) scale(${scale}) rotate(${rotate}deg)`,
+        transitionProperty: 'opacity, transform, filter',
+        transitionDuration: '820ms',
         transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
         transitionDelay: `${delay}ms`,
-        willChange: 'opacity, transform',
+        willChange: 'opacity, transform, filter',
       }}
     >
       {children}

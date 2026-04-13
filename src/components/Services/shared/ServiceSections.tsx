@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ScrollReveal from '../../ui/ScrollReveal';
+import TextReveal from '../../ui/TextReveal';
 
 export type ServiceCard = {
   title: string;
@@ -300,7 +302,8 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
 
     <div className="relative z-10 mx-auto flex max-w-[1380px] flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
       <div className="w-full lg:max-w-[720px]">
-        <div className="mb-8 flex flex-wrap gap-3">
+        <ScrollReveal className="mb-8" delay={40} distance={24} blur={6} scale={0.98} rotate={-1}>
+          <div className="flex flex-wrap gap-3">
           {config.benefitHighlights.map((item, index) => (
             <div
               key={item}
@@ -310,28 +313,37 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
               {item}
             </div>
           ))}
-        </div>
+          </div>
+        </ScrollReveal>
         {config.heroTitleImageSrc ? (
-          <img
-            className="w-full max-w-[720px] h-auto"
-            alt={config.serviceName}
-            src={config.heroTitleImageSrc}
-          />
+          <ScrollReveal delay={80} distance={32} blur={8} scale={0.97}>
+            <img
+              className="w-full max-w-[720px] h-auto"
+              alt={config.serviceName}
+              src={config.heroTitleImageSrc}
+            />
+          </ScrollReveal>
         ) : (
-          <h1
-            className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(44px,8vw,104px)] leading-[0.95]"
-            style={{ color: config.colors.lightText, textShadow: `6px 6px 0 ${config.colors.buttonShadow}` }}
-          >
-            {config.heroTitle}
-          </h1>
+          <TextReveal
+            as="h1"
+            text={config.heroTitle}
+            className="service-hero-title [font-family:'Black_Han_Sans',Helvetica] text-[clamp(44px,8vw,104px)] leading-[0.95]"
+            delay={100}
+          />
         )}
-        <p
+        {!config.heroTitleImageSrc && (
+          <style>{`
+            .service-hero-title span { color: ${config.colors.lightText}; text-shadow: 6px 6px 0 ${config.colors.buttonShadow}; }
+          `}</style>
+        )}
+        <TextReveal
+          as="p"
+          text={config.heroDescription}
           className={`${config.heroTitleImageSrc ? 'mt-4' : 'mt-8'} max-w-[760px] [font-family:'Bricolage_Grotesque',Helvetica] text-lg font-semibold leading-[1.5] md:text-3xl`}
-          style={{ color: config.colors.lightText }}
-        >
-          {config.heroDescription}
-        </p>
-        <div id="contact" className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+          delay={180}
+        />
+        <ScrollReveal delay={240} distance={28} blur={8} className="mt-8">
+        <div id="contact" className="flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
           <button
             onClick={scrollToContact}
             className="h-[56px] w-full rounded-[14px] px-6 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(20px,3vw,40px)] leading-none text-white shadow-[6px_6px_0_#1f1d59] transition hover:opacity-90 sm:min-w-[230px] sm:w-auto sm:px-8"
@@ -354,9 +366,12 @@ export const ServiceHeroSection: React.FC<{ config: ServicePageConfig }> = ({ co
             WhatsApp
           </a>
         </div>
+        </ScrollReveal>
       </div>
 
-      <HeroForm config={config} />
+      <ScrollReveal delay={140} distance={42} blur={10} scale={0.95}>
+        <HeroForm config={config} />
+      </ScrollReveal>
     </div>
   </section>
 );
@@ -367,12 +382,19 @@ export const ServiceStatsSection: React.FC<{ config: ServicePageConfig }> = ({ c
     <img className="absolute top-4 left-[70px] hidden w-[1401px] h-[877px] object-cover md:block" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-198.png" />
     <img className="absolute inset-0 w-full h-full object-cover" alt="Group" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/group-199.png" />
     <div className="relative z-10 flex flex-col w-full px-6 md:px-[126px] pt-[149px] pb-[100px]">
-      <h2 className="w-full max-w-[1371px] [text-shadow:6px_6px_1px_#201f51] [font-family:'Black_Han_Sans',Helvetica] font-normal text-white text-[clamp(48px,8vw,120px)] tracking-[0] leading-[1.1] mb-0">
-        {config.statsHeadline}
-      </h2>
-      <p className="mt-10 w-full max-w-[1201px] [-webkit-text-stroke:1px_#222222] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-2xl tracking-[0] leading-[1.45] md:mt-[60px] md:text-4xl md:leading-[52px]">
-        {config.statsDescription}
-      </p>
+      <TextReveal
+        as="h2"
+        text={config.statsHeadline}
+        className="w-full max-w-[1371px] [text-shadow:6px_6px_1px_#201f51] [font-family:'Black_Han_Sans',Helvetica] font-normal text-white text-[clamp(48px,8vw,120px)] tracking-[0] leading-[1.1] mb-0"
+        delay={40}
+      />
+      <TextReveal
+        as="p"
+        text={config.statsDescription}
+        className="mt-10 w-full max-w-[1201px] [-webkit-text-stroke:1px_#222222] [font-family:'Bricolage_Grotesque',Helvetica] font-semibold text-white text-2xl tracking-[0] leading-[1.45] md:mt-[60px] md:text-4xl md:leading-[52px]"
+        delay={160}
+        wordStagger={22}
+      />
     </div>
   </section>
 );
@@ -390,21 +412,29 @@ export const ServiceMattersSection: React.FC<{ config: ServicePageConfig }> = ({
       <img className="absolute top-0 left-0 w-full h-full object-cover" alt="Vector" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/vector-360.svg" />
       <div className="relative w-full flex flex-col lg:flex-row items-start px-6 md:px-[100px] lg:px-[152px] pt-16 lg:pt-[217px] pb-[60px] gap-10 lg:gap-0">
         <div className="w-full lg:w-[513px] shrink-0 [text-shadow:-2px_2px_0px_#201f51] [-webkit-text-stroke:1px_#222222] [font-family:'Black_Han_Sans',Helvetica] font-normal text-transparent text-[clamp(36px,6vw,72px)] tracking-[0] leading-[normal]">
-          <span className="text-[#66ba4f]">{titleParts.prefix}</span>
-          <span className="text-white">{titleParts.suffix}</span>
+          <TextReveal as="div" text={titleParts.prefix} className="service-matters-prefix" delay={40} />
+          {titleParts.suffix && <TextReveal as="div" text={titleParts.suffix.trim()} className="service-matters-suffix" delay={140} />}
         </div>
         <div className="flex flex-col gap-[32px] lg:ml-[80px] lg:pt-[49px]">
-          {config.mattersBullets.map((bullet) => (
-            <div key={bullet} className="flex flex-row items-start gap-[17.5px]">
+          {config.mattersBullets.map((bullet, index) => (
+            <ScrollReveal key={bullet} delay={80 + index * 60} distance={26} blur={6} className="flex flex-row items-start gap-[17.5px]">
               <img className="mt-1 w-7 h-[27px] shrink-0" alt="Bullet" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/--2.svg" />
               <div className="[text-shadow:-1px_1px_0px_#49071e] [-webkit-text-stroke:0.5px_#4a081f] [font-family:'Bricolage_Grotesque',Helvetica] font-bold text-white text-[clamp(20px,2.5vw,30px)] tracking-[0] leading-[normal]">
                 {bullet}
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
       <img className="absolute bottom-0 left-[-97px] hidden w-[259px] h-[260px] md:block" alt="Decoration" src="https://c.animaapp.com/mms4ffjl5N2sBn/img/--16.svg" />
+      <style>{`
+        .service-matters-prefix span {
+          color: #66ba4f;
+        }
+        .service-matters-suffix span {
+          color: #ffffff;
+        }
+      `}</style>
     </section>
   );
 };
@@ -486,19 +516,22 @@ export const ServiceBenefitsSection: React.FC<{ config: ServicePageConfig }> = (
         </div>
 
         <div className="relative z-10 mt-2 flex flex-col items-center px-6 pb-10">
-          <p
-            className="text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3vw,34px)] font-semibold leading-[1.45] tracking-[0]"
-            style={{ maxWidth: '1180px', color: '#ffffff' }}
-          >
-            {config.ctaText}
-          </p>
-          <button
-            onClick={scrollToContact}
-            className="mt-8 h-[56px] w-full max-w-[225px] cursor-pointer rounded-[14px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-normal leading-normal text-white shadow-[6px_6px_0_#1a1a1a] transition-all hover:opacity-90 active:translate-y-0.5 md:h-[58px] md:text-2xl"
-            style={{ backgroundColor: config.colors.buttonBg }}
-          >
-            Contact Us
-          </button>
+          <TextReveal
+            as="p"
+            text={config.ctaText}
+            className="text-center [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(24px,3vw,34px)] font-semibold leading-[1.45] tracking-[0] text-white"
+            delay={80}
+            wordStagger={18}
+          />
+          <ScrollReveal delay={180} distance={24} blur={6}>
+            <button
+              onClick={scrollToContact}
+              className="mt-8 h-[56px] w-full max-w-[225px] cursor-pointer rounded-[14px] [font-family:'Bricolage_Grotesque',Helvetica] text-xl font-normal leading-normal text-white shadow-[6px_6px_0_#1a1a1a] transition-all hover:opacity-90 active:translate-y-0.5 md:h-[58px] md:text-2xl"
+              style={{ backgroundColor: config.colors.buttonBg }}
+            >
+              Contact Us
+            </button>
+          </ScrollReveal>
         </div>
       </div>
     </section>
