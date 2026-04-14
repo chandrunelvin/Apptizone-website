@@ -4,7 +4,6 @@ import droptaxiproProjectImage from '../../assets/project/droptaxipro-image.png'
 import eliitaProjectImage from '../../assets/project/eliita-project-image.png';
 import intergulfProjectImage from '../../assets/project/intergulf-project-image.png';
 import mavuraProjectImage from '../../assets/project/mavura-project-image.png';
-import nahpetProjectImage from '../../assets/project/nahpet-project-image.png';
 import propgeniusProjectImage from '../../assets/project/propgenius-project-image.png';
 import skillwiseProjectImage from '../../assets/project/skillwise-project-image.png';
 import upcomingProjectsBangaloreProjectImage from '../../assets/project/upcomingprojectsbangalore-project-image.png';
@@ -52,12 +51,6 @@ const statsData = [
 ];
 
 const projects = [
-  {
-    name: 'NAH PETCARE',
-    category: 'PET CARE E-COMMERCE WEBSITE',
-    imageSrc: nahpetProjectImage,
-    href: 'https://nahpet.ae/',
-  },
   {
     name: 'INTERGULF',
     category: 'ENGINEERING WEBSITE',

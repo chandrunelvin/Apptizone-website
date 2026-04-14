@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import ScrollReveal from '../ui/ScrollReveal';
 import TextReveal from '../ui/TextReveal';
 import intergulfProjectImage from '../../assets/project/intergulf-project-image.png';
-import nahpetProjectImage from '../../assets/project/nahpet-project-image.png';
 import aquascbeProjectImage from '../../assets/project/aquascbe-project-image.png';
 import eliitaProjectImage from '../../assets/project/eliita-project-image.png';
 import droptaxiproProjectImage from '../../assets/project/droptaxipro-image.png';
@@ -49,18 +48,6 @@ const serviceTabs: { key: ServiceKey; title: string }[] = [
 ];
 
 const allProjects: ProjectCard[] = [
-  {
-    name: 'Nah Petcare',
-    category: 'E-Commerce',
-    description: 'Pet care e-commerce website from brand concept to launch',
-    service: 'website',
-    label: 'Website',
-    tone: 'lime',
-    art: 'dashboard',
-    wide: true,
-    href: 'https://nahpet.ae/',
-    projectImageSrc: nahpetProjectImage,
-  },
   {
     name: 'Intergulf',
     category: 'Engineering Website',
