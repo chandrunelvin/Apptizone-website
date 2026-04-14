@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -59,6 +60,74 @@ const ArrowLoop = () => (
   </svg>
 );
 
+const TestimonialCard = ({
+  testimonial,
+  index,
+  setRef,
+  className = '',
+  style,
+}: {
+  testimonial: (typeof testimonials)[number];
+  index: number;
+  setRef?: (node: HTMLElement | null) => void;
+  className?: string;
+  style?: CSSProperties;
+}) => (
+  <article
+    ref={setRef}
+    className={`rounded-[18px] border-2 px-5 py-5 shadow-[0_10px_28px_rgba(30,30,30,0.16)] md:px-8 md:py-7 ${className}`}
+    style={{
+      backgroundColor: testimonial.cardBg,
+      color: testimonial.cardText,
+      borderColor: testimonial.cardBorder,
+      zIndex: index + 1,
+      ...style,
+    }}
+  >
+    <div className="flex items-start gap-4 md:gap-6">
+      <div
+        className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full text-[24px] md:h-[86px] md:w-[86px] md:text-[42px]"
+        style={{
+          backgroundColor: testimonial.avatarBg,
+          color: testimonial.avatarText,
+          fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif',
+          fontWeight: 500,
+        }}
+      >
+        {testimonial.initial}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-3">
+          <h3
+            className="[font-family:'Bricolage_Grotesque',Helvetica] text-[22px] font-medium leading-none md:text-[46px]"
+            style={{ color: testimonial.cardText }}
+          >
+            {testimonial.name}
+          </h3>
+
+          <div className="mt-1 flex items-center gap-1 text-[14px] md:text-[28px]">
+            <span
+              className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold"
+              style={{ color: testimonial.ratingText }}
+            >
+              {testimonial.rating}
+            </span>
+            <span className="text-[#ffcc25]">★</span>
+          </div>
+        </div>
+
+        <p
+          className="[font-family:'Bricolage_Grotesque',Helvetica] mt-3 max-w-[560px] text-[13px] font-normal leading-[1.35] md:mt-4 md:max-w-[620px] md:text-[24px]"
+          style={{ color: testimonial.cardText }}
+        >
+          {testimonial.text}
+        </p>
+      </div>
+    </div>
+  </article>
+);
+
 const TestimonialsSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const pinRef = useRef<HTMLDivElement | null>(null);
@@ -107,40 +176,6 @@ const TestimonialsSection = () => {
       return () => ctx.revert();
     });
 
-    mm.add('(max-width: 767px)', () => {
-      const ctx = gsap.context(() => {
-        const startOffsets = [0, 170, 340];
-
-        gsap.set(cards, {
-          xPercent: -50,
-          y: (index: number) => startOffsets[index] ?? index * 170,
-          scale: 1,
-          rotation: (index: number) => Number.parseFloat(testimonials[index]?.rotate ?? '0'),
-          transformOrigin: 'center top',
-        });
-
-        const tl = gsap.timeline({
-          defaults: { ease: 'none' },
-          scrollTrigger: {
-            trigger: section,
-            start: 'top+=80 top',
-            end: '+=1700',
-            scrub: 0.7,
-            pin: pin,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        tl.to(cards[1], { y: 0, duration: 1 }, 0.35);
-        tl.set(cards[1], { zIndex: 20 }, 0.8);
-        tl.to(cards[2], { y: 0, duration: 1 }, 1.3);
-        tl.set(cards[2], { zIndex: 30 }, 1.8);
-      }, section);
-
-      return () => ctx.revert();
-    });
-
     return () => mm.revert();
   }, []);
 
@@ -149,7 +184,7 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[240vh] overflow-hidden bg-[#f3df5e] px-6 py-14 md:h-[340vh] md:px-[72px] md:py-20">
+    <section ref={sectionRef} className="relative overflow-hidden bg-[#f3df5e] px-6 py-14 md:h-[340vh] md:px-[72px] md:py-20">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[220px] opacity-20">
         <div className="h-full w-full bg-[radial-gradient(circle_at_0_0,transparent_0,transparent_10px,#d7c856_10.5px,transparent_11px)] bg-[length:44px_44px]" />
       </div>
@@ -170,65 +205,31 @@ const TestimonialsSection = () => {
           </ScrollReveal>
         </div>
 
-        <div ref={pinRef} className="relative mt-12 h-[68vh] md:mt-6 md:h-[84vh]">
+        <div className="mt-12 grid gap-5 md:hidden">
+          <div className="-mx-6 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex snap-x snap-mandatory gap-4">
+              {testimonials.map((testimonial, index) => (
+                <div key={testimonial.id} className="w-[calc(100vw-3.75rem)] max-w-[420px] shrink-0 snap-center">
+                  <TestimonialCard testimonial={testimonial} index={index} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div ref={pinRef} className="relative mt-6 hidden h-[84vh] md:block">
           <div className="relative mx-auto h-full max-w-[920px]">
             {testimonials.map((testimonial, index) => (
-              <article
+              <TestimonialCard
                 key={testimonial.id}
-                ref={(node) => {
+                testimonial={testimonial}
+                index={index}
+                className="absolute left-1/2 top-0 w-[92%] max-w-[860px]"
+                style={{ left: '50%' }}
+                setRef={(node) => {
                   cardRefs.current[index] = node;
                 }}
-                className="absolute left-1/2 top-0 w-[92%] max-w-[860px] rounded-[18px] border-2 px-5 py-5 shadow-[0_10px_28px_rgba(30,30,30,0.16)] md:px-8 md:py-7"
-                style={{
-                  left: '50%',
-                  backgroundColor: testimonial.cardBg,
-                  color: testimonial.cardText,
-                  borderColor: testimonial.cardBorder,
-                  zIndex: index + 1,
-                }}
-              >
-                <div className="flex items-start gap-4 md:gap-6">
-                  <div
-                    className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full text-[24px] md:h-[86px] md:w-[86px] md:text-[42px]"
-                    style={{
-                      backgroundColor: testimonial.avatarBg,
-                      color: testimonial.avatarText,
-                      fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {testimonial.initial}
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3
-                        className="[font-family:'Bricolage_Grotesque',Helvetica] text-[22px] font-medium leading-none md:text-[46px]"
-                        style={{ color: testimonial.cardText }}
-                      >
-                        {testimonial.name}
-                      </h3>
-
-                      <div className="mt-1 flex items-center gap-1 text-[14px] md:text-[28px]">
-                        <span
-                          className="[font-family:'Bricolage_Grotesque',Helvetica] font-semibold"
-                          style={{ color: testimonial.ratingText }}
-                        >
-                          {testimonial.rating}
-                        </span>
-                        <span className="text-[#ffcc25]">★</span>
-                      </div>
-                    </div>
-
-                    <p
-                      className="[font-family:'Bricolage_Grotesque',Helvetica] mt-3 max-w-[560px] text-[13px] font-normal leading-[1.35] md:mt-4 md:max-w-[620px] md:text-[24px]"
-                      style={{ color: testimonial.cardText }}
-                    >
-                      {testimonial.text}
-                    </p>
-                  </div>
-                </div>
-              </article>
+              />
             ))}
           </div>
         </div>
