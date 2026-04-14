@@ -1,8 +1,16 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ScrollReveal from '../ui/ScrollReveal';
+import TextReveal from '../ui/TextReveal';
+import intergulfProjectImage from '../../assets/project/intergulf-project-image.png';
+import nahpetProjectImage from '../../assets/project/nahpet-project-image.png';
+import aquascbeProjectImage from '../../assets/project/aquascbe-project-image.png';
+import mavuraProjectImage from '../../assets/project/mavura-project-image.png';
+import skillwiseProjectImage from '../../assets/project/skillwise-project-image.png';
 
 type ServiceKey =
   | 'all'
+  | 'website'
   | 'seo'
   | 'uiux'
   | 'social'
@@ -21,10 +29,13 @@ type ProjectCard = {
   tone: ProjectTone;
   wide?: boolean;
   art: 'phones' | 'dashboard' | 'seo' | 'chat';
+  href?: string;
+  projectImageSrc?: string;
 };
 
 const serviceTabs: { key: ServiceKey; title: string }[] = [
   { key: 'all', title: 'All Projects' },
+  { key: 'website', title: 'Website' },
   { key: 'seo', title: 'SEO' },
   { key: 'uiux', title: 'UI/UX Design' },
   { key: 'social', title: 'Social Media' },
@@ -47,11 +58,13 @@ const allProjects: ProjectCard[] = [
     name: 'Nah Petcare',
     category: 'E-Commerce',
     description: 'Pet care e-commerce website from brand concept to launch',
-    service: 'uiux',
-    label: 'UI/UX Design',
+    service: 'website',
+    label: 'Website',
     tone: 'lime',
     art: 'dashboard',
     wide: true,
+    href: 'https://nahpet.ae/',
+    projectImageSrc: nahpetProjectImage,
   },
   {
     name: 'Zeenath',
@@ -108,6 +121,53 @@ const allProjects: ProjectCard[] = [
     tone: 'lime',
     art: 'dashboard',
     wide: true,
+  },
+  {
+    name: 'Intergulf',
+    category: 'Engineering Website',
+    description: 'Corporate website for a water and wastewater systems company with a strong industrial brand presence.',
+    service: 'website',
+    label: 'Website',
+    tone: 'lime',
+    art: 'dashboard',
+    wide: true,
+    href: 'https://intergulf-me.com/',
+    projectImageSrc: intergulfProjectImage,
+  },
+  {
+    name: 'Mavura Foods',
+    category: 'Food Brand Website',
+    description: 'Product-focused website for a dosa and idli batter brand with strong e-commerce-ready visual storytelling.',
+    service: 'website',
+    label: 'Website',
+    tone: 'lime',
+    art: 'dashboard',
+    wide: true,
+    href: 'https://mavurafoods.com/',
+    projectImageSrc: mavuraProjectImage,
+  },
+  {
+    name: 'Skillwise',
+    category: 'Training Website',
+    description: 'Professional training and workforce development website with a strong corporate layout and conversion-focused sections.',
+    service: 'website',
+    label: 'Website',
+    tone: 'lime',
+    art: 'dashboard',
+    wide: true,
+    href: 'https://skillwise.in/',
+    projectImageSrc: skillwiseProjectImage,
+  },
+  {
+    name: 'Aquas CBE',
+    category: 'Water Purifier Website',
+    description: 'Service-driven website for a water purifier company with a clear conversion path and strong local trust messaging.',
+    service: 'website',
+    label: 'Website',
+    tone: 'lime',
+    art: 'dashboard',
+    href: 'https://aquascbe.com/',
+    projectImageSrc: aquascbeProjectImage,
   },
   {
     name: 'Marhaba',
@@ -265,63 +325,80 @@ const ProjectsPage = () => {
         <div className="pointer-events-none absolute bottom-[-90px] left-8 h-[220px] w-[220px] rounded-full bg-[#3d0068]/40 blur-[2px] md:left-16 md:h-[260px] md:w-[260px]" />
 
         <div className="relative mx-auto max-w-[1530px]">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2">
-            <div className="h-2 w-2 rounded-full bg-[#f5e642]" />
-            <span className="[font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-bold uppercase tracking-[0.25em] text-[#f5e642]">
-              Our work speaks for itself
-            </span>
-          </div>
+          <ScrollReveal delay={30} distance={22} blur={6} scale={0.98}>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2">
+              <div className="h-2 w-2 rounded-full bg-[#f5e642]" />
+              <span className="[font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-bold uppercase tracking-[0.25em] text-[#f5e642]">
+                Our work speaks for itself
+              </span>
+            </div>
+          </ScrollReveal>
 
           <div className="max-w-[760px]">
-            <h1 className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(58px,11vw,130px)] leading-[0.9] uppercase tracking-[0.04em]">
-              <span className="block text-white">Our</span>
-              <span className="block text-[#f5e642]">Projects</span>
-              <span className="block text-transparent [-webkit-text-stroke:2px_#ff6b2b]">Portfolio</span>
-            </h1>
-            <p className="mt-5 max-w-[520px] [font-family:'Bricolage_Grotesque',Helvetica] text-[15px] leading-7 text-white/55">
-              From SEO domination to high-converting social campaigns, here&apos;s the work we&apos;ve built,
-              scaled, and shipped for brands that want serious growth.
-            </p>
+            <style>{`
+              .project-hero-line-1 span { color: #ffffff; }
+              .project-hero-line-2 span { color: #f5e642; }
+              .project-hero-line-3 span { color: transparent; -webkit-text-stroke: 2px #ff6b2b; }
+            `}</style>
+            <div className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(58px,11vw,130px)] leading-[0.9] uppercase tracking-[0.04em]">
+              <TextReveal as="div" text="Our" className="project-hero-line-1 block" delay={70} />
+              <TextReveal as="div" text="Projects" className="project-hero-line-2 block" delay={170} />
+              <TextReveal as="div" text="Portfolio" className="project-hero-line-3 block" delay={270} />
+            </div>
+            <TextReveal
+              as="p"
+              text="From SEO domination to high-converting social campaigns, here's the work we've built, scaled, and shipped for brands that want serious growth."
+              className="mt-5 max-w-[520px] [font-family:'Bricolage_Grotesque',Helvetica] text-[15px] leading-7 text-white/55"
+              delay={200}
+              wordStagger={20}
+            />
           </div>
 
           <div className="mt-10 flex flex-wrap gap-8">
+            <ScrollReveal delay={220} distance={24} blur={6} className="contents">
             <div>
               <div className="[font-family:'Black_Han_Sans',Helvetica] text-5xl leading-none text-[#f5e642]">11+</div>
               <div className="[font-family:'Bricolage_Grotesque',Helvetica] mt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
                 Projects live
               </div>
             </div>
+            </ScrollReveal>
+            <ScrollReveal delay={280} distance={24} blur={6} className="contents">
             <div>
               <div className="[font-family:'Black_Han_Sans',Helvetica] text-5xl leading-none text-[#f5e642]">6</div>
               <div className="[font-family:'Bricolage_Grotesque',Helvetica] mt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
                 Service types
               </div>
             </div>
+            </ScrollReveal>
+            <ScrollReveal delay={340} distance={24} blur={6} className="contents">
             <div>
               <div className="[font-family:'Black_Han_Sans',Helvetica] text-5xl leading-none text-[#f5e642]">100%</div>
               <div className="[font-family:'Bricolage_Grotesque',Helvetica] mt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
                 Client focus
               </div>
             </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       <section className="relative z-[60] px-6 py-6 md:px-10 lg:px-16">
         <div className="mx-auto flex max-w-[1530px] flex-wrap gap-3">
-          {serviceTabs.map((tab) => (
-            <button
-              key={tab.key}
-              type="button"
-              onClick={() => setActiveTab(tab.key)}
-              className={`rounded-full border px-5 py-2.5 [font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-extrabold uppercase tracking-[0.18em] transition-all md:text-xs ${
-                activeTab === tab.key
-                  ? 'border-[#ff6b2b] bg-[#ff6b2b] text-white'
-                  : 'border-white/20 bg-transparent text-white/55 hover:border-white/50 hover:text-white'
-              }`}
-            >
-              {tab.title}
-            </button>
+          {serviceTabs.map((tab, index) => (
+            <ScrollReveal key={tab.key} delay={50 + index * 35} distance={18} blur={5} scale={0.98}>
+              <button
+                type="button"
+                onClick={() => setActiveTab(tab.key)}
+                className={`rounded-full border px-5 py-2.5 [font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-extrabold uppercase tracking-[0.18em] transition-all md:text-xs ${
+                  activeTab === tab.key
+                    ? 'border-[#ff6b2b] bg-[#ff6b2b] text-white'
+                    : 'border-white/20 bg-transparent text-white/55 hover:border-white/50 hover:text-white'
+                }`}
+              >
+                {tab.title}
+              </button>
+            </ScrollReveal>
           ))}
         </div>
       </section>
@@ -337,68 +414,130 @@ const ProjectsPage = () => {
       </section>
 
       <section className="px-6 pb-16 md:px-10 lg:px-16 lg:pb-20">
-        <div className="mx-auto grid max-w-[1530px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {filteredProjects.map((project) => {
-            const tone = toneMap[project.tone];
+        {filteredProjects.length > 0 ? (
+          <div className="mx-auto grid max-w-[1530px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {filteredProjects.map((project, index) => {
+              const tone = toneMap[project.tone];
+              const CardTag = project.href ? 'a' : 'div';
 
-            return (
-              <article
-                key={project.name}
-                className={`group overflow-hidden rounded-[22px] shadow-[0_20px_50px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:-translate-y-1.5 ${
-                  project.wide ? 'xl:col-span-2' : ''
-                }`}
-              >
-                <div
-                  className={`relative flex h-[220px] items-center justify-center overflow-hidden ${tone.thumb} ${
-                    project.wide ? 'xl:h-[220px]' : ''
-                  }`}
+              return (
+                <ScrollReveal
+                  key={project.name}
+                  delay={60 + index * 45}
+                  distance={40}
+                  blur={10}
+                  scale={0.94}
+                  rotate={index % 2 === 0 ? -0.8 : 0.8}
+                  className="group overflow-hidden rounded-[22px] shadow-[0_20px_50px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:-translate-y-1.5"
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.15),transparent_30%)]" />
-                  {renderProjectArt(project)}
-                </div>
-
-                <div className={`${tone.body} px-5 py-5`}>
-                  <div className="[font-family:'Bricolage_Grotesque',Helvetica] text-[10px] font-extrabold uppercase tracking-[0.2em] text-white/65">
-                    {project.category}
-                  </div>
-                  <h2 className="[font-family:'Black_Han_Sans',Helvetica] mt-2 text-[30px] leading-none tracking-[0.04em] text-white uppercase">
-                    {project.name}
-                  </h2>
-                  <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-2 max-w-[36ch] text-sm leading-6 text-white/55">
-                    {project.description}
-                  </p>
-                  <span
-                    className={`mt-4 inline-block rounded-full px-3 py-1.5 [font-family:'Bricolage_Grotesque',Helvetica] text-[10px] font-extrabold uppercase tracking-[0.16em] ${tone.tag}`}
+                  <CardTag
+                    {...(project.href
+                      ? { href: project.href, target: '_blank', rel: 'noreferrer' }
+                      : {})}
+                    className={`block h-full ${project.href ? 'cursor-pointer' : ''}`}
                   >
-                    {project.label}
-                  </span>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                    <div
+                      className={`relative flex h-[220px] items-center justify-center overflow-hidden ${tone.thumb}`}
+                    >
+                      {project.projectImageSrc ? (
+                        <>
+                          <img
+                            src={project.projectImageSrc}
+                            alt={project.name}
+                            className="absolute inset-0 h-full w-full object-cover object-top"
+                          />
+                          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(22,17,42,0.06)_0%,rgba(22,17,42,0.22)_100%)]" />
+                        </>
+                      ) : (
+                        <>
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.15),transparent_30%)]" />
+                          {renderProjectArt(project)}
+                        </>
+                      )}
+                    </div>
+
+                    <div className={`${tone.body} px-5 py-5`}>
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="[font-family:'Bricolage_Grotesque',Helvetica] text-[10px] font-extrabold uppercase tracking-[0.2em] text-white/65">
+                          {project.category}
+                        </div>
+                        {project.href && (
+                          <span className="[font-family:'Bricolage_Grotesque',Helvetica] text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">
+                            Visit ↗
+                          </span>
+                        )}
+                      </div>
+                      <h2 className="[font-family:'Black_Han_Sans',Helvetica] mt-2 text-[30px] leading-none tracking-[0.04em] text-white uppercase">
+                        {project.name}
+                      </h2>
+                      <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-2 max-w-[36ch] text-sm leading-6 text-white/55">
+                        {project.description}
+                      </p>
+                      <span
+                        className={`mt-4 inline-block rounded-full px-3 py-1.5 [font-family:'Bricolage_Grotesque',Helvetica] text-[10px] font-extrabold uppercase tracking-[0.16em] ${tone.tag}`}
+                      >
+                        {project.label}
+                      </span>
+                    </div>
+                  </CardTag>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        ) : (
+          <ScrollReveal
+            delay={80}
+            distance={36}
+            blur={10}
+            scale={0.96}
+            className="mx-auto max-w-[1530px]"
+          >
+            <div className="flex min-h-[320px] flex-col items-center justify-center rounded-[28px] border border-dashed border-white/20 bg-[#3d2a8a]/70 px-6 py-12 text-center shadow-[0_20px_50px_rgba(0,0,0,0.22)]">
+              <div className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(38px,7vw,72px)] uppercase leading-[0.92] tracking-[0.04em] text-[#f5e642]">
+                We&apos;re Portfolio Building
+              </div>
+              <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-4 max-w-[560px] text-base leading-7 text-white/65">
+                Fresh work for this service tab is on the way. More case studies and live project examples will be added here soon.
+              </p>
+            </div>
+          </ScrollReveal>
+        )}
       </section>
 
       <section className="bg-[#3d2a8a] px-6 py-16 md:px-10 lg:px-16">
         <div className="mx-auto max-w-[1530px]">
           <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <div className="[font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-extrabold uppercase tracking-[0.3em] text-[#f5e642]">
-                How we work
-              </div>
-              <h2 className="[font-family:'Black_Han_Sans',Helvetica] mt-3 text-[clamp(48px,7vw,80px)] leading-[0.95] uppercase tracking-[0.04em] text-white">
-                Strategy to <span className="text-[#ff6b2b]">scale</span>
-              </h2>
+              <ScrollReveal delay={30} distance={20} blur={5}>
+                <div className="[font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-extrabold uppercase tracking-[0.3em] text-[#f5e642]">
+                  How we work
+                </div>
+              </ScrollReveal>
+              <TextReveal
+                as="h2"
+                text="Strategy to scale"
+                className="project-process-title mt-3 [font-family:'Black_Han_Sans',Helvetica] text-[clamp(48px,7vw,80px)] leading-[0.95] uppercase tracking-[0.04em]"
+                delay={90}
+                wordStagger={32}
+              />
+              <style>{`
+                .project-process-title span { color: #ffffff; }
+                .project-process-title span:last-child { color: #ff6b2b; }
+              `}</style>
             </div>
-            <p className="[font-family:'Bricolage_Grotesque',Helvetica] max-w-[360px] text-sm leading-7 text-white/50">
-              Every project follows a proven four-step process designed for measurable results and sharp execution.
-            </p>
+            <TextReveal
+              as="p"
+              text="Every project follows a proven four-step process designed for measurable results and sharp execution."
+              className="[font-family:'Bricolage_Grotesque',Helvetica] max-w-[360px] text-sm leading-7 text-white/50"
+              delay={180}
+              wordStagger={18}
+            />
           </div>
 
           <div className="relative grid gap-10 md:grid-cols-2 xl:grid-cols-4">
             <div className="absolute left-[10%] right-[10%] top-7 hidden h-[2px] bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.15)_0,rgba(255,255,255,0.15)_8px,transparent_8px,transparent_16px)] xl:block" />
-            {processSteps.map((step) => (
-              <div key={step.number} className="relative text-center">
+            {processSteps.map((step, index) => (
+              <ScrollReveal key={step.number} delay={120 + index * 70} distance={34} blur={8} scale={0.95} className="relative text-center">
                 <div
                   className={`mx-auto flex h-14 w-14 items-center justify-center rounded-full border-2 bg-[#3d2a8a] [font-family:'Black_Han_Sans',Helvetica] text-2xl ${step.accent}`}
                 >
@@ -410,29 +549,34 @@ const ProjectsPage = () => {
                 <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-2 text-sm leading-6 text-white/45">
                   {step.description}
                 </p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       <section className="px-6 py-12 md:px-10 lg:px-16 lg:py-16">
+        <ScrollReveal delay={60} distance={36} blur={10} scale={0.96}>
         <div className="relative mx-auto flex max-w-[1530px] flex-col justify-between gap-8 overflow-hidden rounded-[30px] bg-[#ff6b2b] px-7 py-10 md:px-10 lg:flex-row lg:items-center lg:px-14 lg:py-14">
           <div className="absolute right-[-60px] top-[-60px] h-[280px] w-[280px] rounded-full bg-white/10" />
           <div className="absolute bottom-[-90px] left-[30%] h-[190px] w-[190px] rounded-full bg-black/10" />
 
           <div className="relative z-10">
-            <div className="[font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-extrabold uppercase tracking-[0.3em] text-white/70">
-              Ready to be our next case study?
-            </div>
-            <h2 className="[font-family:'Black_Han_Sans',Helvetica] mt-3 text-[clamp(46px,7vw,86px)] leading-[0.92] uppercase tracking-[0.04em] text-white">
-              Let&apos;s build
-              <br />
-              something big.
-            </h2>
+            <ScrollReveal delay={80} distance={18} blur={5}>
+              <div className="[font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-extrabold uppercase tracking-[0.3em] text-white/70">
+                Ready to be our next case study?
+              </div>
+            </ScrollReveal>
+            <TextReveal
+              as="h2"
+              text="Let's build something big."
+              className="[font-family:'Black_Han_Sans',Helvetica] mt-3 text-[clamp(46px,7vw,86px)] leading-[0.92] uppercase tracking-[0.04em] text-white"
+              delay={140}
+              wordStagger={34}
+            />
           </div>
 
-          <div className="relative z-10 flex flex-col gap-3 sm:flex-row lg:flex-col">
+          <ScrollReveal delay={220} distance={22} blur={6} className="relative z-10 flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Link
               to="/contact"
               className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 [font-family:'Bricolage_Grotesque',Helvetica] text-sm font-black text-[#ff6b2b] transition hover:opacity-90"
@@ -445,8 +589,9 @@ const ProjectsPage = () => {
             >
               View all services
             </Link>
-          </div>
+          </ScrollReveal>
         </div>
+        </ScrollReveal>
       </section>
     </div>
   );

@@ -4,6 +4,28 @@ import contactName from '../../assets/contact-us/contact-name.png';
 import ScrollReveal from '../ui/ScrollReveal';
 import TextReveal from '../ui/TextReveal';
 
+const socialLinks = [
+  {
+    alt: 'Facebook',
+    href: 'https://www.facebook.com/apptizone.india/',
+    src: 'https://c.animaapp.com/mms2hnc1lnJ5gE/img/ic-baseline-facebook.svg',
+  },
+  {
+    alt: 'X',
+    href: 'https://x.com/apptizone',
+  },
+  {
+    alt: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/apptizone-digital-solutions/',
+    src: 'https://c.animaapp.com/mms2hnc1lnJ5gE/img/mdi-linkedin.svg',
+  },
+  {
+    alt: 'Instagram',
+    href: 'https://www.instagram.com/apptizonedigitalsolutions/',
+    src: 'https://c.animaapp.com/mms2hnc1lnJ5gE/img/basil-instagram-solid.svg',
+  },
+];
+
 const serviceOptions = [
   'WhatsApp Marketing',
   'SEO',
@@ -107,7 +129,9 @@ const ContactUs: React.FC = () => {
                   className="mt-1.5 sm:mt-2 text-[23px] font-medium text-white"
                   style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
                 >
-                  123, xyz street,
+                  Apptizone Digital Solution Pvt Ltd - Nandhavanam Mettur, 2,
+                  Vivekananda Cross St, Nandavana Mettur, Avadi, Chennai, Tamil
+                  Nadu 600071
                 </p>
               </div>
 
@@ -138,26 +162,28 @@ const ContactUs: React.FC = () => {
                   className="mt-[6px] sm:mt-[10px] flex items-center gap-3 sm:gap-4 md:gap-5"
                   style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
                 >
-                  <img
-                    src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/ic-baseline-facebook.svg"
-                    alt="Facebook"
-                    className="h-5 w-5 sm:h-6 sm:w-6"
-                  />
-                  <img
-                    src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/mingcute-youtube-fill.svg"
-                    alt="YouTube"
-                    className="h-5 w-5 sm:h-6 sm:w-6"
-                  />
-                  <img
-                    src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/mdi-linkedin.svg"
-                    alt="LinkedIn"
-                    className="h-5 w-5 sm:h-6 sm:w-6"
-                  />
-                  <img
-                    src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/basil-instagram-solid.svg"
-                    alt="Instagram"
-                    className="h-5 w-5 sm:h-6 sm:w-6"
-                  />
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.alt}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={link.alt}
+                      className="flex h-5 w-5 items-center justify-center text-white sm:h-6 sm:w-6"
+                    >
+                      {link.alt === 'X' ? (
+                        <span className="text-[18px] font-bold leading-none sm:text-[20px]">
+                          X
+                        </span>
+                      ) : (
+                        <img
+                          src={link.src}
+                          alt={link.alt}
+                          className="h-5 w-5 sm:h-6 sm:w-6"
+                        />
+                      )}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>

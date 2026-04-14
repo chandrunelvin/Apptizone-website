@@ -18,13 +18,10 @@ const ServiceOverviewSection = () => {
       title: 'SEO',
       details:
         'Improve search visibility and attract quality organic traffic. Built for sustainable, long-term growth.',
-      wrapperClass: 'left-[7%] top-[14%]',
-      imageClass: 'w-[140px] md:w-[165px]',
-      panelClass:
-        'left-[42%] top-[-18%] h-[172px] w-[290px] -rotate-[10deg] rounded-[40px] md:h-[208px] md:w-[420px] md:rounded-[58px]',
-      panelTextClass: 'max-w-[160px] md:max-w-[230px]',
-      origin: 'left center',
-      align: 'end',
+      wrapperClass: 'left-[12%] top-[18%]',
+      imageClass: 'w-[140px] md:w-[205px]',
+      tooltipClass: 'left-1/2 bottom-[108%] w-[220px] -translate-x-1/2',
+      tooltipArrowClass: 'left-1/2 bottom-[-10px] -translate-x-1/2 border-t-[#25225e]',
     },
     {
       key: 'website',
@@ -32,13 +29,10 @@ const ServiceOverviewSection = () => {
       title: 'Website Design',
       details:
         'Create clear user journeys, stronger interfaces, and better conversion-focused web and app experiences.',
-      wrapperClass: 'left-[4%] top-[56%]',
+      wrapperClass: 'left-[7%] top-[42%]',
       imageClass: 'w-[280px] md:w-[325px]',
-      panelClass:
-        'left-[24%] top-[-20%] h-[160px] w-[260px] -rotate-[8deg] rounded-[34px] md:h-[196px] md:w-[360px] md:rounded-[52px]',
-      panelTextClass: 'max-w-[150px] md:max-w-[210px]',
-      origin: 'left center',
-      align: 'end',
+      tooltipClass: 'left-1/2 bottom-[108%] w-[240px] -translate-x-1/2',
+      tooltipArrowClass: 'left-1/2 bottom-[-10px] -translate-x-1/2 border-t-[#25225e]',
     },
     {
       key: 'social',
@@ -46,13 +40,10 @@ const ServiceOverviewSection = () => {
       title: 'Social Media Marketing',
       details:
         'Boost reach with platform-specific content, stronger engagement, and campaigns designed to grow attention.',
-      wrapperClass: 'left-[48%] top-[23%]',
+      wrapperClass: 'left-[54%] top-[26%]',
       imageClass: 'w-[250px] md:w-[295px]',
-      panelClass:
-        'left-[24%] top-[-18%] h-[152px] w-[250px] rotate-[8deg] rounded-[34px] md:h-[188px] md:w-[360px] md:rounded-[48px]',
-      panelTextClass: 'max-w-[145px] md:max-w-[205px]',
-      origin: 'left center',
-      align: 'end',
+      tooltipClass: 'left-1/2 bottom-[108%] w-[245px] -translate-x-1/2',
+      tooltipArrowClass: 'left-1/2 bottom-[-10px] -translate-x-1/2 border-t-[#25225e]',
     },
     {
       key: 'sem',
@@ -60,13 +51,10 @@ const ServiceOverviewSection = () => {
       title: 'SEM',
       details:
         'Capture high-intent traffic fast with performance ads, targeted campaigns, and measurable lead generation.',
-      wrapperClass: 'right-[6%] top-[50%]',
+      wrapperClass: 'right-[3%] top-[51%]',
       imageClass: 'w-[240px] md:w-[285px]',
-      panelClass:
-        'right-[18%] top-[-18%] h-[156px] w-[250px] -rotate-[6deg] rounded-[34px] md:h-[194px] md:w-[360px] md:rounded-[50px]',
-      panelTextClass: 'max-w-[150px] md:max-w-[205px]',
-      origin: 'right center',
-      align: 'start',
+      tooltipClass: 'left-1/2 bottom-[108%] w-[235px] -translate-x-1/2',
+      tooltipArrowClass: 'left-1/2 bottom-[-10px] -translate-x-1/2 border-t-[#25225e]',
     },
     {
       key: 'whatsapp',
@@ -74,13 +62,10 @@ const ServiceOverviewSection = () => {
       title: 'WhatsApp Marketing',
       details:
         'Drive direct conversations, faster replies, and better campaign engagement through WhatsApp funnels.',
-      wrapperClass: 'right-[28%] bottom-[0.5%]',
+      wrapperClass: 'right-[20%] bottom-[2%]',
       imageClass: 'w-[150px] md:w-[180px]',
-      panelClass:
-        'right-[18%] top-[-46%] h-[146px] w-[248px] -rotate-[18deg] rounded-[34px] md:h-[180px] md:w-[340px] md:rounded-[48px]',
-      panelTextClass: 'max-w-[140px] md:max-w-[200px]',
-      origin: 'right center',
-      align: 'start',
+      tooltipClass: 'left-1/2 bottom-[112%] w-[230px] -translate-x-1/2',
+      tooltipArrowClass: 'left-1/2 bottom-[-10px] -translate-x-1/2 border-t-[#25225e]',
     },
     {
       key: 'whatsapp-integration',
@@ -88,13 +73,10 @@ const ServiceOverviewSection = () => {
       title: 'WhatsApp Integration',
       details:
         'Connect systems with API automation, CRM sync, and scalable customer communication workflows.',
-      wrapperClass: 'right-[14%] bottom-[8%]',
+      wrapperClass: 'left-[8%] bottom-[-5%]',
       imageClass: 'w-[220px] md:w-[260px]',
-      panelClass:
-        'right-[18%] top-[-24%] h-[148px] w-[250px] -rotate-[8deg] rounded-[34px] md:h-[184px] md:w-[350px] md:rounded-[48px]',
-      panelTextClass: 'max-w-[145px] md:max-w-[205px]',
-      origin: 'right center',
-      align: 'start',
+      tooltipClass: 'left-1/2 bottom-[110%] w-[245px] -translate-x-1/2',
+      tooltipArrowClass: 'left-1/2 bottom-[-10px] -translate-x-1/2 border-t-[#25225e]',
     },
   ];
 
@@ -123,25 +105,27 @@ const ServiceOverviewSection = () => {
           {stickers.map((item) => (
             <div
               key={item.key}
-              className={`absolute ${item.wrapperClass}`}
+              className={`absolute ${item.wrapperClass} ${hoveredSticker === item.key ? 'z-40' : 'z-10'}`}
               onMouseEnter={() => setHoveredSticker(item.key)}
               onMouseLeave={() => setHoveredSticker((current) => (current === item.key ? null : current))}
             >
               <div
-                className={`pointer-events-none absolute ${item.panelClass} z-10 overflow-hidden bg-[#27313b] shadow-[0_10px_24px_rgba(24,28,32,0.22)] transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                className={`pointer-events-none absolute ${item.tooltipClass} z-50 rounded-[22px] border-[3px] border-[#25225e] bg-[#25225e] px-5 py-4 shadow-[0_12px_28px_rgba(37,34,94,0.28)] transition-[opacity,transform,filter] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]`}
                 style={{
                   opacity: hoveredSticker === item.key ? 1 : 0,
-                  transformOrigin: item.origin,
-                  transform: hoveredSticker === item.key ? 'scaleX(1) scaleY(1)' : 'scaleX(0.08) scaleY(0.92)',
+                  filter: hoveredSticker === item.key ? 'blur(0px)' : 'blur(8px)',
+                  transform: hoveredSticker === item.key ? 'translateY(0px) scale(1)' : 'translateY(10px) scale(0.92)',
                 }}
               >
-                <div className={`flex h-full items-center ${item.align === 'end' ? 'justify-end' : 'justify-start'} px-6 py-5 md:px-9 md:py-7`}>
+                <span
+                  className={`absolute h-0 w-0 border-x-[10px] border-x-transparent ${item.tooltipArrowClass}`}
+                />
+                <div className="flex flex-col gap-2">
+                  <div className="[font-family:'Black_Han_Sans',Helvetica] text-[18px] leading-none text-[#ecd65d]">
+                    {item.title}
+                  </div>
                   <p
-                    className={`[font-family:'Bricolage_Grotesque',Helvetica] ${item.panelTextClass} text-[14px] font-medium leading-[1.25] text-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-[18px]`}
-                    style={{
-                      opacity: hoveredSticker === item.key ? 1 : 0,
-                      transform: hoveredSticker === item.key ? 'translateX(0px)' : item.align === 'end' ? 'translateX(16px)' : 'translateX(-16px)',
-                    }}
+                    className="[font-family:'Bricolage_Grotesque',Helvetica] text-[13px] font-medium leading-[1.4] text-white/95"
                   >
                     {item.details}
                   </p>

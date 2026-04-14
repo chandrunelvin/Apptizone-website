@@ -22,18 +22,21 @@ const socialIcons = [
   {
     src: "https://c.animaapp.com/mms2hnc1lnJ5gE/img/basil-instagram-solid.svg",
     alt: "Instagram",
+    href: "https://www.instagram.com/apptizonedigitalsolutions/",
   },
   {
-    src: "https://c.animaapp.com/mms2hnc1lnJ5gE/img/mingcute-youtube-fill.svg",
-    alt: "YouTube",
+    alt: "X",
+    href: "https://x.com/apptizone",
   },
   {
     src: "https://c.animaapp.com/mms2hnc1lnJ5gE/img/mdi-linkedin.svg",
     alt: "LinkedIn",
+    href: "https://www.linkedin.com/company/apptizone-digital-solutions/",
   },
   {
     src: "https://c.animaapp.com/mms2hnc1lnJ5gE/img/ic-baseline-facebook.svg",
     alt: "Facebook",
+    href: "https://www.facebook.com/apptizone.india/",
   },
 ];
 
@@ -47,7 +50,7 @@ const Footer: React.FC = () => {
         src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/rectangle-208.svg"
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1530px] flex-col gap-10 px-6 py-12 md:px-10 lg:flex-row lg:flex-wrap lg:justify-between lg:gap-8 lg:px-[84px] lg:py-[68px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1530px] flex-col gap-10 px-6 py-12 md:px-10 lg:flex-row lg:flex-wrap lg:items-start lg:justify-between lg:gap-8 lg:px-[84px] lg:py-[68px]">
         {/* Brand column */}
         <div className="flex flex-col gap-4 min-w-[160px]">
           <div className="w-20 h-[71px] flex flex-col justify-end bg-[url(https://c.animaapp.com/mms2hnc1lnJ5gE/img/image-38-1.png)] bg-cover bg-center">
@@ -62,12 +65,24 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex flex-row gap-[15px] mt-2">
             {socialIcons.map((icon) => (
-              <img
+              <a
                 key={icon.alt}
-                className="w-6 h-6 cursor-pointer hover:opacity-80 transition-opacity"
-                alt={icon.alt}
-                src={icon.src}
-              />
+                href={icon.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={icon.alt}
+                className="flex h-6 w-6 items-center justify-center text-white transition-opacity hover:opacity-80"
+              >
+                {icon.alt === "X" ? (
+                  <span className="text-[20px] font-bold leading-none">X</span>
+                ) : (
+                  <img
+                    className="h-6 w-6"
+                    alt={icon.alt}
+                    src={icon.src}
+                  />
+                )}
+              </a>
             ))}
           </div>
         </div>
@@ -105,7 +120,7 @@ const Footer: React.FC = () => {
         </nav>
 
         {/* Contact column */}
-        <address className="flex flex-col gap-[14px] not-italic md:gap-[18px]">
+        <address className="flex max-w-[360px] flex-col gap-[14px] not-italic md:max-w-[420px] md:gap-[18px]">
           <div className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-[26px] tracking-[0] leading-normal uppercase">
             Contact
           </div>
@@ -117,7 +132,7 @@ const Footer: React.FC = () => {
               src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/material-symbols-call.svg"
             />
             <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white md:text-xl">
-              +91 99999 99999
+              +91 8056136651
             </span>
           </div>
 
@@ -128,18 +143,18 @@ const Footer: React.FC = () => {
               src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/ion-mail.svg"
             />
             <span className="font-['Bricolage_Grotesque',Helvetica] break-all font-normal text-lg tracking-[0] leading-normal text-white md:text-xl md:break-normal">
-              apptizone@gmail.com
+              info@apptizone.com
             </span>
           </div>
 
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-3 items-start">
             <img
-              className="w-6 h-6 flex-shrink-0"
+              className="mt-1 h-6 w-6 flex-shrink-0"
               alt="Location"
               src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/fluent-location-16-filled.svg"
             />
-            <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white md:text-xl">
-              Avadi, Chennai
+            <span className="font-['Bricolage_Grotesque',Helvetica] text-base font-normal leading-[1.6] tracking-[0] text-white md:text-lg">
+              Apptizone Digital Solution Pvt Ltd - Nandhavanam Mettur, 2, Vivekananda Cross St, Nandavana Mettur, Avadi, Chennai, Tamil Nadu 600071
             </span>
           </div>
         </address>

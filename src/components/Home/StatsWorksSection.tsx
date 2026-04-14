@@ -1,4 +1,18 @@
 import { useState } from 'react';
+import aquascbeProjectImage from '../../assets/project/aquascbe-project-image.png';
+import intergulfProjectImage from '../../assets/project/intergulf-project-image.png';
+import mavuraProjectImage from '../../assets/project/mavura-project-image.png';
+import nahpetProjectImage from '../../assets/project/nahpet-project-image.png';
+import skillwiseProjectImage from '../../assets/project/skillwise-project-image.png';
+
+type ProjectTone = 'left' | 'center' | 'right';
+
+type SlideProject = {
+  name: string;
+  category: string;
+  tone: ProjectTone;
+  imageSrc?: string;
+};
 
 const statsData = [
   {
@@ -39,19 +53,22 @@ const projectSlides = [
     counter: 1,
     projects: [
       {
-        name: 'XANFI AI',
-        category: 'SOCIAL MEDIA MARKETING',
-        tone: 'left' as const,
-      },
-      {
         name: 'NAH PETCARE',
         category: 'PET CARE E-COMMERCE WEBSITE',
-        tone: 'center' as const,
+        tone: 'left' as const,
+        imageSrc: nahpetProjectImage,
       },
       {
-        name: 'ZEENATH',
-        category: 'SEO - 5TH PAGE TO 1ST',
+        name: 'INTERGULF',
+        category: 'ENGINEERING WEBSITE',
+        tone: 'center' as const,
+        imageSrc: intergulfProjectImage,
+      },
+      {
+        name: 'MAVURA FOODS',
+        category: 'FOOD BRAND WEBSITE',
         tone: 'right' as const,
+        imageSrc: mavuraProjectImage,
       },
     ],
   },
@@ -60,67 +77,22 @@ const projectSlides = [
     counter: 2,
     projects: [
       {
-        name: 'XANFI AI',
-        category: 'SOCIAL MEDIA MARKETING',
+        name: 'SKILLWISE',
+        category: 'TRAINING WEBSITE',
         tone: 'left' as const,
+        imageSrc: skillwiseProjectImage,
       },
       {
-        name: 'NAH PETCARE',
-        category: 'PET CARE E-COMMERCE WEBSITE',
+        name: 'AQUAS CBE',
+        category: 'WATER PURIFIER WEBSITE',
         tone: 'center' as const,
-      },
-      {
-        name: 'ZEENATH',
-        category: 'SEO - 5TH PAGE TO 1ST',
-        tone: 'right' as const,
-      },
-    ],
-  },
-  {
-    id: 3,
-    counter: 3,
-    projects: [
-      {
-        name: 'BLOSSOM CARE',
-        category: 'META ADS CAMPAIGN',
-        tone: 'left' as const,
-      },
-      {
-        name: 'PETIVA',
-        category: 'BRAND E-COMMERCE REDESIGN',
-        tone: 'center' as const,
-      },
-      {
-        name: 'AL SHIFA',
-        category: 'SEO - LOCAL RANK BOOST',
-        tone: 'right' as const,
-      },
-    ],
-  },
-  {
-    id: 4,
-    counter: 4,
-    projects: [
-      {
-        name: 'BOTIVA',
-        category: 'SOCIAL MEDIA DESIGN',
-        tone: 'left' as const,
-      },
-      {
-        name: 'NESTLUXE',
-        category: 'PREMIUM WEBSITE EXPERIENCE',
-        tone: 'center' as const,
-      },
-      {
-        name: 'MARHABA',
-        category: 'SEO - ORGANIC GROWTH',
-        tone: 'right' as const,
+        imageSrc: aquascbeProjectImage,
       },
     ],
   },
 ];
 
-const totalSlides = 15;
+const totalSlides = projectSlides.length;
 
 const ArrowIcon = ({ direction }: { direction: 'left' | 'right' }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
@@ -143,7 +115,7 @@ const StatsWorksSection = () => {
     setMobileProjectIndex((value) => (value >= mobileProjects.length - 1 ? 0 : value + 1));
 
   const renderProjectCard = (
-    project: (typeof activeSlide.projects)[number],
+    project: SlideProject,
   ) => {
     const isCenter = project.tone === 'center';
     const shellClass =
@@ -179,7 +151,17 @@ const StatsWorksSection = () => {
         >
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_20%_20%,#ffffff_0,transparent_22%),radial-gradient(circle_at_80%_25%,#ffffff_0,transparent_18%),radial-gradient(circle_at_35%_70%,#4f4298_0,transparent_28%)]" />
 
-          {project.tone === 'left' && (
+          {project.imageSrc ? (
+            <div className="absolute inset-0 p-3 md:p-4">
+              <img
+                src={project.imageSrc}
+                alt={project.name}
+                className="h-full w-full rounded-[18px] border-[3px] border-white/70 object-cover object-top shadow-[0_10px_24px_rgba(0,0,0,0.2)]"
+              />
+            </div>
+          ) : null}
+
+          {!project.imageSrc && project.tone === 'left' && (
             <>
               <div className="absolute left-[34%] top-[18%] h-[90px] w-[54px] rotate-[12deg] rounded-[16px] border-[3px] border-white bg-[#f5f7ff] shadow-[0_6px_14px_rgba(0,0,0,0.18)] md:h-[120px] md:w-[70px]" />
               <div className="absolute left-[39%] top-[27%] h-[10px] w-[24px] rounded-full bg-[#90b7ff] md:h-[12px] md:w-[30px]" />
@@ -191,7 +173,7 @@ const StatsWorksSection = () => {
             </>
           )}
 
-          {project.tone === 'center' && (
+          {!project.imageSrc && project.tone === 'center' && (
             <>
               <div className="absolute left-[18%] top-[16%] h-[110px] w-[150px] rotate-[-10deg] rounded-[10px] border-[3px] border-[#5a4562] bg-[linear-gradient(180deg,#b9467a_0%,#d2cd67_100%)] shadow-[0_10px_20px_rgba(0,0,0,0.18)] md:h-[160px] md:w-[230px]" />
               <div className="absolute left-[42%] top-[49%] h-[44px] w-[86px] -translate-x-1/2 rounded-b-[18px] bg-[#d9dce5] md:h-[58px] md:w-[112px]" />
@@ -201,7 +183,7 @@ const StatsWorksSection = () => {
             </>
           )}
 
-          {project.tone === 'right' && (
+          {!project.imageSrc && project.tone === 'right' && (
             <>
               <div className="absolute left-[22%] top-[16%] h-[76px] w-[96px] rotate-[-6deg] rounded-[8px] border-[3px] border-[#f7efd6] bg-[linear-gradient(180deg,#f7f0dd_0%,#d5c7a6_100%)] shadow-[0_8px_16px_rgba(0,0,0,0.18)] md:h-[102px] md:w-[132px]" />
               <div className="absolute left-[18%] top-[48%] h-[4px] w-[120px] bg-[#573233] md:w-[156px]" />
