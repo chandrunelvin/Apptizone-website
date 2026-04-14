@@ -5,8 +5,12 @@ import TextReveal from '../ui/TextReveal';
 import intergulfProjectImage from '../../assets/project/intergulf-project-image.png';
 import nahpetProjectImage from '../../assets/project/nahpet-project-image.png';
 import aquascbeProjectImage from '../../assets/project/aquascbe-project-image.png';
+import eliitaProjectImage from '../../assets/project/eliita-project-image.png';
+import droptaxiproProjectImage from '../../assets/project/droptaxipro-image.png';
 import mavuraProjectImage from '../../assets/project/mavura-project-image.png';
+import propgeniusProjectImage from '../../assets/project/propgenius-project-image.png';
 import skillwiseProjectImage from '../../assets/project/skillwise-project-image.png';
+import upcomingProjectsBangaloreProjectImage from '../../assets/project/upcomingprojectsbangalore-project-image.png';
 
 type ServiceKey =
   | 'all'
@@ -46,15 +50,6 @@ const serviceTabs: { key: ServiceKey; title: string }[] = [
 
 const allProjects: ProjectCard[] = [
   {
-    name: 'Xanfi AI',
-    category: 'Social media',
-    description: 'Full social media marketing strategy and execution',
-    service: 'social',
-    label: 'Social Media',
-    tone: 'pink',
-    art: 'phones',
-  },
-  {
     name: 'Nah Petcare',
     category: 'E-Commerce',
     description: 'Pet care e-commerce website from brand concept to launch',
@@ -65,62 +60,6 @@ const allProjects: ProjectCard[] = [
     wide: true,
     href: 'https://nahpet.ae/',
     projectImageSrc: nahpetProjectImage,
-  },
-  {
-    name: 'Zeenath',
-    category: 'SEO',
-    description: 'Climbed from the 5th page to the 1st page on Google',
-    service: 'seo',
-    label: 'SEO',
-    tone: 'orange',
-    art: 'seo',
-  },
-  {
-    name: 'Blossom Care',
-    category: 'Meta Ads',
-    description: 'High-converting Meta ads campaign built for growth',
-    service: 'sem',
-    label: 'SEM',
-    tone: 'pink',
-    art: 'phones',
-  },
-  {
-    name: 'Petiva',
-    category: 'Brand & E-commerce',
-    description: 'Full brand and e-commerce redesign from the ground up',
-    service: 'uiux',
-    label: 'UI/UX Design',
-    tone: 'lime',
-    art: 'dashboard',
-    wide: true,
-  },
-  {
-    name: 'Al Shifa',
-    category: 'Local SEO',
-    description: 'Local rank boost that now dominates nearby search results',
-    service: 'seo',
-    label: 'SEO',
-    tone: 'orange',
-    art: 'seo',
-  },
-  {
-    name: 'Botiva',
-    category: 'Social Design',
-    description: 'Social media design system with a sharper brand presence',
-    service: 'social',
-    label: 'Social Media',
-    tone: 'purple',
-    art: 'phones',
-  },
-  {
-    name: 'Nestluxe',
-    category: 'Premium Web',
-    description: 'Premium website experience for a luxury real estate brand',
-    service: 'uiux',
-    label: 'UI/UX Design',
-    tone: 'lime',
-    art: 'dashboard',
-    wide: true,
   },
   {
     name: 'Intergulf',
@@ -170,32 +109,48 @@ const allProjects: ProjectCard[] = [
     projectImageSrc: aquascbeProjectImage,
   },
   {
-    name: 'Marhaba',
-    category: 'Organic Growth',
-    description: 'SEO-led organic growth with major traffic gains in 3 months',
-    service: 'seo',
-    label: 'SEO',
-    tone: 'orange',
-    art: 'seo',
-  },
-  {
-    name: 'Direct Chat',
-    category: 'WhatsApp',
-    description: 'WhatsApp funnel automation from click to close',
-    service: 'whatsapp-marketing',
-    label: 'WhatsApp',
-    tone: 'pink',
-    art: 'chat',
-  },
-  {
-    name: 'Reply Bot',
-    category: 'API Integration',
-    description: 'CRM API integration with smart WhatsApp bot automation',
-    service: 'whatsapp-integration',
-    label: 'WhatsApp',
+    name: 'Eliita',
+    category: 'Learning Platform Website',
+    description: 'Education-focused website with a modern course-led layout, bold hero messaging, and a clean conversion journey.',
+    service: 'website',
+    label: 'Website',
     tone: 'lime',
     art: 'dashboard',
-    wide: true,
+    href: 'https://eliita.com/',
+    projectImageSrc: eliitaProjectImage,
+  },
+  {
+    name: 'Propgenius',
+    category: 'Real Estate Website',
+    description: 'Real estate advisory website with a strong trust-led hero, property-focused messaging, and clear appointment conversion flow.',
+    service: 'website',
+    label: 'Website',
+    tone: 'lime',
+    art: 'dashboard',
+    href: 'https://propgenius.in/',
+    projectImageSrc: propgeniusProjectImage,
+  },
+  {
+    name: 'Urbanrise',
+    category: 'Luxury Villa Website',
+    description: 'Luxury real estate landing page built for upcoming villa projects with strong call-to-action focus and premium property presentation.',
+    service: 'website',
+    label: 'Website',
+    tone: 'lime',
+    art: 'dashboard',
+    href: 'https://upcomingprojectsbangalore.in/',
+    projectImageSrc: upcomingProjectsBangaloreProjectImage,
+  },
+  {
+    name: 'DropTaxiPro',
+    category: 'Taxi Service Website',
+    description: 'Taxi booking website with a conversion-focused ride form, strong service messaging, and a clear local transport brand presence.',
+    service: 'website',
+    label: 'Website',
+    tone: 'lime',
+    art: 'dashboard',
+    href: 'https://droptaxipro.com/',
+    projectImageSrc: droptaxiproProjectImage,
   },
 ];
 

@@ -1,17 +1,21 @@
 import { useState } from 'react';
 import aquascbeProjectImage from '../../assets/project/aquascbe-project-image.png';
+import droptaxiproProjectImage from '../../assets/project/droptaxipro-image.png';
+import eliitaProjectImage from '../../assets/project/eliita-project-image.png';
 import intergulfProjectImage from '../../assets/project/intergulf-project-image.png';
 import mavuraProjectImage from '../../assets/project/mavura-project-image.png';
 import nahpetProjectImage from '../../assets/project/nahpet-project-image.png';
+import propgeniusProjectImage from '../../assets/project/propgenius-project-image.png';
 import skillwiseProjectImage from '../../assets/project/skillwise-project-image.png';
+import upcomingProjectsBangaloreProjectImage from '../../assets/project/upcomingprojectsbangalore-project-image.png';
 
 type ProjectTone = 'left' | 'center' | 'right';
 
 type SlideProject = {
   name: string;
   category: string;
-  tone: ProjectTone;
   imageSrc?: string;
+  href?: string;
 };
 
 const statsData = [
@@ -47,52 +51,64 @@ const statsData = [
   },
 ];
 
-const projectSlides = [
+const projects = [
   {
-    id: 1,
-    counter: 1,
-    projects: [
-      {
-        name: 'NAH PETCARE',
-        category: 'PET CARE E-COMMERCE WEBSITE',
-        tone: 'left' as const,
-        imageSrc: nahpetProjectImage,
-      },
-      {
-        name: 'INTERGULF',
-        category: 'ENGINEERING WEBSITE',
-        tone: 'center' as const,
-        imageSrc: intergulfProjectImage,
-      },
-      {
-        name: 'MAVURA FOODS',
-        category: 'FOOD BRAND WEBSITE',
-        tone: 'right' as const,
-        imageSrc: mavuraProjectImage,
-      },
-    ],
+    name: 'NAH PETCARE',
+    category: 'PET CARE E-COMMERCE WEBSITE',
+    imageSrc: nahpetProjectImage,
+    href: 'https://nahpet.ae/',
   },
   {
-    id: 2,
-    counter: 2,
-    projects: [
-      {
-        name: 'SKILLWISE',
-        category: 'TRAINING WEBSITE',
-        tone: 'left' as const,
-        imageSrc: skillwiseProjectImage,
-      },
-      {
-        name: 'AQUAS CBE',
-        category: 'WATER PURIFIER WEBSITE',
-        tone: 'center' as const,
-        imageSrc: aquascbeProjectImage,
-      },
-    ],
+    name: 'INTERGULF',
+    category: 'ENGINEERING WEBSITE',
+    imageSrc: intergulfProjectImage,
+    href: 'https://intergulf-me.com/',
+  },
+  {
+    name: 'MAVURA FOODS',
+    category: 'FOOD BRAND WEBSITE',
+    imageSrc: mavuraProjectImage,
+    href: 'https://mavurafoods.com/',
+  },
+  {
+    name: 'SKILLWISE',
+    category: 'TRAINING WEBSITE',
+    imageSrc: skillwiseProjectImage,
+    href: 'https://skillwise.in/',
+  },
+  {
+    name: 'AQUAS CBE',
+    category: 'WATER PURIFIER WEBSITE',
+    imageSrc: aquascbeProjectImage,
+    href: 'https://aquascbe.com/',
+  },
+  {
+    name: 'ELIITA',
+    category: 'LEARNING PLATFORM WEBSITE',
+    imageSrc: eliitaProjectImage,
+    href: 'https://eliita.com/',
+  },
+  {
+    name: 'PROPGENIUS',
+    category: 'REAL ESTATE WEBSITE',
+    imageSrc: propgeniusProjectImage,
+    href: 'https://propgenius.in/',
+  },
+  {
+    name: 'URBANRISE',
+    category: 'LUXURY VILLA WEBSITE',
+    imageSrc: upcomingProjectsBangaloreProjectImage,
+    href: 'https://upcomingprojectsbangalore.in/',
+  },
+  {
+    name: 'DROPTAXIPRO',
+    category: 'TAXI SERVICE WEBSITE',
+    imageSrc: droptaxiproProjectImage,
+    href: 'https://droptaxipro.com/',
   },
 ];
 
-const totalSlides = projectSlides.length;
+const totalSlides = projects.length;
 
 const ArrowIcon = ({ direction }: { direction: 'left' | 'right' }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
@@ -101,21 +117,22 @@ const ArrowIcon = ({ direction }: { direction: 'left' | 'right' }) => (
 );
 
 const StatsWorksSection = () => {
-  const [slide, setSlide] = useState(1);
-  const [mobileProjectIndex, setMobileProjectIndex] = useState(0);
+  const [projectIndex, setProjectIndex] = useState(0);
 
-  const prev = () => setSlide((value) => (value <= 1 ? projectSlides.length : value - 1));
-  const next = () => setSlide((value) => (value >= projectSlides.length ? 1 : value + 1));
-  const activeSlide = projectSlides.find((item) => item.counter === slide) ?? projectSlides[0];
-  const mobileProjects = projectSlides.flatMap((item) => item.projects);
-  const activeMobileProject = mobileProjects[mobileProjectIndex] ?? mobileProjects[0];
-  const prevMobileProject = () =>
-    setMobileProjectIndex((value) => (value <= 0 ? mobileProjects.length - 1 : value - 1));
-  const nextMobileProject = () =>
-    setMobileProjectIndex((value) => (value >= mobileProjects.length - 1 ? 0 : value + 1));
+  const prev = () =>
+    setProjectIndex((value) => (value <= 0 ? projects.length - 1 : value - 1));
+  const next = () =>
+    setProjectIndex((value) => (value >= projects.length - 1 ? 0 : value + 1));
+  const activeProject = projects[projectIndex] ?? projects[0];
+  const desktopProjects = [
+    { ...projects[projectIndex % projects.length], tone: 'left' as const },
+    { ...projects[(projectIndex + 1) % projects.length], tone: 'center' as const },
+    { ...projects[(projectIndex + 2) % projects.length], tone: 'right' as const },
+  ];
 
   const renderProjectCard = (
-    project: SlideProject,
+    project: SlideProject & { tone: ProjectTone },
+    cardKey?: string,
   ) => {
     const isCenter = project.tone === 'center';
     const shellClass =
@@ -140,13 +157,18 @@ const StatsWorksSection = () => {
           : 'text-[#f06c3a] [text-shadow:2px_2px_0px_#2a245d]';
 
     return (
-      <div
-        key={`${activeSlide.id}-${project.name}`}
-        className={`flex flex-col items-center ${isCenter ? 'md:-mt-2' : 'md:pt-14'} transition-all duration-500`}
+      <a
+        key={cardKey ?? project.name}
+        href={project.href}
+        target="_blank"
+        rel="noreferrer"
+        className={`works-card-enter flex flex-col items-center transition-all duration-500 ${
+          isCenter ? 'md:-mt-1' : 'md:pt-10'
+        } ${project.href ? 'cursor-pointer' : ''}`}
       >
         <div
           className={`${shellClass} relative overflow-hidden rounded-[26px] border-[3px] border-[#352d74] shadow-[0_8px_0px_#352d74] ${
-            isCenter ? 'h-[300px] w-[250px] md:h-[430px] md:w-[370px]' : 'h-[220px] w-[190px] md:h-[300px] md:w-[230px]'
+            isCenter ? 'h-[300px] w-[250px] md:h-[420px] md:w-[350px]' : 'h-[220px] w-[190px] md:h-[292px] md:w-[220px]'
           }`}
         >
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_20%_20%,#ffffff_0,transparent_22%),radial-gradient(circle_at_80%_25%,#ffffff_0,transparent_18%),radial-gradient(circle_at_35%_70%,#4f4298_0,transparent_28%)]" />
@@ -208,8 +230,13 @@ const StatsWorksSection = () => {
           >
             {project.category}
           </div>
+          {project.href ? (
+            <div className="[font-family:'Bricolage_Grotesque',Helvetica] mt-2 text-xs font-bold uppercase tracking-[0.18em] text-white/80">
+              Visit Project ↗
+            </div>
+          ) : null}
         </div>
-      </div>
+      </a>
     );
   };
 
@@ -249,6 +276,22 @@ const StatsWorksSection = () => {
 
       <section className="w-full bg-[#f8dfee] px-6 py-12 md:px-[67px] md:py-20">
         <div className="mx-auto w-full max-w-[1440px]">
+          <style>{`
+            .works-card-enter {
+              animation: works-card-enter 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            @keyframes works-card-enter {
+              0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.97);
+              }
+              100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+              }
+            }
+          `}</style>
           <h2 className="[font-family:'Black_Han_Sans',Helvetica] mb-8 text-[clamp(46px,8.6vw,126px)] font-normal leading-[0.88] tracking-[0] text-[#ea6035] md:mb-10">
             LET&#39;S SEE OUR WORKS
           </h2>
@@ -260,7 +303,7 @@ const StatsWorksSection = () => {
               <div className="mb-5 flex justify-end md:mb-4">
                 <span className="[font-family:'Black_Han_Sans',Helvetica] font-normal leading-none">
                   <span className="text-[clamp(30px,4.5vw,66px)] text-[#dfe469] [text-shadow:3px_3px_0px_#2a245d]">
-                    {String(activeSlide.counter).padStart(2, '0')}
+                    {String(projectIndex + 1).padStart(2, '0')}
                   </span>
                   <span className="text-[clamp(28px,4vw,58px)] text-white [text-shadow:3px_3px_0px_#2a245d]">
                     /{String(totalSlides).padStart(2, '0')}
@@ -268,24 +311,26 @@ const StatsWorksSection = () => {
                 </span>
               </div>
 
-              <div className="flex flex-col items-center justify-between gap-4 md:hidden">
-                {activeMobileProject && renderProjectCard(activeMobileProject)}
+              <div className="flex flex-col items-center justify-center gap-4 md:hidden">
+                {activeProject && renderProjectCard({ ...activeProject, tone: 'center' }, `mobile-${projectIndex}-${activeProject.name}`)}
               </div>
 
-              <div className="hidden flex-col items-center justify-between gap-4 md:flex md:flex-row md:items-start md:gap-5">
-                {activeSlide.projects.map((project) => renderProjectCard(project))}
+              <div className="hidden flex-col items-center justify-center gap-4 md:flex md:flex-row md:items-start md:justify-evenly md:gap-0">
+                {desktopProjects.map((project, index) =>
+                  renderProjectCard(project, `desktop-${projectIndex}-${index}-${project.name}`),
+                )}
               </div>
 
               <div className="mt-6 flex justify-end gap-4 md:mt-2">
                 <button
-                  onClick={typeof window !== 'undefined' && window.innerWidth < 768 ? prevMobileProject : prev}
+                  onClick={prev}
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#5a4da7] shadow-[0_4px_0px_rgba(42,36,93,0.18)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_0px_rgba(42,36,93,0.18)]"
                   aria-label="Previous project"
                 >
                   <ArrowIcon direction="left" />
                 </button>
                 <button
-                  onClick={typeof window !== 'undefined' && window.innerWidth < 768 ? nextMobileProject : next}
+                  onClick={next}
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#5a4da7] shadow-[0_4px_0px_rgba(42,36,93,0.18)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_0px_rgba(42,36,93,0.18)]"
                   aria-label="Next project"
                 >

@@ -1,16 +1,18 @@
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollReveal from '../ui/ScrollReveal';
+import TextReveal from '../ui/TextReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    id: 'mathew-white',
-    name: 'Mathew',
-    initial: 'M',
-    rating: '4.0',
-    text: 'The team is creative, responsive, and data-driven. They helped us rebrand and scale our business online. We appreciate their innovative ideas and consistent support.',
+    id: 'arun-white',
+    name: 'Arun Kumar',
+    initial: 'A',
+    rating: '4.9',
+    text: 'Apptizone handled our website and marketing in a very practical way. Communication was easy, timelines were clear, and the final output felt professional from day one.',
     cardBg: '#ffffff',
     cardText: '#1f1f1f',
     cardBorder: '#5f5b63',
@@ -20,11 +22,11 @@ const testimonials = [
     rotate: '-3deg',
   },
   {
-    id: 'mathew-purple',
-    name: 'Mathew',
-    initial: 'M',
-    rating: '4.0',
-    text: 'The team is creative, responsive, and data-driven. They helped us rebrand and scale our business online. We appreciate their innovative ideas and consistent support.',
+    id: 'divya-purple',
+    name: 'Divya Shree',
+    initial: 'D',
+    rating: '5.0',
+    text: 'What I liked most was how quickly the team understood our brand. They were patient with feedback, suggested better ideas on their own, and delivered a clean result without confusion.',
     cardBg: '#7d72f4',
     cardText: '#f7f5ff',
     cardBorder: '#5d53bf',
@@ -34,11 +36,11 @@ const testimonials = [
     rotate: '1deg',
   },
   {
-    id: 'mathew-orange',
-    name: 'Mathew',
-    initial: 'M',
-    rating: '4.0',
-    text: 'The team is creative, responsive, and data-driven. They helped us rebrand and scale our business online. We appreciate their innovative ideas and consistent support.',
+    id: 'praveen-orange',
+    name: 'Praveen Raj',
+    initial: 'P',
+    rating: '4.8',
+    text: 'We came to Apptizone expecting just design support, but they helped improve the full customer experience. The work felt thoughtful, fast, and genuinely focused on business results.',
     cardBg: '#ff5b2f',
     cardText: '#fff7f2',
     cardBorder: '#8b3b22',
@@ -87,9 +89,9 @@ const TestimonialsSection = () => {
           defaults: { ease: 'none' },
           scrollTrigger: {
             trigger: section,
-            start: 'top top',
+            start: 'top+=120 top',
             end: '+=2200',
-            scrub: 0.9,
+            scrub: 0.7,
             pin: pin,
             anticipatePin: 1,
             invalidateOnRefresh: true,
@@ -121,9 +123,9 @@ const TestimonialsSection = () => {
           defaults: { ease: 'none' },
           scrollTrigger: {
             trigger: section,
-            start: 'top top',
+            start: 'top+=80 top',
             end: '+=1700',
-            scrub: 0.9,
+            scrub: 0.7,
             pin: pin,
             anticipatePin: 1,
             invalidateOnRefresh: true,
@@ -154,14 +156,18 @@ const TestimonialsSection = () => {
 
       <div className="mx-auto max-w-[1530px]">
         <div className="relative z-10 max-w-[960px]">
-          <h2 className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(42px,7vw,112px)] leading-[0.9] text-[#4f4298]">
-            HERE WHAT OUR
-            <br />
-            CLIENTS SAYS
-          </h2>
-          <div className="ml-[48%] mt-1 md:ml-[66%]">
+          <ScrollReveal delay={40} distance={26} blur={6} scale={0.98}>
+            <TextReveal
+              as="h2"
+              text="HERE WHAT OUR CLIENTS SAYS"
+              className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(42px,7vw,112px)] leading-[0.9] text-[#4f4298]"
+              delay={60}
+              wordStagger={36}
+            />
+          </ScrollReveal>
+          <ScrollReveal delay={120} distance={24} blur={4} className="ml-[48%] mt-1 md:ml-[66%]">
             <ArrowLoop />
-          </div>
+          </ScrollReveal>
         </div>
 
         <div ref={pinRef} className="relative mt-12 h-[68vh] md:mt-6 md:h-[84vh]">
