@@ -85,11 +85,12 @@ const ServiceOverviewSection = () => {
       <div className="pointer-events-none absolute left-0 top-0 h-8 w-full bg-[radial-gradient(circle_at_16px_0px,#ffffff_15px,transparent_16px)] bg-[length:32px_32px]" />
 
       <div className="mx-auto w-full max-w-[1530px]">
-        <h2 className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(44px,7vw,112px)] leading-[0.95] text-[#f0f2ff] [text-shadow:6px_6px_0px_#25225e]">
-          SERVICE OVERVIEW ↘
+        <h2 className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(34px,11vw,112px)] leading-[0.95] text-[#f0f2ff] [text-shadow:4px_4px_0px_#25225e] md:[text-shadow:6px_6px_0px_#25225e]">
+          <span className="md:hidden">SERVICE<br />OVERVIEW ↘</span>
+          <span className="hidden md:inline">SERVICE OVERVIEW ↘</span>
         </h2>
 
-        <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-6 text-left text-[clamp(24px,3.2vw,62px)] font-semibold leading-tight text-[#ecd65d] md:text-right">
+        <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-5 text-left text-[clamp(20px,6.2vw,62px)] font-semibold leading-tight text-[#ecd65d] md:mt-6 md:text-right">
           Tailored Strategies for
           <br />
           Maximum Business Growth
@@ -147,12 +148,16 @@ const ServiceOverviewSection = () => {
           {stickers.map((item) => (
             <div
               key={item.key}
-              className="rounded-[28px] border-[3px] border-[#25225e] bg-[#3a315f] p-5 shadow-[8px_8px_0px_#25225e]"
+              className="overflow-hidden rounded-[28px] border-[3px] border-[#25225e] bg-[#3a315f] p-5 shadow-[8px_8px_0px_#25225e]"
             >
-              <div className="flex items-center gap-4">
-                <img src={item.image} alt={item.title} className="h-auto w-24 shrink-0" />
-                <div>
-                  <h3 className="[font-family:'Black_Han_Sans',Helvetica] text-2xl leading-none text-[#f0f2ff]">
+              <div className="text-center">
+                <div className="mx-auto inline-flex items-center rounded-full border-2 border-[#ecd65d]/70 bg-[#f56f3f]/20 px-3 py-1">
+                  <span className="[font-family:'Bricolage_Grotesque',Helvetica] text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#ecd65d]">
+                    {item.key.replace('-', ' ')}
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <h3 className="[font-family:'Black_Han_Sans',Helvetica] text-[24px] leading-none text-[#f0f2ff]">
                     {item.title}
                   </h3>
                   <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-3 text-sm leading-6 text-white/85">
