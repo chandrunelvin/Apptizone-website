@@ -132,7 +132,7 @@ const Footer: React.FC = () => {
               src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/material-symbols-call.svg"
             />
             <span className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white md:text-xl">
-              +91 8056136651
+              +91 70108 92360
             </span>
           </div>
 

@@ -114,7 +114,7 @@ const ContactUs: React.FC = () => {
                   className="mt-1.5 sm:mt-2 text-[23px] font-medium text-white"
                   style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
                 >
-                  +91 8056136651
+                  +91 70108 92360
                 </p>
               </div>
 
