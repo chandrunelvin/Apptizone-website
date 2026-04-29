@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import ScrollReveal from '../ui/ScrollReveal';
+import TextReveal from '../ui/TextReveal';
 
 const categories = ['General', 'Marketing', 'Design', 'Management'];
 
@@ -81,7 +83,7 @@ const ChevronIcon = ({ open }: { open: boolean }) => (
     strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`h-6 w-6 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+    className={`h-6 w-6 shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
   >
     <path d="M6 9l6 6 6-6" />
   </svg>
@@ -96,26 +98,30 @@ const FaqSection = () => {
   return (
     <section className="w-full bg-[#413884] px-6 py-[60px] md:px-[108px] md:py-[90px]">
       <div className="mx-auto w-full max-w-[1440px]">
-        <h2 className="[font-family:'Black_Han_Sans',Helvetica] mb-8 text-[clamp(60px,9vw,140px)] font-normal leading-tight tracking-[0] text-[#ecd65d] [text-shadow:6px_6px_1px_#201f51] md:mb-12">
-          FAQ&#39;S
-        </h2>
+        <TextReveal
+          as="h2"
+          text="FAQ'S"
+          className="[font-family:'Black_Han_Sans',Helvetica] mb-8 text-[clamp(60px,9vw,140px)] font-normal leading-tight tracking-[0] text-[#ecd65d] [text-shadow:6px_6px_1px_#201f51] md:mb-12"
+          delay={40}
+        />
 
         <div className="mb-8 flex flex-wrap gap-3 md:mb-14 md:gap-4">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => {
-                setActiveCategory(category);
-                setOpenItem('item-0');
-              }}
-              className={`h-auto rounded-[70px] border-0 px-5 py-3 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(16px,2.5vw,36px)] font-normal leading-normal tracking-[0] shadow-[6px_6px_1px_#02012e] transition-colors md:px-[45px] md:py-[15px] ${
-                activeCategory === category
-                  ? 'bg-[#f0542e] text-white'
-                  : 'bg-[#e9e6f8] text-black hover:bg-[#d8d4f5]'
-              }`}
-            >
-              {category}
-            </button>
+          {categories.map((category, index) => (
+            <ScrollReveal key={category} delay={60 + index * 45} distance={18} blur={5} scale={0.98}>
+              <button
+                onClick={() => {
+                  setActiveCategory(category);
+                  setOpenItem('item-0');
+                }}
+                className={`h-auto rounded-[70px] border-0 px-5 py-3 [font-family:'Bricolage_Grotesque',Helvetica] text-[clamp(16px,2.5vw,36px)] font-normal leading-normal tracking-[0] shadow-[6px_6px_1px_#02012e] transition-all duration-300 hover:-translate-y-1 md:px-[45px] md:py-[15px] ${
+                  activeCategory === category
+                    ? 'bg-[#f0542e] text-white'
+                    : 'bg-[#e9e6f8] text-black hover:bg-[#d8d4f5]'
+                }`}
+              >
+                {category}
+              </button>
+            </ScrollReveal>
           ))}
         </div>
 
@@ -125,11 +131,11 @@ const FaqSection = () => {
             const isOpen = openItem === value;
 
             return (
-              <div key={value} className="border-b-[5px] border-b-white/30 py-3 md:py-4">
+              <ScrollReveal key={value} className="border-b-[5px] border-b-white/30 py-3 md:py-4" delay={80 + index * 60} distance={24} blur={6}>
                 <button
                   type="button"
                   onClick={() => setOpenItem(isOpen ? '' : value)}
-                  className="flex w-full items-start justify-between gap-4 py-2 text-left"
+                  className="flex w-full items-start justify-between gap-4 py-2 text-left transition-transform duration-300 hover:translate-x-1"
                 >
                   <span className="[font-family:'Black_Han_Sans',Helvetica] pr-2 text-[clamp(18px,2.5vw,38px)] font-normal leading-tight tracking-[0] text-white">
                     {faq.question}
@@ -139,12 +145,14 @@ const FaqSection = () => {
                   </span>
                 </button>
 
-                {isOpen && (
-                  <div className="[font-family:'Bricolage_Grotesque',Helvetica] pt-3 pb-2 text-[clamp(14px,1.6vw,26px)] font-normal leading-normal tracking-[0] text-[#e2e2e2]">
-                    {faq.answer}
+                <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-70'}`}>
+                  <div className="overflow-hidden">
+                    <div className="[font-family:'Bricolage_Grotesque',Helvetica] pt-3 pb-2 text-[clamp(14px,1.6vw,26px)] font-normal leading-normal tracking-[0] text-[#e2e2e2]">
+                      {faq.answer}
+                    </div>
                   </div>
-                )}
-              </div>
+                </div>
+              </ScrollReveal>
             );
           })}
         </div>

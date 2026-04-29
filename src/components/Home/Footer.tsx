@@ -1,4 +1,6 @@
 import React from 'react';
+import FloatingElement from '../ui/FloatingElement';
+import ScrollReveal from '../ui/ScrollReveal';
 
 const footerLinks = [
   "Home",
@@ -52,14 +54,16 @@ const Footer: React.FC = () => {
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1530px] flex-col gap-10 px-6 py-12 md:px-10 lg:flex-row lg:flex-wrap lg:items-start lg:justify-between lg:gap-8 lg:px-[84px] lg:py-[68px]">
         {/* Brand column */}
-        <div className="flex flex-col gap-4 min-w-[160px]">
-          <div className="w-20 h-[71px] flex flex-col justify-end bg-[url(https://c.animaapp.com/mms2hnc1lnJ5gE/img/image-38-1.png)] bg-cover bg-center">
-            <img
-              className="w-20 h-[22.13px]"
-              alt="Apptizone"
-              src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/image-39-1.png"
-            />
-          </div>
+        <ScrollReveal className="flex flex-col gap-4 min-w-[160px]" delay={40} distance={24} blur={6}>
+          <FloatingElement amplitude={5} duration={5}>
+            <div className="w-20 h-[71px] flex flex-col justify-end bg-[url(https://c.animaapp.com/mms2hnc1lnJ5gE/img/image-38-1.png)] bg-cover bg-center">
+              <img
+                className="w-20 h-[22.13px]"
+                alt="Apptizone"
+                src="https://c.animaapp.com/mms2hnc1lnJ5gE/img/image-39-1.png"
+              />
+            </div>
+          </FloatingElement>
           <p className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-base tracking-[0] leading-normal uppercase">
             Build for Brand Growth
           </p>
@@ -71,7 +75,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={icon.alt}
-                className="flex h-6 w-6 items-center justify-center text-white transition-opacity hover:opacity-80"
+                className="flex h-6 w-6 items-center justify-center text-white transition-all duration-300 hover:-translate-y-1 hover:opacity-80"
               >
                 {icon.alt === "X" ? (
                   <span className="text-[20px] font-bold leading-none">X</span>
@@ -85,10 +89,10 @@ const Footer: React.FC = () => {
               </a>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Links column */}
-        <nav className="flex flex-col gap-[14px] md:gap-[18px]">
+        <ScrollReveal className="flex flex-col gap-[14px] md:gap-[18px]" delay={100} distance={26} blur={6}>
           <div className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-[26px] tracking-[0] leading-normal uppercase">
             Links
           </div>
@@ -96,15 +100,15 @@ const Footer: React.FC = () => {
             <a
               key={link}
               href="#"
-              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white hover:underline md:text-xl"
+              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white transition-all duration-300 hover:translate-x-1 hover:underline md:text-xl"
             >
               {link}
             </a>
           ))}
-        </nav>
+        </ScrollReveal>
 
         {/* Services column */}
-        <nav className="flex flex-col gap-[14px] md:gap-[18px]">
+        <ScrollReveal className="flex flex-col gap-[14px] md:gap-[18px]" delay={160} distance={26} blur={6}>
           <div className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-[26px] tracking-[0] leading-normal uppercase">
             Services
           </div>
@@ -112,14 +116,15 @@ const Footer: React.FC = () => {
             <a
               key={service}
               href="#"
-              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white hover:underline md:text-xl"
+              className="font-['Bricolage_Grotesque',Helvetica] font-normal text-lg tracking-[0] leading-normal text-white transition-all duration-300 hover:translate-x-1 hover:underline md:text-xl"
             >
               {service}
             </a>
           ))}
-        </nav>
+        </ScrollReveal>
 
         {/* Contact column */}
+        <ScrollReveal className="contents" delay={220} distance={28} blur={8}>
         <address className="flex max-w-[360px] flex-col gap-[14px] not-italic md:max-w-[420px] md:gap-[18px]">
           <div className="font-['Black_Han_Sans',Helvetica] font-normal text-white text-[26px] tracking-[0] leading-normal uppercase">
             Contact
@@ -158,6 +163,7 @@ const Footer: React.FC = () => {
             </span>
           </div>
         </address>
+        </ScrollReveal>
       </div>
     </footer>
   );

@@ -1,1 +1,96 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #111111;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@keyframes gentleFloat {
+  0%,
+  100% {
+    transform: translate3d(0, calc(var(--float-distance, 12px) * -1), 0);
+  }
+  50% {
+    transform: translate3d(0, var(--float-distance, 12px), 0);
+  }
+}
+
+@keyframes gentleDriftX {
+  0%,
+  100% {
+    transform: translate3d(calc(var(--float-distance, 12px) * -1), 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--float-distance, 12px), 0, 0);
+  }
+}
+
+@keyframes softPulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.08);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat var(--float-duration, 5s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.animate-gentle-drift-x {
+  animation: gentleDriftX var(--float-duration, 7s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.animate-soft-pulse {
+  animation: softPulseGlow 3.8s ease-in-out infinite;
+}
+
+.shimmer-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-shell::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  width: 45%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 45%, rgba(255, 255, 255, 0.28) 50%, transparent 100%);
+  pointer-events: none;
+  animation: shimmerSweep 5.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useReducedMotionPreference from './useReducedMotionPreference';
 
 type ScrollRevealProps = {
   children: React.ReactNode;
@@ -20,17 +21,14 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   rotate = 0.8,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const prefersReducedMotion = useReducedMotionPreference();
+  const [isVisible, setIsVisible] = useState(prefersReducedMotion);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setIsVisible(true);
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -48,7 +46,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <div

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import contactBg from '../../assets/contact-us/contact-bg.png';
 import contactName from '../../assets/contact-us/contact-name.png';
+import FloatingElement from '../ui/FloatingElement';
 import ScrollReveal from '../ui/ScrollReveal';
 import TextReveal from '../ui/TextReveal';
 
@@ -43,9 +44,7 @@ const ContactUs: React.FC = () => {
     service: '',
   });
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -61,9 +60,7 @@ const ContactUs: React.FC = () => {
       `Service: ${formData.service || '-'}`,
     ];
 
-    const mailtoLink = `mailto:info@apptizone.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+    const mailtoLink = `mailto:info@apptizone.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
 
     window.location.href = mailtoLink;
   };
@@ -76,16 +73,18 @@ const ContactUs: React.FC = () => {
         src={contactBg}
       />
 
-      <section className="relative z-10 mx-auto w-full max-w-[1530px] px-4 sm:px-6 md:px-[64px] lg:px-[84px] pb-10 sm:pb-14 md:pb-[74px]">
+      <section className="relative z-10 mx-auto w-full max-w-[1530px] px-4 pb-10 sm:px-6 sm:pb-14 md:px-[64px] md:pb-[74px] lg:px-[84px]">
         <ScrollReveal distance={24}>
-          <img
-            src={contactName}
-            alt="Contact Us"
-            className="pt-2 sm:pt-[14px] w-full max-w-[980px] h-auto mx-auto"
-          />
+          <FloatingElement amplitude={6} duration={5.6}>
+            <img
+              src={contactName}
+              alt="Contact Us"
+              className="mx-auto h-auto w-full max-w-[980px] pt-2 sm:pt-[14px]"
+            />
+          </FloatingElement>
         </ScrollReveal>
 
-        <div className="mt-6 sm:mt-10 md:mt-[54px] flex flex-col gap-8 sm:gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+        <div className="mt-6 flex flex-col gap-8 sm:mt-10 sm:gap-10 md:mt-[54px] lg:flex-row lg:items-start lg:justify-between lg:gap-12">
           <ScrollReveal className="w-full max-w-[560px]" delay={60}>
             <TextReveal
               as="p"
@@ -102,66 +101,39 @@ const ContactUs: React.FC = () => {
               wordStagger={28}
             />
 
-            <div className="mt-8 sm:mt-10 md:mt-[46px] grid grid-cols-1 gap-y-6 sm:gap-y-8 md:gap-y-[42px] sm:grid-cols-2 sm:gap-x-8 md:gap-x-[52px]">
+            <div className="mt-8 grid grid-cols-1 gap-y-6 sm:mt-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-8 md:mt-[46px] md:gap-x-[52px] md:gap-y-[42px]">
               <div>
-                <h3
-                  className="text-[26px] font-semibold leading-none text-[#ECA012]"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
+                <h3 className="text-[26px] font-semibold leading-none text-[#ECA012]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                   Call Us
                 </h3>
-                <p
-                  className="mt-1.5 sm:mt-2 text-[23px] font-medium text-white"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
+                <p className="mt-1.5 text-[23px] font-medium text-white sm:mt-2" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                   +91 70108 92360
                 </p>
               </div>
 
               <div>
-                <h3
-                  className="text-[26px] font-semibold leading-none text-[#ECA012]"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
+                <h3 className="text-[26px] font-semibold leading-none text-[#ECA012]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                   Our Location
                 </h3>
-                <p
-                  className="mt-1.5 sm:mt-2 text-[23px] font-medium text-white"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
-                  Apptizone Digital Solution Pvt Ltd - Nandhavanam Mettur, 2,
-                  Vivekananda Cross St, Nandavana Mettur, Avadi, Chennai, Tamil
-                  Nadu 600071
+                <p className="mt-1.5 text-[23px] font-medium text-white sm:mt-2" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
+                  Apptizone Digital Solution Pvt Ltd - Nandhavanam Mettur, 2, Vivekananda Cross St, Nandavana Mettur, Avadi, Chennai, Tamil Nadu 600071
                 </p>
               </div>
 
               <div>
-                <h3
-                  className="text-[26px] font-semibold leading-none text-[#ECA012]"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
+                <h3 className="text-[26px] font-semibold leading-none text-[#ECA012]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                   Email
                 </h3>
-                <a
-                  href="mailto:info@apptizone.com"
-                  className="mt-1.5 sm:mt-2 text-[23px] font-medium text-white"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
+                <a href="mailto:info@apptizone.com" className="mt-1.5 text-[23px] font-medium text-white sm:mt-2" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                   info@apptizone.com
                 </a>
               </div>
 
               <div>
-                <h3
-                  className="text-[26px] font-semibold leading-none text-[#ECA012]"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
+                <h3 className="text-[26px] font-semibold leading-none text-[#ECA012]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                   Social Network
                 </h3>
-                <div
-                  className="mt-[6px] sm:mt-[10px] flex items-center gap-3 sm:gap-4 md:gap-5"
-                  style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                >
+                <div className="mt-[6px] flex items-center gap-3 sm:mt-[10px] sm:gap-4 md:gap-5" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                   {socialLinks.map((link) => (
                     <a
                       key={link.alt}
@@ -169,18 +141,12 @@ const ContactUs: React.FC = () => {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={link.alt}
-                      className="flex h-5 w-5 items-center justify-center text-white sm:h-6 sm:w-6"
+                      className="flex h-5 w-5 items-center justify-center text-white transition-transform duration-300 hover:-translate-y-1 sm:h-6 sm:w-6"
                     >
                       {link.alt === 'X' ? (
-                        <span className="text-[18px] font-bold leading-none sm:text-[20px]">
-                          X
-                        </span>
+                        <span className="text-[18px] font-bold leading-none sm:text-[20px]">X</span>
                       ) : (
-                        <img
-                          src={link.src}
-                          alt={link.alt}
-                          className="h-5 w-5 sm:h-6 sm:w-6"
-                        />
+                        <img src={link.src} alt={link.alt} className="h-5 w-5 sm:h-6 sm:w-6" />
                       )}
                     </a>
                   ))}
@@ -192,22 +158,18 @@ const ContactUs: React.FC = () => {
           <ScrollReveal className="w-full lg:max-w-[500px]" delay={120} distance={42} blur={12} scale={0.95}>
             <form
               onSubmit={handleSubmit}
-              className="w-full rounded-[24px] sm:rounded-[30px] md:rounded-[38px] border-[3px] sm:border-[4px] border-[#16154c] bg-[#cecfde] px-4 sm:px-5 md:px-[28px] pb-5 sm:pb-6 md:pb-[30px] pt-4 sm:pt-5 md:pt-[24px] shadow-[0_2px_0_#16154c]"
+              className="w-full rounded-[24px] border-[3px] border-[#16154c] bg-[#cecfde] px-4 pb-5 pt-4 shadow-[0_2px_0_#16154c] sm:rounded-[30px] sm:border-[4px] sm:px-5 sm:pb-6 sm:pt-5 md:rounded-[38px] md:px-[28px] md:pb-[30px] md:pt-[24px]"
             >
               <TextReveal
                 as="h2"
                 text="LETS WORK TOGETHER"
-                className="text-[28px] sm:text-[34px] md:text-[42px] lg:text-[50px] font-medium leading-none text-[#373737]"
+                className="text-[28px] font-medium leading-none text-[#373737] sm:text-[34px] md:text-[42px] lg:text-[50px]"
                 delay={120}
               />
 
-              <div className="mt-3 sm:mt-4 md:mt-[18px] space-y-3 sm:space-y-[14px]">
+              <div className="mt-3 space-y-3 sm:mt-4 sm:space-y-[14px] md:mt-[18px]">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-[16px] font-light text-[#555]"
-                    style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                  >
+                  <label htmlFor="name" className="block text-[16px] font-light text-[#555]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                     Name
                   </label>
                   <input
@@ -216,16 +178,12 @@ const ContactUs: React.FC = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Full Name"
-                    className="mt-1.5 h-[40px] sm:h-[42px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 sm:px-4 text-[15px] sm:text-[16px] text-[#222] outline-none focus:border-[#777]"
+                    className="mt-1.5 h-[40px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 text-[15px] text-[#222] outline-none focus:border-[#777] sm:h-[42px] sm:px-4 sm:text-[16px]"
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-[16px] font-light text-[#555]"
-                    style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                  >
+                  <label htmlFor="email" className="block text-[16px] font-light text-[#555]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                     Mail Id
                   </label>
                   <input
@@ -235,21 +193,17 @@ const ContactUs: React.FC = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder=".com"
-                    className="mt-1.5 h-[40px] sm:h-[42px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 sm:px-4 text-[15px] sm:text-[16px] text-[#222] outline-none focus:border-[#777]"
+                    className="mt-1.5 h-[40px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 text-[15px] text-[#222] outline-none focus:border-[#777] sm:h-[42px] sm:px-4 sm:text-[16px]"
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="country-code"
-                    className="block text-[16px] font-light text-[#555]"
-                    style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                  >
+                  <label htmlFor="country-code" className="block text-[16px] font-light text-[#555]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                     Country Code
                   </label>
                   <select
                     id="country-code"
-                    className="mt-1.5 h-[40px] sm:h-[42px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 text-[15px] sm:text-[16px] text-[#9d9d9d] outline-none focus:border-[#777]"
+                    className="mt-1.5 h-[40px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 text-[15px] text-[#9d9d9d] outline-none focus:border-[#777] sm:h-[42px] sm:text-[16px]"
                     defaultValue="+91 India"
                   >
                     <option>+91 India</option>
@@ -257,11 +211,7 @@ const ContactUs: React.FC = () => {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="mobile"
-                    className="block text-[16px] font-light text-[#555]"
-                    style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                  >
+                  <label htmlFor="mobile" className="block text-[16px] font-light text-[#555]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                     Mobile Number
                   </label>
                   <input
@@ -270,16 +220,12 @@ const ContactUs: React.FC = () => {
                     value={formData.mobile}
                     onChange={handleInputChange}
                     placeholder="+91"
-                    className="mt-1.5 h-[40px] sm:h-[42px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 sm:px-4 text-[15px] sm:text-[16px] text-[#222] outline-none focus:border-[#777]"
+                    className="mt-1.5 h-[40px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 text-[15px] text-[#222] outline-none focus:border-[#777] sm:h-[42px] sm:px-4 sm:text-[16px]"
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="service"
-                    className="block text-[16px] font-light text-[#555]"
-                    style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
-                  >
+                  <label htmlFor="service" className="block text-[16px] font-light text-[#555]" style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}>
                     Service
                   </label>
                   <select
@@ -287,7 +233,7 @@ const ContactUs: React.FC = () => {
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
-                    className={`mt-1.5 h-[40px] sm:h-[42px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 text-[15px] sm:text-[16px] outline-none focus:border-[#777] ${
+                    className={`mt-1.5 h-[40px] w-full rounded-[8px] border border-[#bbb] bg-[#efefef] px-3 text-[15px] outline-none focus:border-[#777] sm:h-[42px] sm:text-[16px] ${
                       formData.service ? 'text-[#222]' : 'text-[#9d9d9d]'
                     }`}
                   >
@@ -303,7 +249,7 @@ const ContactUs: React.FC = () => {
 
               <button
                 type="submit"
-                className="mt-5 sm:mt-6 md:mt-[26px] h-[40px] sm:h-[42px] w-full rounded-[8px] bg-[#f0542e] text-[14px] sm:text-[15px] font-semibold text-white shadow-[3px_3px_0_#16154c] transition hover:opacity-95"
+                className="animate-soft-pulse mt-5 h-[40px] w-full rounded-[8px] bg-[#f0542e] text-[14px] font-semibold text-white shadow-[3px_3px_0_#16154c] transition hover:opacity-95 sm:mt-6 sm:h-[42px] sm:text-[15px] md:mt-[26px]"
                 style={{ fontFamily: 'Bricolage Grotesque, Helvetica, sans-serif' }}
               >
                 Submit Form

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useReducedMotionPreference from './useReducedMotionPreference';
 
 type TextRevealProps = {
   as?: React.ElementType;
@@ -16,17 +17,14 @@ const TextReveal: React.FC<TextRevealProps> = ({
   wordStagger = 36,
 }) => {
   const ref = useRef<HTMLElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const prefersReducedMotion = useReducedMotionPreference();
+  const [isVisible, setIsVisible] = useState(prefersReducedMotion);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setIsVisible(true);
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -43,7 +41,7 @@ const TextReveal: React.FC<TextRevealProps> = ({
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [prefersReducedMotion]);
 
   const Tag: React.ElementType = as;
   const parts = text.split(' ');

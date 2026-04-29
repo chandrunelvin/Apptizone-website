@@ -7,6 +7,10 @@ import socialSticker from '../../assets/home/socail-ani.png';
 import websiteSticker from '../../assets/home/uiandux-ani.png';
 import whatsappIntegrationSticker from '../../assets/home/w-inter-ani.png';
 import whatsappMarketingSticker from '../../assets/home/whatsapp-m-ani.png';
+import FloatingElement from '../ui/FloatingElement';
+import ParallaxBlock from '../ui/ParallaxBlock';
+import ScrollReveal from '../ui/ScrollReveal';
+import TextReveal from '../ui/TextReveal';
 
 const ServiceOverviewSection = () => {
   const [hoveredSticker, setHoveredSticker] = useState<string | null>(null);
@@ -83,72 +87,88 @@ const ServiceOverviewSection = () => {
   return (
     <section className="relative w-full overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#f56f3f_0%,#ec5a2f_40%,#d84b23_100%)] px-4 py-14 md:px-8 md:py-20">
       <div className="pointer-events-none absolute left-0 top-0 h-8 w-full bg-[radial-gradient(circle_at_16px_0px,#ffffff_15px,transparent_16px)] bg-[length:32px_32px]" />
+      <div className="pointer-events-none absolute inset-0 opacity-25">
+        <div className="animate-gentle-drift-x h-full w-full bg-[radial-gradient(circle_at_12%_20%,rgba(255,255,255,0.18)_0,transparent_16%),radial-gradient(circle_at_88%_14%,rgba(236,214,93,0.22)_0,transparent_18%),radial-gradient(circle_at_68%_75%,rgba(37,34,94,0.16)_0,transparent_22%)]" />
+      </div>
 
       <div className="mx-auto w-full max-w-[1530px]">
-        <h2 className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(34px,11vw,112px)] leading-[0.95] text-[#f0f2ff] [text-shadow:4px_4px_0px_#25225e] md:[text-shadow:6px_6px_0px_#25225e]">
-          <span className="md:hidden">SERVICE<br />OVERVIEW ↘</span>
-          <span className="hidden md:inline">SERVICE OVERVIEW ↘</span>
-        </h2>
+        <TextReveal
+          as="h2"
+          text="SERVICE OVERVIEW"
+          className="[font-family:'Black_Han_Sans',Helvetica] text-[clamp(34px,11vw,112px)] leading-[0.95] text-[#f0f2ff] [text-shadow:4px_4px_0px_#25225e] md:[text-shadow:6px_6px_0px_#25225e]"
+          delay={40}
+        />
 
-        <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-5 text-left text-[clamp(20px,6.2vw,62px)] font-semibold leading-tight text-[#ecd65d] md:mt-6 md:text-right">
-          Tailored Strategies for
-          <br />
-          Maximum Business Growth
-        </p>
+        <ScrollReveal delay={110} distance={28} blur={6}>
+          <p className="[font-family:'Bricolage_Grotesque',Helvetica] mt-5 text-left text-[clamp(20px,6.2vw,62px)] font-semibold leading-tight text-[#ecd65d] md:mt-6 md:text-right">
+            Tailored Strategies for
+            <br />
+            Maximum Business Growth
+          </p>
+        </ScrollReveal>
 
         <div className="relative mt-10 hidden aspect-[1274/646] w-full overflow-hidden md:block">
-          <img
-            src={bgService}
-            alt="Girl working on laptop background"
-            className="absolute inset-0 h-full w-full object-contain object-center"
-          />
+          <ParallaxBlock className="absolute inset-0 h-full w-full" speed={0.05}>
+            <img
+              src={bgService}
+              alt="Girl working on laptop background"
+              className="absolute inset-0 h-full w-full object-contain object-center"
+            />
+          </ParallaxBlock>
 
-          {stickers.map((item) => (
-            <div
+          {stickers.map((item, index) => (
+            <FloatingElement
               key={item.key}
               className={`absolute ${item.wrapperClass} ${hoveredSticker === item.key ? 'z-40' : 'z-10'}`}
-              onMouseEnter={() => setHoveredSticker(item.key)}
-              onMouseLeave={() => setHoveredSticker((current) => (current === item.key ? null : current))}
+              amplitude={index % 2 === 0 ? 8 : 12}
+              duration={4.6 + index * 0.35}
+              delay={index * 0.22}
             >
               <div
-                className={`pointer-events-none absolute ${item.tooltipClass} z-50 rounded-[22px] border-[3px] border-[#25225e] bg-[#25225e] px-5 py-4 shadow-[0_12px_28px_rgba(37,34,94,0.28)] transition-[opacity,transform,filter] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]`}
-                style={{
-                  opacity: hoveredSticker === item.key ? 1 : 0,
-                  filter: hoveredSticker === item.key ? 'blur(0px)' : 'blur(8px)',
-                  transform: hoveredSticker === item.key ? 'translateY(0px) scale(1)' : 'translateY(10px) scale(0.92)',
-                }}
+                onMouseEnter={() => setHoveredSticker(item.key)}
+                onMouseLeave={() => setHoveredSticker((current) => (current === item.key ? null : current))}
               >
-                <span
-                  className={`absolute h-0 w-0 border-x-[10px] border-x-transparent ${item.tooltipArrowClass}`}
-                />
-                <div className="flex flex-col gap-2">
-                  <div className="[font-family:'Black_Han_Sans',Helvetica] text-[18px] leading-none text-[#ecd65d]">
-                    {item.title}
+                <div
+                  className={`pointer-events-none absolute ${item.tooltipClass} z-50 rounded-[22px] border-[3px] border-[#25225e] bg-[#25225e] px-5 py-4 shadow-[0_12px_28px_rgba(37,34,94,0.28)] transition-[opacity,transform,filter] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                  style={{
+                    opacity: hoveredSticker === item.key ? 1 : 0,
+                    filter: hoveredSticker === item.key ? 'blur(0px)' : 'blur(8px)',
+                    transform: hoveredSticker === item.key ? 'translateY(0px) scale(1)' : 'translateY(10px) scale(0.92)',
+                  }}
+                >
+                  <span
+                    className={`absolute h-0 w-0 border-x-[10px] border-x-transparent ${item.tooltipArrowClass}`}
+                  />
+                  <div className="flex flex-col gap-2">
+                    <div className="[font-family:'Black_Han_Sans',Helvetica] text-[18px] leading-none text-[#ecd65d]">
+                      {item.title}
+                    </div>
+                    <p className="[font-family:'Bricolage_Grotesque',Helvetica] text-[13px] font-medium leading-[1.4] text-white/95">
+                      {item.details}
+                    </p>
                   </div>
-                  <p
-                    className="[font-family:'Bricolage_Grotesque',Helvetica] text-[13px] font-medium leading-[1.4] text-white/95"
-                  >
-                    {item.details}
-                  </p>
                 </div>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className={`relative z-20 h-auto ${item.imageClass} cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                  style={{
+                    transform: hoveredSticker === item.key ? 'translateY(-4px) scale(1.03)' : 'translateY(0px) scale(1)',
+                  }}
+                />
               </div>
-              <img
-                src={item.image}
-                alt={item.title}
-                className={`relative z-20 h-auto ${item.imageClass} cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
-                style={{
-                  transform: hoveredSticker === item.key ? 'translateY(-4px) scale(1.03)' : 'translateY(0px) scale(1)',
-                }}
-              />
-            </div>
+            </FloatingElement>
           ))}
         </div>
 
         <div className="mt-10 grid gap-5 md:hidden">
-          {stickers.map((item) => (
-            <div
+          {stickers.map((item, index) => (
+            <ScrollReveal
               key={item.key}
               className="overflow-hidden rounded-[28px] border-[3px] border-[#25225e] bg-[#3a315f] p-5 shadow-[8px_8px_0px_#25225e]"
+              delay={index * 70}
+              distance={28}
+              blur={8}
             >
               <div className="text-center">
                 <div className="mx-auto inline-flex items-center rounded-full border-2 border-[#ecd65d]/70 bg-[#f56f3f]/20 px-3 py-1">
@@ -165,7 +185,7 @@ const ServiceOverviewSection = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

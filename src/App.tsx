@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Home/Header'
 import Home from './components/Home/Home'
 import AboutUs from './components/AboutUs/AboutUs'
@@ -12,13 +14,33 @@ import WhatsAppIntegration from './components/Services/WhatsAppMarketing/WhatsAp
 import ProjectsPage from './components/Projects/ProjectsPage'
 import ContactUs from './components/ContactUs/ContactUs'
 
-function App() {
+const ScrollToTop = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [location.pathname])
+
+  return null
+}
+
+function AppShell() {
+  const location = useLocation()
+
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <ScrollToTop />
+      <Header />
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={location.pathname}
+          className="flex-grow"
+          initial={{ opacity: 0, y: 24, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          exit={{ opacity: 0, y: -16, filter: 'blur(8px)' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/services/seo" element={<SEO />} />
@@ -30,9 +52,17 @@ function App() {
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
-        </main>
-        <Footer />
-      </div>
+        </motion.main>
+      </AnimatePresence>
+      <Footer />
+    </div>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   )
 }
